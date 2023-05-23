@@ -1,1 +1,1 @@
-import { createSelector } from '@reduxjs/toolkit';
+export const selectIsUserAuthorized = state => Boolean(state.auth.accessToken);
