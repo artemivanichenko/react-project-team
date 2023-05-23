@@ -13,7 +13,7 @@ const initialState = {
   refreshToken: null,
   sid: null,
   email: null,
-  balance: null,
+  userData: null,
   error: null,
   isLoading: false,
   isAuth: false,
