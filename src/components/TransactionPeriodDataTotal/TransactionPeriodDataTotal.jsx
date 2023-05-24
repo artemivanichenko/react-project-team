@@ -1,26 +1,28 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getTransactionPeriod } from 'redux/reports/reportsOperations';
+import { useSelector } from 'react-redux';
 import {
   selectExpensesTotal,
   selectIncomesTotal,
 } from 'redux/reports/reportsSelectors';
+import {
+  StyledBox,
+  StyledText,
+  StyledTotalAmount,
+} from './TransactionPeriodDataTotal.styled';
 
 const TransactionPeriodDataTotal = () => {
-  //   const IncomesTotal = useSelector(selectIncomesTotal);
-  //   const ExpensesTotal = useSelector(selectExpensesTotal);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (data) {
-      dispatch(getTransactionPeriod(data));
-    }
-  }, [data, dispatch]);
+  const IncomesTotal = useSelector(selectIncomesTotal);
+  const ExpensesTotal = useSelector(selectExpensesTotal);
 
   return (
-    <section>
-      {/* <p>Expenses: {IncomesTotal} UAH</p> <p>Income:{ExpensesTotal} UAH</p> */}
-    </section>
+    <StyledBox>
+      <StyledText>
+        Expenses:
+        <StyledTotalAmount red> - {IncomesTotal} UAH</StyledTotalAmount>
+      </StyledText>
+      <StyledText>
+        Income: <StyledTotalAmount> + {ExpensesTotal} UAH</StyledTotalAmount>
+      </StyledText>
+    </StyledBox>
   );
 };
 
