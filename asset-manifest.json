@@ -1,17 +1,25 @@
 {
   "files": {
     "main.css": "/goit-bc50-react-project/static/css/main.7acaea2f.css",
-    "main.js": "/goit-bc50-react-project/static/js/main.02c74973.js",
+    "main.js": "/goit-bc50-react-project/static/js/main.8b2754aa.js",
+    "static/js/984.bb00a758.chunk.js": "/goit-bc50-react-project/static/js/984.bb00a758.chunk.js",
+    "static/js/15.bc85dff9.chunk.js": "/goit-bc50-react-project/static/js/15.bc85dff9.chunk.js",
+    "static/js/771.4f113557.chunk.js": "/goit-bc50-react-project/static/js/771.4f113557.chunk.js",
+    "static/js/41.3c4596c0.chunk.js": "/goit-bc50-react-project/static/js/41.3c4596c0.chunk.js",
     "static/media/bgOverlaytablet.png": "/goit-bc50-react-project/static/media/bgOverlaytablet.28a063493ec24cd1428a.png",
     "static/media/bgOverlayWeb.png": "/goit-bc50-react-project/static/media/bgOverlayWeb.17203db8bec76bc2e346.png",
     "static/media/wallet.png": "/goit-bc50-react-project/static/media/wallet.69a5117ccf911700a1f4.png",
     "static/media/cashTablet.png": "/goit-bc50-react-project/static/media/cashTablet.f57b1e5636a28bd6f7eb.png",
     "index.html": "/goit-bc50-react-project/index.html",
     "main.7acaea2f.css.map": "/goit-bc50-react-project/static/css/main.7acaea2f.css.map",
-    "main.02c74973.js.map": "/goit-bc50-react-project/static/js/main.02c74973.js.map"
+    "main.8b2754aa.js.map": "/goit-bc50-react-project/static/js/main.8b2754aa.js.map",
+    "984.bb00a758.chunk.js.map": "/goit-bc50-react-project/static/js/984.bb00a758.chunk.js.map",
+    "15.bc85dff9.chunk.js.map": "/goit-bc50-react-project/static/js/15.bc85dff9.chunk.js.map",
+    "771.4f113557.chunk.js.map": "/goit-bc50-react-project/static/js/771.4f113557.chunk.js.map",
+    "41.3c4596c0.chunk.js.map": "/goit-bc50-react-project/static/js/41.3c4596c0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
-    "static/js/main.02c74973.js"
+    "static/js/main.8b2754aa.js"
   ]
 }
