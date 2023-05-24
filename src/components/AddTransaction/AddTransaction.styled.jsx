@@ -1,3 +1,5 @@
+import DatePicker from 'react-datepicker';
+import Select from 'react-select';
 import styled from '@emotion/styled';
 
 export const WrapStyled = styled.div`
@@ -5,8 +7,27 @@ export const WrapStyled = styled.div`
   gap: 32px;
   padding: 32px 0 60px;
 `;
+
 export const FormStyled = styled.form`
   display: flex;
+`;
+
+export const DatePickerStyled = styled(DatePicker)`
+  width: 100%;
+  padding: 10px;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #c7ccdc;
+`;
+
+export const SelectStyled = styled(Select)`
+  width: 170px;
+  height: 44px;
+  font-size: 12px;
+  color: rgba(199, 204, 220, 0.5);
+  background: transparent;
 `;
 
 export const BtnStyled = styled.button`
