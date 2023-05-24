@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/goit-bc50-react-project/static/css/main.7acaea2f.css",
-    "main.js": "/goit-bc50-react-project/static/js/main.f7b8e2e8.js",
+    "main.js": "/goit-bc50-react-project/static/js/main.2d16ff6c.js",
     "static/media/wallet.png": "/goit-bc50-react-project/static/media/wallet.69a5117ccf911700a1f4.png",
     "index.html": "/goit-bc50-react-project/index.html",
     "main.7acaea2f.css.map": "/goit-bc50-react-project/static/css/main.7acaea2f.css.map",
-    "main.f7b8e2e8.js.map": "/goit-bc50-react-project/static/js/main.f7b8e2e8.js.map"
+    "main.2d16ff6c.js.map": "/goit-bc50-react-project/static/js/main.2d16ff6c.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
-    "static/js/main.f7b8e2e8.js"
+    "static/js/main.2d16ff6c.js"
   ]
 }
