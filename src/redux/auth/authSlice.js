@@ -95,12 +95,11 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(refreshToken.fulfilled, (state, { payload }) => {
-        return {
-          ...state,
-          isLoading: false,
-          error: null,
-          ...payload,
-        };
+        state.isLoading = false;
+        state.error = null;
+        state.accessToken = payload.newAccessToken;
+        state.refreshToken = payload.newRefreshToken;
+        state.sid = payload.newSid;
       })
       .addCase(refreshToken.rejected, (state, { payload }) => {
         state.isLoading = false;
