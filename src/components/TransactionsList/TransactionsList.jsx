@@ -35,7 +35,7 @@ const TransactionsList = () => {
 
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ maxWidth: 800 }} aria-label="customized table">
+      <Table sx={{ maxWidth: 746 }} aria-label="customized table">
         <TableHead>
           <TableRow>
             <StyledTableCell>DATE</StyledTableCell>

@@ -3,6 +3,7 @@ import DatePicker from 'react-datepicker';
 import Select from 'react-select';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import { FormStyled, WrapStyled } from './AddTransaction.styled';
 
 
 
@@ -24,16 +25,17 @@ const AddTransaction = () => {
   ];
 
   return (
-    <div>
-      <form>
-        {/* <input type="date" name="date" /> */}
-        <DatePicker
+    <WrapStyled>
+      <DatePicker
           showIcon
           selected={startDate}
           onChange={date => setStartDate(date)}
         />
+      <FormStyled>
+        {/* <input type="date" name="date" /> */}
+        
         <input type="text" name="text" />
-        <Select options={options} />
+        <Select options={options} styles={{width: '170px'}}/>
         {/* <select name="categories">
           <option value="products">Products</option>
           <option value="alcohol">Alcohol</option>
@@ -50,8 +52,8 @@ const AddTransaction = () => {
         <input type="number" placeholder="0.00" />
         <button type="submit">Input</button>
         <button type="reset">Clear</button>
-      </form>
-    </div>
+      </FormStyled>
+    </WrapStyled>
   );
 };
 
