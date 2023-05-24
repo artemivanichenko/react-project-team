@@ -14,7 +14,7 @@ import {
   RegisterButton,
   Required
 } from './LoginForm.styled';
-import { FcGoogle } from 'react-icons/fc';
+//import { FcGoogle } from 'react-icons/fc';
 import { useState } from 'react';
 const LoginForm = () => {
   const [inputPassword, setInputPassword] = useState('');
@@ -46,7 +46,6 @@ const LoginForm = () => {
     <FormWrapper>
       <Title>You can log in with your Google Account:</Title>
       <GoggleLink href="https://kapusta-backend.goit.global/auth/google">
-        <FcGoogle size={22} />
         Google
       </GoggleLink>
       <form onSubmit={handleSubmit}>
