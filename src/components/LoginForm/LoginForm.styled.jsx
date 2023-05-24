@@ -122,3 +122,7 @@ export const RegisterButton = styled.button`
   text-transform: uppercase;
   color: #1f1f27;
 `;
+
+export const Required = styled.p `
+  color: #FE4566;
+`

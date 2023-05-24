@@ -12,9 +12,13 @@ import {
   LabelWrapper,
   LoginButton,
   RegisterButton,
+  Required
 } from './LoginForm.styled';
 import { FcGoogle } from 'react-icons/fc';
+import { useState } from 'react';
 const LoginForm = () => {
+  const [inputPassword, setInputPassword] = useState('');
+  const [inputName, setInputName] = useState('')
   const dispatch = useDispatch();
 
   const handleSubmit = event => {
@@ -30,6 +34,14 @@ const LoginForm = () => {
       : dispatch(registerUser(formValues));
   };
 
+  const handleChangePassword = event => {
+    const inputValue = event.target.value;
+    setInputPassword(inputValue);
+  }
+  const handleChangeName = event => {
+    const inputValue = event.target.value;
+    setInputName(inputValue);
+  }
   return (
     <FormWrapper>
       <Title>You can log in with your Google Account:</Title>
@@ -43,16 +55,19 @@ const LoginForm = () => {
         </Subtitle>
         <LabelWrapper>
           <Label>
-            <LabelTitle>Email:</LabelTitle>
-            <Input type="email" name="email" placeholder="your@email.com" />
+            <LabelTitle>{!inputName && <symbol style={{color: '#FE4566'}}>*</symbol>}Email:</LabelTitle>
+            <Input onChange={handleChangeName} type="email" name="email" placeholder="your@email.com" />
+            {!inputName && <Required>This is a required field</Required>}
           </Label>
           <Label>
-            <LabelTitle>Password:</LabelTitle>
+            <LabelTitle>{!inputPassword && <symbol style={{color: '#FE4566'}}>*</symbol>}Password:</LabelTitle>
             <Input
+              onChange={handleChangePassword}
               type="password"
               name="password"
               placeholder="your password"
             />
+            {!inputPassword && <Required>This is a required field</Required>}
           </Label>
         </LabelWrapper>
         <ButtonWrapper>
