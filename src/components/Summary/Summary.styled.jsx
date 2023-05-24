@@ -69,10 +69,10 @@ export const ListItem = styled.li`
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: #c7ccdc;
-  border-bottom: 2px solid #56566b;
+  border-bottom: 2px solid #383847;
 
-  &:first-child {
-    border-top: 4px solid #56566b;
+  &:first-of-type {
+    border-top: 4px solid #383847;
   }
 `;
 

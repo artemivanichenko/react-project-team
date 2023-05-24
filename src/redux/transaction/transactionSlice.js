@@ -129,7 +129,7 @@ const transactionSlice = createSlice({
         state.error = null;
         // TO CHECK below!!!
         state.incomes = payload.incomes;
-        state.monthStatsIncome = payload.monthStats;
+        state.monthStatsIncome = payload.monthsStats;
       })
       .addCase(getTransactionIncome.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -144,7 +144,7 @@ const transactionSlice = createSlice({
         state.error = null;
         // TO CHECK below!!!
         state.expenses = payload.expenses;
-        state.monthStatsExpenses = payload.monthStats;
+        state.monthStatsExpenses = payload.monthsStats;
       })
       .addCase(getTransactionExpense.rejected, (state, { payload }) => {
         state.isLoading = false;
