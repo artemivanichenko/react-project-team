@@ -12,4 +12,5 @@ const LoginRegistration = () => {
   );
 };
 
+
 export default LoginRegistration;
