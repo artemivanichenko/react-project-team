@@ -23,7 +23,7 @@ const initialState = {
     'Прочее',
   ],
   incomes: {
-    total: 12000,
+    incomeTotal: 12000,
     incomesData: {
       'З/П': {
         total: 12000,
@@ -33,7 +33,7 @@ const initialState = {
     },
   },
   expenses: {
-    total: 5200,
+    expenseTotal: 5200,
     expensesData: {
       Транспорт: {
         total: 4000,

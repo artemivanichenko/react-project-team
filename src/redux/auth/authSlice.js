@@ -5,7 +5,6 @@ import {
   logoutUser,
   refreshToken,
   registerUser,
-  // googleAuth,
 } from './authOperations';
 
 const initialState = {
@@ -107,22 +106,6 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.error = payload;
       });
-    // ================ GOOGLE AUTHORIZATION ================
-    // .addCase(googleAuth.pending, state => {
-    //   state.isLoading = true;
-    // })
-    // .addCase(googleAuth.fulfilled, (state, { payload }) => {
-    //   return {
-    //     isAuth: true,
-    //     isLoading: false,
-    //     error: null,
-    //     ...payload,
-    //   };
-    // })
-    // .addCase(googleAuth.rejected, (state, { payload }) => {
-    //   state.isLoading = false;
-    //   state.error = payload;
-    // });
   },
 });
 
