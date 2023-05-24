@@ -104,7 +104,7 @@ export const LoginButton = styled.button`
 export const RegisterButton = styled.button`
   background: #f5f6fb;
   box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
-  border-radius: 16px;
+  border-radius: 15px;
   border: none;
   width: 136px;
   height: 44px;
