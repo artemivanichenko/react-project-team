@@ -1,8 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Layout from './Layout/Layout';
+import { useEffect, lazy } from 'react';
 import PrivateRoute from './PrivateRoute';
 import { useDispatch } from 'react-redux';
-import { useEffect, lazy } from 'react';
 import { refreshToken } from 'redux/auth/authOperations';
 import PublicRoute from './PublicRoute';
 import { loader } from './Loader/Loader';
