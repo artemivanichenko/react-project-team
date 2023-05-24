@@ -1,27 +1,40 @@
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
+import Select from 'react-select';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-import { registerLocale, setDefaultLocale } from  "react-datepicker";
-import es from 'date-fns/locale/ru';
+
 
 const AddTransaction = () => {
-  registerLocale('es', es);
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState();
+
+  const options = [
+    { value: 'products', label: 'Products' },
+    { value: 'alcohol', label: 'Alcohol' },
+    { value: 'entertainment', label: 'Entertain' },
+    { value: 'health', label: 'Health' },
+    { value: 'transport', label: 'Transport' },
+    { value: 'housing', label: 'Housing' },
+    { value: 'hobbies', label: 'Sports, hobbies' },
+    { value: 'technique', label: 'Technique' },
+    { value: 'communal', label: 'Communal, communication' },
+    { value: 'education', label: 'Education' },
+    { value: 'other', label: 'Other' },
+  ];
 
   return (
     <div>
       <form>
         {/* <input type="date" name="date" /> */}
         <DatePicker
-          locale="es"
           showIcon
           selected={startDate}
           onChange={date => setStartDate(date)}
         />
         <input type="text" name="text" />
-        <select name="categories">
+        <Select options={options} />
+        {/* <select name="categories">
           <option value="products">Products</option>
           <option value="alcohol">Alcohol</option>
           <option value="entertainment">Entertainment</option>
@@ -33,7 +46,7 @@ const AddTransaction = () => {
           <option value="communal">Communal, communication</option>
           <option value="education">Education</option>
           <option value="other">Other</option>
-        </select>
+        </select> */}
         <input type="number" placeholder="0.00" />
         <button type="submit">Input</button>
         <button type="reset">Clear</button>
