@@ -1,13 +1,15 @@
 import LoginForm from 'components/LoginForm/LoginForm';
+import { FormWrapper } from 'pages/LoginRegistration/LoginRegistration.styled.jsx';
 import wallet from 'images/wallet.png';
 
 const LoginRegistration = () => {
   return (
-    <div>
+    <FormWrapper>
       <img src={wallet} alt="wallet" />
       <LoginForm />
-    </div>
+    </FormWrapper>
   );
 };
+
 
 export default LoginRegistration;
