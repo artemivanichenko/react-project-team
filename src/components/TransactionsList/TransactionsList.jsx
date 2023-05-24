@@ -1,7 +1,8 @@
 const TransactionsList = () => {
+
   return (
-    <div>
-      <table>
+    <table>
+      <thead>
         <tr>
           <th>Date</th>
           <th>Description</th>
@@ -9,15 +10,17 @@ const TransactionsList = () => {
           <th>Sum</th>
           <th> </th>
         </tr>
+      </thead>
+      <tbody>
         <tr>
           <td>21.11.2019</td>
           <td>My salary</td>
           <td>Salary</td>
           <td>20 000.00 UAH.</td>
-          <button type="button">delete</button>
+          <td><button type="button">delete</button></td>
         </tr>
-      </table>
-    </div>
+      </tbody>
+    </table>
   );
 };
 
