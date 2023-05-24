@@ -9,7 +9,6 @@ import {
 } from './Layout.styled';
 import { useSelector } from 'react-redux';
 
-
 const Layout = () => {
   const isAuth = useSelector(state => state.auth.isAuth);
 
@@ -21,7 +20,7 @@ const Layout = () => {
           <BgOverlay>
             <Header />
             <Suspense fallback={<h1>Loading...</h1>}>
-                <Outlet />
+              <Outlet />
             </Suspense>
           </BgOverlay>
         </ContainerPrived>

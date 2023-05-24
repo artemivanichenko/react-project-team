@@ -4,7 +4,7 @@ export const loader = (
   <LineWave
     height="300"
     width="500"
-    color="#9a9f99"
+    color="#eef4ed"
     ariaLabel="line-wave"
     wrapperStyle={{flex: 1, justifyContent: "center", alignItems: "center"}}
     wrapperClass=""
