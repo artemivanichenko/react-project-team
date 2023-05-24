@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const FormWrapper = styled.div`
-  padding: 52px;
+  padding: 50px 30px 60px 30px;
   display: flex;
   flex-direction: column;
   border-radius: 30px;
@@ -39,6 +39,7 @@ export const GoggleLink = styled.a`
 `;
 
 export const Subtitle = styled.h2`
+width: 288px;
   color: #f6f7fb;
   height: 32px;
   font-family: 'Roboto', sans-serif;
