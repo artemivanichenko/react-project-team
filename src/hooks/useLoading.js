@@ -5,6 +5,7 @@ import { selectTransactionIsLoading } from 'redux/transaction/transactionSelecto
 
 export const useLoading = () => {
   const authIsLoading = useSelector(selectAuthIsLoading);
+
   const reportsIsLoading = useSelector(selectReportsIsLoading);
 
   const transactionIsLoading = useSelector(selectTransactionIsLoading);
