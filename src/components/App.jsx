@@ -24,7 +24,10 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<PublicRoute component={<LoginRegistration />} redirectTo='home' />} />
-        <Route path="home" element={<PrivateRoute component={<Home />} redirectTo='/' />} />
+        <Route path="home" element={<PrivateRoute component={<Home />} redirectTo='/' />} >
+          <Route path=":expenses" element={<Home />} />
+          <Route path=":income" element={<Home />} />
+        </Route>
         <Route path="reports" element={<PrivateRoute component={<Report />} redirectTo='/' />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Route>
