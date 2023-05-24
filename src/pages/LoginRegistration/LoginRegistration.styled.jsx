@@ -5,7 +5,7 @@ export const FormWrapper = styled.div `
     gap: 150px;
     background: linear-gradient(271.02deg, #1F1F27 34.79%, #383847 89.69%);
     box-shadow: inset 0px 2px 24px rgba(132, 132, 132, 0.2);
-    padding: 100px 50px 100px 50px;
+    margin: 100px 50px 100px 50px;
 `
 export const ImageWrapper = styled.div `
 /* z-index: 1;
