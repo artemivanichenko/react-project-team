@@ -1,20 +1,34 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import LoginRegistration from 'pages/LoginRegistration/LoginRegistration';
 import Layout from './Layout/Layout';
-import Report from 'pages/Report/Report';
-import Home from 'pages/Home/Home';
+import PrivateRoute from './PrivateRoute';
+import { useDispatch } from 'react-redux';
+import { useEffect, lazy } from 'react';
+import { refreshToken } from 'redux/auth/authOperations';
+import PublicRoute from './PublicRoute';
+import { loader } from './Loader/Loader';
+import { useLoading } from 'hooks';
+
+const Home = lazy(() => import('pages/Home/Home'));
+const LoginRegistration = lazy(() => import('pages/LoginRegistration/LoginRegistration'));
+const Report = lazy(() => import('pages/Report/Report'));
 
 export const App = () => {
-  return (
+  const dispatch = useDispatch();
+  const { isLoading } = useLoading();
+
+  useEffect(() => {
+    dispatch(refreshToken())
+  }, [dispatch])
+
+  return isLoading ? loader : (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<LoginRegistration />} />
-        <Route path="home" element={<Home />}>
+        <Route index element={<PublicRoute component={<LoginRegistration />} redirectTo='home' />} />
+        <Route path="home" element={<PrivateRoute component={<Home />} redirectTo='/' />} >
           <Route path=":expenses" element={<Home />} />
           <Route path=":income" element={<Home />} />
         </Route>
-        <Route path="reports" element={<Report />} />
-        {/* <Route path='google-redirect' element={<h1>This is google redirect page</h1>}/> */}
+        <Route path="reports" element={<PrivateRoute component={<Report />} redirectTo='/' />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Route>
     </Routes>

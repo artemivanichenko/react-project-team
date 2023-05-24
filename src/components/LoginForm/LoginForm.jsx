@@ -1,8 +1,24 @@
 import { useDispatch } from 'react-redux';
 import { loginUser, registerUser } from 'redux/auth/authOperations';
-
-
+import {
+  FormWrapper,
+  Title,
+  GoggleLink,
+  Subtitle,
+  Label,
+  Input,
+  ButtonWrapper,
+  LabelTitle,
+  LabelWrapper,
+  LoginButton,
+  RegisterButton,
+  Required
+} from './LoginForm.styled';
+//import { FcGoogle } from 'react-icons/fc';
+import { useState } from 'react';
 const LoginForm = () => {
+  const [inputPassword, setInputPassword] = useState('');
+  const [inputName, setInputName] = useState('')
   const dispatch = useDispatch();
 
   const handleSubmit = event => {
@@ -18,28 +34,51 @@ const LoginForm = () => {
       : dispatch(registerUser(formValues));
   };
 
+  const handleChangePassword = event => {
+    const inputValue = event.target.value;
+    setInputPassword(inputValue);
+  }
+  const handleChangeName = event => {
+    const inputValue = event.target.value;
+    setInputName(inputValue);
+  }
   return (
-    <div>
-      <h1>You can log in with your Google Account:</h1>
-      <a href="https://kapusta-backend.goit.global/auth/google">Google</a>
+    <FormWrapper>
+      <Title>You can log in with your Google Account:</Title>
+      <GoggleLink href="https://kapusta-backend.goit.global/auth/google">
+        Google
+      </GoggleLink>
       <form onSubmit={handleSubmit}>
-        <h2>Or log in using an email and password, after registering:</h2>
-        <label>
-          <p>Email</p>
-          <input type="email" name="email" placeholder="your@email.com" />
-        </label>
-        <label>
-          <p>Password</p>
-          <input type="password" name="password" placeholder="••••••••" />
-        </label>
-        <button name="login" type="submit">
-          Log in
-        </button>
-        <button name="register" type="submit">
-          Registration
-        </button>
+        <Subtitle>
+          Or log in using an email and password, after registering:
+        </Subtitle>
+        <LabelWrapper>
+          <Label>
+            <LabelTitle>{!inputName && <symbol style={{color: '#FE4566'}}>*</symbol>}Email:</LabelTitle>
+            <Input onChange={handleChangeName} type="email" name="email" placeholder="your@email.com" />
+            {!inputName && <Required>This is a required field</Required>}
+          </Label>
+          <Label>
+            <LabelTitle>{!inputPassword && <symbol style={{color: '#FE4566'}}>*</symbol>}Password:</LabelTitle>
+            <Input
+              onChange={handleChangePassword}
+              type="password"
+              name="password"
+              placeholder="your password"
+            />
+            {!inputPassword && <Required>This is a required field</Required>}
+          </Label>
+        </LabelWrapper>
+        <ButtonWrapper>
+          <LoginButton name="login" type="submit">
+            Log in
+          </LoginButton>
+          <RegisterButton name="register" type="submit">
+            Registration
+          </RegisterButton>
+        </ButtonWrapper>
       </form>
-    </div>
+    </FormWrapper>
   );
 };
 
