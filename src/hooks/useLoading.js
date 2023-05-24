@@ -8,6 +8,6 @@ export const useLoading = () => {
   const reportsIsLoading = useSelector(selectReportsIsLoading);
   const transactionIsLoading = useSelector(selectTransactionIsLoading);
 
-  const isLoading = authIsLoading || reportsIsLoading || transactionIsLoading;
-  return isLoading;
+  const isLoading = authIsLoading ?? reportsIsLoading ?? transactionIsLoading;
+  return { isLoading };
 };
