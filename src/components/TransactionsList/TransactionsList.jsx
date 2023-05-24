@@ -8,10 +8,19 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 
 const TransactionsList = () => {
+  const params = useParams();
+  const expenses = params.expenses;
+
   const transactionExpenses = useSelector(state => state.transaction.expenses);
   const transactionIncomes = useSelector(state => state.transaction.incomes);
+  let transaction;
+
+  expenses === 'income'
+    ? (transaction = transactionIncomes)
+    : (transaction = transactionExpenses);
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -45,7 +54,7 @@ const TransactionsList = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {transactionIncomes.map(row => (
+          {transaction.map(row => (
             <StyledTableRow key={row._id}>
               <StyledTableCell component="th" scope="row">
                 {row.date}

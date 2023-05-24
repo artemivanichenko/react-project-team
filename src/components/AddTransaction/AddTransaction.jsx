@@ -4,6 +4,7 @@ import Select from 'react-select';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import { FormStyled, WrapStyled } from './AddTransaction.styled';
+import { BtnStyled } from './AddTransaction.styled';
 
 
 
@@ -50,8 +51,8 @@ const AddTransaction = () => {
           <option value="other">Other</option>
         </select> */}
         <input type="number" placeholder="0.00" />
-        <button type="submit">Input</button>
-        <button type="reset">Clear</button>
+        <BtnStyled type="submit">Input</BtnStyled>
+        <BtnStyled type="reset">Clear</BtnStyled>
       </FormStyled>
     </WrapStyled>
   );

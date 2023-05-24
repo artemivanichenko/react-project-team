@@ -9,7 +9,10 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<LoginRegistration />} />
-        <Route path="home" element={<Home />}/>
+        <Route path="home" element={<Home />}>
+          <Route path=":expenses" element={<Home />} />
+          <Route path=":income" element={<Home />} />
+        </Route>
         <Route path="reports" element={<Report />} />
         {/* <Route path='google-redirect' element={<h1>This is google redirect page</h1>}/> */}
         <Route path="*" element={<Navigate to="/" />} />
