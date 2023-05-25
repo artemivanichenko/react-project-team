@@ -13,7 +13,6 @@ import { useParams } from 'react-router';
 const TransactionsList = () => {
   const params = useParams();
   const expenses = params.expenses;
-
   const transactionExpenses = useSelector(state => state.transaction.expenses);
   const transactionIncomes = useSelector(state => state.transaction.incomes);
   let transaction;
