@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/goit-bc50-react-project/static/css/main.1f53e5b5.css",
-    "main.js": "/goit-bc50-react-project/static/js/main.84215b24.js",
+    "main.js": "/goit-bc50-react-project/static/js/main.74acf367.js",
     "static/js/212.ef8e7477.chunk.js": "/goit-bc50-react-project/static/js/212.ef8e7477.chunk.js",
     "static/js/995.58862413.chunk.js": "/goit-bc50-react-project/static/js/995.58862413.chunk.js",
     "static/js/400.ce3e8f4c.chunk.js": "/goit-bc50-react-project/static/js/400.ce3e8f4c.chunk.js",
@@ -13,7 +13,7 @@
     "static/media/cashTablet.png": "/goit-bc50-react-project/static/media/cashTablet.f57b1e5636a28bd6f7eb.png",
     "index.html": "/goit-bc50-react-project/index.html",
     "main.1f53e5b5.css.map": "/goit-bc50-react-project/static/css/main.1f53e5b5.css.map",
-    "main.84215b24.js.map": "/goit-bc50-react-project/static/js/main.84215b24.js.map",
+    "main.74acf367.js.map": "/goit-bc50-react-project/static/js/main.74acf367.js.map",
     "212.ef8e7477.chunk.js.map": "/goit-bc50-react-project/static/js/212.ef8e7477.chunk.js.map",
     "995.58862413.chunk.js.map": "/goit-bc50-react-project/static/js/995.58862413.chunk.js.map",
     "400.ce3e8f4c.chunk.js.map": "/goit-bc50-react-project/static/js/400.ce3e8f4c.chunk.js.map",
@@ -22,6 +22,6 @@
   },
   "entrypoints": [
     "static/css/main.1f53e5b5.css",
-    "static/js/main.84215b24.js"
+    "static/js/main.74acf367.js"
   ]
 }
