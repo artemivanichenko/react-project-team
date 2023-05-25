@@ -1,5 +1,5 @@
 import logo from 'images/logo.png';
-
+import { useAuth } from 'hooks/useAuth';
 import OutputOutlinedIcon from '@mui/icons-material/OutputOutlined';
 import Avatar from '@mui/material/Avatar';
 import { useDispatch } from 'react-redux';
@@ -10,8 +10,9 @@ import { grey } from '@mui/material/colors';
 
 const Header = () => {
   const dispatch = useDispatch();
+  const color = grey[700];
   const userName = useSelector(state => state.auth.userData);
-  console.log(userName);
+  const isLoggedIn = useAuth();
 
   const handleLogout = () => {
     dispatch(logoutUser());
@@ -21,7 +22,8 @@ const Header = () => {
     <HeaderBgr>
       <Conteiner>
         <img src={logo} alt="logo" />
-        <Navigate>
+
+       {isLoggedIn && <Navigate>
           <Avatar
             sx={{
               width: 32,
@@ -29,7 +31,7 @@ const Header = () => {
               margin: 1.6,
               marginRight: -5,
               fontSize: 14,
-              background: grey,
+              background: color,
             }}
           >
             {userName && userName.email.slice(0, 1).toUpperCase()}
@@ -45,7 +47,7 @@ const Header = () => {
         <Btn  onClick={handleLogout} type="button" >
           Exit
         </Btn>
-      </Navigate>
+      </Navigate>}
 
       </Conteiner>
     </HeaderBgr>
