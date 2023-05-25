@@ -6,3 +6,5 @@ export const selectMonthExpenses = state =>
   state.transaction.monthStatsExpenses;
 
 export const selectMonthIncome = state => state.transaction.monthStatsIncome;
+
+export const selectBalance = state => state.transaction.newBalance;

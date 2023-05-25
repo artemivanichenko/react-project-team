@@ -6,6 +6,8 @@ import {
   addTransactionIncomeApi,
   deleteTransactionApi,
   getTransactionIncomeApi,
+  updateUserBalanceApi,
+  // getUserInfoApi,
 } from 'services/kapustaApi';
 
 export const getTransactionIncome = createAsyncThunk(
@@ -81,3 +83,29 @@ export const deleteTransaction = createAsyncThunk(
     }
   }
 );
+
+export const addBalance = createAsyncThunk(
+  'balance/patch',
+  async (newBalance, { rejectWithValue, dispatch }) => {
+    try {
+      const { data } = await updateUserBalanceApi(newBalance);
+      return data;
+    } catch (error) {
+      dispatch(errorHandler({ error, cb: addBalance }));
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+// export const getUserInfo = createAsyncThunk(
+//   'balance/get',
+//   async (_, { rejectWithValue, dispatch }) => {
+//     try {
+//       const { data } = await getUserInfoApi();
+//       return data;
+//     } catch (error) {
+//       dispatch(errorHandler({ error, cb: getUserInfo }));
+//       return rejectWithValue(error.message);
+//     }
+//   }
+// );
