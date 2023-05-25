@@ -1,69 +1,54 @@
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import {
   selectExpensesData,
   selectIncomesData,
 } from 'redux/reports/reportsSelectors';
+import * as images from '../../images/Categories/index.js';
 
 const ReportCategories = () => {
-  // const IncomesData = useSelector(selectIncomesData);
-  //   console.log(Object.keys(IncomesData));
-  const ExpenseData = useSelector(selectExpensesData);
-  console.log(ExpenseData);
+  const params = useParams();
+  const expenses = params.expenses;
+  let report;
+  // expenses === 'income' ? (report = reportIncomes) : (report = reportExpenses);
 
-  //   console.log(Data);
+  // console.log(expenses);
 
-  // var newDataArray = Object.keys(ExpenseData).map(key => {
-  //   var subData = ExpenseData[key];
-  //   var subDataArray = Object.keys(subData).map(subKey => {
-  //     if (subKey === 'total') {
-  //       return subKey + ': ' + subData[subKey];
-  //     } else {
-  //       return subKey;
-  //     }
-  //   });
-  //   return {
-  //     [key]: subDataArray.filter(Boolean),
-  //   };
-  // });
+  const reportIncomes = useSelector(selectIncomesData);
+  const reportExpenses = useSelector(selectExpensesData);
+  // const arrIncomesData = Object.values(IncomesData);
+  // console.log(Object.keys(reportExpenses));
+  // console.log(reportExpenses);
 
-  // console.log(newDataArray);
+  const objectToArray = object => {
+    return Object.entries(object).map(([name, value]) => {
+      return [name, value];
+    });
+  };
+
+  const expensesArray = objectToArray(reportExpenses);
+  const incomesArray = objectToArray(reportIncomes);
+
+  console.log(expensesArray);
+
   return (
-    <section>
-      <h2>Report Categories</h2>
-
-      {/* {Object.keys(expensesData).reduce((acc, { name, total, type }) => {
-        if (type !== 'INCOME') {
-          acc.push(
-            <TrData key={name} type={type}>
-              <StyledTd left name={name}>
-                {name}
-              </StyledTd>
-              <StyledTd right leftPosition>
-                {Math.abs(total).toFixed(2)}
-              </StyledTd>
-            </TrData>
-          );
-        }
-        return acc;
-      }, [])} */}
-    </section>
+    <>
+      {true
+        ? expensesArray.map(e => (
+            <>
+              <p> {e[0]}</p>
+              <img src={images.armchair} alt="armchair" />
+              <p> {e[1].total}</p>
+            </>
+          ))
+        : incomesArray.map(e => (
+            <>
+              <p>{e[0]}</p>
+              <img src="../../images/armchair.png" alt="armchair" />
+              <p>{e[1].total}</p>
+            </>
+          ))}
+    </>
   );
 };
-
 export default ReportCategories;
-
-// var newDataArray = Object.keys(expensesData).map(key => {
-//   var subData = expensesData[key];
-//   var subDataArray = Object.keys(subData).map(subKey => {
-//     if (subKey === 'total') {
-//       return subKey + ': ' + subData[subKey];
-//     } else {
-//       return subKey;
-//     }
-//   });
-//   return {
-//     [key]: subDataArray.filter(Boolean),
-//   };
-// });
-
-// console.log(newDataArray);
