@@ -23,8 +23,10 @@ const Header = () => {
   return (
     <HeaderBgr>
     <Conteiner>
-      <img src={logo} alt="logo" />
-      <Navigate>
+        <img src={logo} alt="logo" />
+        {userName && userName.email }
+        <Navigate>
+          
         <Avatar sx={{ width: 32, height: 32,margin:1.6 ,marginRight:-5, fontSize:14, background:grey
 }}>{userName && userName.email.slice(0,1).toUpperCase()}</Avatar>
         <Title>
