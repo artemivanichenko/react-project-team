@@ -43,14 +43,15 @@ const TransactionsList = () => {
   }));
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ maxWidth: 746 }} aria-label="customized table">
+    <TableContainer component={Paper} style={{ width: 'fit-content' }}>
+      <Table sx={{ width: 746 }} aria-label="customized table">
         <TableHead>
           <TableRow>
             <StyledTableCell>DATE</StyledTableCell>
             <StyledTableCell align="right">DESCRIPTION</StyledTableCell>
             <StyledTableCell align="right">CATEGORY</StyledTableCell>
             <StyledTableCell align="right">SUM</StyledTableCell>
+            <StyledTableCell align="right"></StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -62,6 +63,7 @@ const TransactionsList = () => {
               <StyledTableCell align="right">{row.description}</StyledTableCell>
               <StyledTableCell align="right">{row.category}</StyledTableCell>
               <StyledTableCell align="right">{row.amount}</StyledTableCell>
+              <StyledTableCell align="right"></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

@@ -1,11 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router';
+import { useEffect, useState } from 'react';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import 'react-datepicker/dist/react-datepicker.css';
-import { FormStyled, WrapStyled } from './AddTransaction.styled';
-import { BtnStyled } from './AddTransaction.styled';
-import { SelectStyled } from './AddTransaction.styled';
-import { DatePickerStyled } from './AddTransaction.styled';
+
+import {
+  addTransactionExpense,
+  addTransactionIncome,
+} from 'redux/transaction/transactionOperations';
+import {
+  FormStyled,
+  WrapStyled,
+  BtnStyled,
+  SelectStyled,
+  DatePickerStyled,
+  CalendarBox,
+  InputStyled,
+} from './AddTransaction.styled';
 
 const AddTransaction = () => {
+  const dispatch = useDispatch();
+  const params = useParams();
+  const expenses = params.expenses;
+
   const [startDate, setStartDate] = useState(new Date());
   const curDate = startDate.toISOString().split('T')[0];
 
@@ -17,42 +34,54 @@ const AddTransaction = () => {
   });
 
   const options = [
-    { value: 'products', label: 'Products' },
-    { value: 'alcohol', label: 'Alcohol' },
-    { value: 'entertainment', label: 'Entertain' },
-    { value: 'health', label: 'Health' },
-    { value: 'transport', label: 'Transport' },
-    { value: 'housing', label: 'Housing' },
-    { value: 'hobbies', label: 'Sports, hobbies' },
-    { value: 'technique', label: 'Technique' },
-    { value: 'communal', label: 'Communal, communication' },
-    { value: 'education', label: 'Education' },
-    { value: 'other', label: 'Other' },
+    { value: 'products', label: 'Products', trans: 'Продукты' },
+    { value: 'alcohol', label: 'Alcohol', trans: 'Алкоголь' },
+    { value: 'entertainment', label: 'Entertain', trans: 'Развлечения' },
+    { value: 'health', label: 'Health', trans: 'Здоровье' },
+    { value: 'transport', label: 'Transport', trans: 'Транспорт' },
+    { value: 'housing', label: 'Housing', trans: 'Всё для дома' },
+    { value: 'hobbies', label: 'Sports, hobbies', trans: 'Спорт и хобби' },
+    { value: 'technique', label: 'Technique', trans: 'Техника' },
+    {
+      value: 'communal',
+      label: 'Communal, communication',
+      trans: 'Коммуналка и связь',
+    },
+    { value: 'education', label: 'Education', trans: 'Образование' },
+    { value: 'other', label: 'Other', trans: 'Прочее' },
   ];
 
   const handleChange = e => {
     let { name, value } = e.target;
-    setStartDate(startDate);
     if (name === 'amount') value = Number(value);
     setForm(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    expenses !== 'income'
+      ? dispatch(addTransactionExpense(form))
+      : dispatch(addTransactionIncome(form));
+    setForm('');
   };
 
   useEffect(() => {
     setForm(prev => ({ ...prev, date: curDate }));
   }, [curDate]);
 
-  console.log('name', form, startDate);
   return (
     <WrapStyled>
-      <DatePickerStyled
-        showIcon
-        selected={startDate}
-        onChange={date => setStartDate(date)}
-        name="data"
-      />
+      <CalendarBox>
+        <CalendarMonthIcon color="success" />
+        <DatePickerStyled
+          selected={startDate}
+          onChange={date => setStartDate(date)}
+          maxDate={new Date()}
+          name="data"
+        />
+      </CalendarBox>
       <FormStyled>
-        {/* <input type="date" name="date" /> */}
-        <input
+        <InputStyled
           type="text"
           name="description"
           placeholder="Product description"
@@ -69,28 +98,19 @@ const AddTransaction = () => {
             }),
           }}
           name="category"
-          onInputChange={handleChange}
+          onChange={data =>
+            setForm(prev => ({ ...form, category: data.trans }))
+          }
         />
-        {/* <select name="categories">
-          <option value="products">Products</option>
-          <option value="alcohol">Alcohol</option>
-          <option value="entertainment">Entertainment</option>
-          <option value="health">Health</option>
-          <option value="transport">Transport</option>
-          <option value="housing">Housing</option>
-          <option value="hobbies">Sports, hobbies</option>
-          <option value="technique">Technique</option>
-          <option value="communal">Communal, communication</option>
-          <option value="education">Education</option>
-          <option value="other">Other</option>
-        </select> */}
-        <input
+        <InputStyled
           type="number"
           placeholder="0.00"
           name="amount"
           onChange={handleChange}
         />
-        <BtnStyled type="submit">Input</BtnStyled>
+        <BtnStyled type="button" onClick={handleSubmit}>
+          Input
+        </BtnStyled>
         <BtnStyled type="reset">Clear</BtnStyled>
       </FormStyled>
     </WrapStyled>
