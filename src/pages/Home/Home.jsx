@@ -5,8 +5,9 @@ const Home = () => {
   return (
     <section>
       <HomeBar />
-      <TransactionContainer/>
-    </section>);
+      <TransactionContainer />
+    </section>
+  );
 };
 
 export default Home;
