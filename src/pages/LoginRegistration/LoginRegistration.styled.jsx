@@ -1,18 +1,30 @@
 import styled from "@emotion/styled";
 
 export const FormWrapper = styled.div `
-    display: flex;
-    gap: 150px;
-    background: linear-gradient(271.02deg, #1F1F27 34.79%, #383847 89.69%);
-    box-shadow: inset 0px 2px 24px rgba(132, 132, 132, 0.2);
-    padding: 100px 50px 100px 50px;
 
-    @media screen and (min-width: 760px) {
-      
+    @media screen and (min-width: 1280px) {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
     }
+    @media screen and (min-width: 768px) and (max-width: 1280px) {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 150px;
+    }
+
+     @media screen and (min-width: 320px) and (max-width: 500px){
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `
 export const Image = styled.img`
   position: relative;
   width: 675px;
   height: 544px;
+   @media screen and (max-width: 1280px) {
+      display: none;
+   }
 `;

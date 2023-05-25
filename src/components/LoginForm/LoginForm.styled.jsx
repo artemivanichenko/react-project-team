@@ -1,12 +1,24 @@
 import styled from '@emotion/styled';
 
 export const FormWrapper = styled.div`
-  padding: 50px 30px 60px 30px;
+  @media screen and (max-width: 1370px){
+  margin: 50px 50px 0px 0;
+  } 
+  @media screen and (min-width: 768px) and (max-width: 1280px) {
+      padding: 40px 20px;
+      margin-top: 220px;
+      margin-left: 70px;
+    }
+  @media screen and (min-width: 320px) and (max-width: 500px){
+    margin: 10px 15px;
+    width: 220px;
+  }
+  margin: 50px 150px 0px 0;
+  padding: 40px 30px;
   display: flex;
   flex-direction: column;
   border-radius: 30px;
   align-items: center;
-  width: 392px;
   background-color: #383847;
   filter: drop-shadow(0px 4px 40px rgba(0, 0, 0, 0.25));
 `;
@@ -36,6 +48,9 @@ export const GoggleLink = styled.a`
     background-color: #ededed;
   }
   margin-bottom: 32px;
+  @media screen and (min-width: 320px) and (max-width: 500px){
+    margin-top: 20px; 
+  }
 `;
 
 export const Subtitle = styled.h2`
@@ -49,6 +64,11 @@ width: 288px;
   line-height: 16px;
   letter-spacing: 0.04em;
   margin-bottom: 32px;
+   @media screen and (min-width: 320px) and (max-width: 500px){
+    min-width: 240px;
+    text-align: center;
+    margin: 0 auto;
+  }
 `;
 export const LabelWrapper = styled.div`
   display: flex;
@@ -62,10 +82,14 @@ export const Label = styled.label`
   font-size: 14px;
   line-height: 14px;
   letter-spacing: 0.04em;
+   @media screen and (min-width: 320px) and (max-width: 500px){
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 export const LabelTitle = styled.p`
-  margin-left: 10px;
-  margin-bottom: 10px;
+  margin: 10px 10px;
 `;
 
 export const Input = styled.input`
@@ -76,6 +100,9 @@ export const Input = styled.input`
   border-radius: 16px;
   border: none;
   box-shadow: 1px 3px 5px rgba(21, 23, 21, 0.656);
+  @media screen and (min-width: 320px) and (max-width: 500px){
+    width: 200px;
+  }
 `;
 export const ButtonWrapper = styled.div`
   display: flex;
@@ -102,6 +129,10 @@ export const LoginButton = styled.button`
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #ffffff;
+   @media screen and (min-width: 320px) and (max-width: 500px){
+    width: 116px;
+  height: 38px;
+  }
 `;
 export const RegisterButton = styled.button`
   background: #f5f6fb;
@@ -123,6 +154,10 @@ export const RegisterButton = styled.button`
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #1f1f27;
+  @media screen and (min-width: 320px) and (max-width: 500px){
+    width: 116px;
+  height: 38px;
+  }
 `;
 
 export const Required = styled.p `
