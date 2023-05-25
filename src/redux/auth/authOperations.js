@@ -75,7 +75,7 @@ export const refreshToken = createAsyncThunk(
     const { refreshToken, sid } = getState().auth;
     try {
       token.set(refreshToken);
-      const { data } = await refreshTokenApi({ sid });
+      const { data } = await refreshTokenApi(sid);
       token.set(data.newAccessToken);
       setTimeout(() => {
         dispatch(cb());
