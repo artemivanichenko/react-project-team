@@ -7,7 +7,7 @@ import { googleAuth } from "redux/auth/authSlice";
 
 const Auth = ({ children }) => {
     const dispatch = useDispatch();
-    const [search, setSearch] = useSearchParams();
+    const [search] = useSearchParams();
     const isUserAuthorized = useSelector(selectIsUserAuthorized);
     const sid = search.get("sid");
     
