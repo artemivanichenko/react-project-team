@@ -18,14 +18,39 @@ import {
   InputStyled,
 } from './AddTransaction.styled';
 
+const selectionExpenses = [
+  { value: 'products', label: 'Products', trans: 'Продукты' },
+  { value: 'alcohol', label: 'Alcohol', trans: 'Алкоголь' },
+  { value: 'entertainment', label: 'Entertain', trans: 'Развлечения' },
+  { value: 'health', label: 'Health', trans: 'Здоровье' },
+  { value: 'transport', label: 'Transport', trans: 'Транспорт' },
+  { value: 'housing', label: 'Housing', trans: 'Всё для дома' },
+  { value: 'hobbies', label: 'Sports, hobbies', trans: 'Спорт и хобби' },
+  { value: 'technique', label: 'Technique', trans: 'Техника' },
+  {
+    value: 'communal',
+    label: 'Communal, communication',
+    trans: 'Коммуналка и связь',
+  },
+  { value: 'education', label: 'Education', trans: 'Образование' },
+  { value: 'other', label: 'Other', trans: 'Прочее' },
+];
+
+const selectionIncome = [
+  { value: 'salary', label: 'Salary', trans: 'З/П' },
+  { value: 'income', label: 'Add. Income', trans: 'Доп. доход' },
+];
+
 const AddTransaction = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const expenses = params.expenses;
 
+  const [options, setOptions] = useState([]);
+  
   const [startDate, setStartDate] = useState(new Date());
   const curDate = startDate.toISOString().split('T')[0];
-
+  
   const [form, setForm] = useState({
     date: '',
     amount: 0,
@@ -33,23 +58,11 @@ const AddTransaction = () => {
     category: '',
   });
 
-  const options = [
-    { value: 'products', label: 'Products', trans: 'Продукты' },
-    { value: 'alcohol', label: 'Alcohol', trans: 'Алкоголь' },
-    { value: 'entertainment', label: 'Entertain', trans: 'Развлечения' },
-    { value: 'health', label: 'Health', trans: 'Здоровье' },
-    { value: 'transport', label: 'Transport', trans: 'Транспорт' },
-    { value: 'housing', label: 'Housing', trans: 'Всё для дома' },
-    { value: 'hobbies', label: 'Sports, hobbies', trans: 'Спорт и хобби' },
-    { value: 'technique', label: 'Technique', trans: 'Техника' },
-    {
-      value: 'communal',
-      label: 'Communal, communication',
-      trans: 'Коммуналка и связь',
-    },
-    { value: 'education', label: 'Education', trans: 'Образование' },
-    { value: 'other', label: 'Other', trans: 'Прочее' },
-  ];
+  useEffect(() => {
+    expenses !== 'income'
+      ? setOptions(selectionExpenses)
+      : setOptions(selectionIncome);
+  }, [expenses]);
 
   const handleChange = e => {
     let { name, value } = e.target;
@@ -59,6 +72,7 @@ const AddTransaction = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    console.log('form', form, curDate);
     expenses !== 'income'
       ? dispatch(addTransactionExpense(form))
       : dispatch(addTransactionIncome(form));
@@ -80,7 +94,7 @@ const AddTransaction = () => {
           name="data"
         />
       </CalendarBox>
-      <FormStyled>
+      <FormStyled onSubmit={handleSubmit}>
         <InputStyled
           type="text"
           name="description"
@@ -108,9 +122,7 @@ const AddTransaction = () => {
           name="amount"
           onChange={handleChange}
         />
-        <BtnStyled type="button" onClick={handleSubmit}>
-          Input
-        </BtnStyled>
+        <BtnStyled type="submit">Input</BtnStyled>
         <BtnStyled type="reset">Clear</BtnStyled>
       </FormStyled>
     </WrapStyled>
