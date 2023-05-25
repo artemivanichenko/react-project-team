@@ -1,5 +1,5 @@
 import logo from 'images/logo.png';
-
+import { useAuth } from 'hooks/useAuth';
 import OutputOutlinedIcon from '@mui/icons-material/OutputOutlined';
 import Avatar from '@mui/material/Avatar';
 import { useDispatch } from 'react-redux';
@@ -19,8 +19,9 @@ import { useState } from 'react';
 
 const Header = () => {
   const dispatch = useDispatch();
+  const color = grey[700];
   const userName = useSelector(state => state.auth.userData);
-  console.log(userName);
+
   const [showModal, setShowModal] = useState(false);
   const handleClose = () => {
     setShowModal(false);
@@ -36,7 +37,8 @@ const Header = () => {
     <HeaderBgr>
       <Conteiner>
         <img src={logo} alt="logo" />
-        <Navigate>
+
+        {isLoggedIn && <Navigate>
           <Avatar
             sx={{
               width: 32,
@@ -44,7 +46,7 @@ const Header = () => {
               margin: 1.6,
               marginRight: -5,
               fontSize: 14,
-              background: grey,
+              background: color,
             }}
           >
             {userName && userName.email.slice(0, 1).toUpperCase()}
@@ -62,6 +64,7 @@ const Header = () => {
           </Btn>
         </Navigate>
       </Conteiner>
+
       {showModal && (
         <ModalConfirm
           title="Do you really want to leave?"
@@ -70,7 +73,9 @@ const Header = () => {
         />
       )}
     </HeaderBgr>
-  );
+
+    
+  )
 };
 
 export default Header;
