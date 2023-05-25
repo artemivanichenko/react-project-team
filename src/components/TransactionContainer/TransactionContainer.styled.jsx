@@ -15,3 +15,8 @@ export const ContainerStyled = styled.div`
   );
   box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
 `;
+
+export const BoxStyled = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
