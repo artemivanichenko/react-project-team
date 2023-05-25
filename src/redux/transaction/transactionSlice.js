@@ -5,6 +5,8 @@ import {
   addTransactionIncome,
   addTransactionExpense,
   deleteTransaction,
+  addBalance,
+  getUserInfo,
 } from './transactionOperations';
 
 const initialState = {
@@ -187,6 +189,34 @@ const transactionSlice = createSlice({
         // TO DO!!!
       })
       .addCase(deleteTransaction.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      // ================= ADD BALANCE
+      .addCase(addBalance.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(addBalance.fulfilled, (state, { payload }) => {
+        state.newBalance = payload.newBalance;
+        state.isLoading = false;
+        state.error = null;
+        // TO DO!!!
+      })
+      .addCase(addBalance.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      // ============== GET USER INFO
+      .addCase(getUserInfo.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(getUserInfo.fulfilled, (state, { payload }) => {
+        state.newBalance = payload.balance;
+        state.isLoading = false;
+        state.error = null;
+        // TO DO!!!
+      })
+      .addCase(getUserInfo.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       });
