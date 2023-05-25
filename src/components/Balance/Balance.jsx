@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addBalance } from 'redux/transaction/transactionOperations';
-import { getUserInfo } from 'redux/transaction/transactionOperations';
+// import { getUserInfo } from 'redux/transaction/transactionOperations';
 import { selectBalance } from 'redux/transaction/transactionSelectors';
 
 const Balance = () => {
@@ -9,9 +9,9 @@ const Balance = () => {
   console.log(balance);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getUserInfo());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getUserInfo());
+  // }, [dispatch]);
 
   const handleSubmit = e => {
     e.preventDefault();
