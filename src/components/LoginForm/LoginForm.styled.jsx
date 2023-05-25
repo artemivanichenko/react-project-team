@@ -65,9 +65,11 @@ export const Label = styled.label`
 `;
 export const LabelTitle = styled.p`
   margin-left: 10px;
+  margin-bottom: 10px;
 `;
 
 export const Input = styled.input`
+  margin-bottom: 10px;
   width: 288px;
   padding: 16px 16px;
   background: #f6f7fb;
