@@ -1,18 +1,10 @@
 import logo from 'images/logo.png';
-import vectorhead from 'images/vectorhead.png';
+
 import OutputOutlinedIcon from '@mui/icons-material/OutputOutlined';
 import Avatar from '@mui/material/Avatar';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from 'redux/auth/authOperations';
-import {
-  Conteiner,
-  Navigate,
-  Title,
-  Btn,
-  Logout,
-  Psevdo,
-  HeaderBgr,
-} from './Header.styled';
+import { Conteiner, Navigate, Title, Btn, Logout, HeaderBgr } from './Header.styled'
 import { useSelector } from 'react-redux';
 import { grey } from '@mui/material/colors';
 
@@ -50,11 +42,11 @@ const Header = () => {
               alt="logout"
             ></OutputOutlinedIcon>
           </Logout>
-          <Btn onClick={handleLogout} type="button">
-            <Psevdo src={vectorhead} alt="logo" />
-            Exit
-          </Btn>
-        </Navigate>
+        <Btn  onClick={handleLogout} type="button" >
+          Exit
+        </Btn>
+      </Navigate>
+
       </Conteiner>
     </HeaderBgr>
   );
