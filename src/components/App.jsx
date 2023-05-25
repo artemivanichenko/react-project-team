@@ -1,8 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Layout from './Layout/Layout';
+import { useEffect, lazy } from 'react';
 import PrivateRoute from './PrivateRoute';
 import { useDispatch } from 'react-redux';
-import { useEffect, lazy } from 'react';
 import { refreshToken } from 'redux/auth/authOperations';
 import PublicRoute from './PublicRoute';
 import { loader } from './Loader/Loader';
@@ -24,7 +24,10 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<PublicRoute component={<LoginRegistration />} redirectTo='home' />} />
-        <Route path="home" element={<PrivateRoute component={<Home />} redirectTo='/' />} />
+        <Route path="home" element={<PrivateRoute component={<Home />} redirectTo='/' />} >
+          <Route path=":expenses" element={<Home />} />
+          <Route path=":income" element={<Home />} />
+        </Route>
         <Route path="reports" element={<PrivateRoute component={<Report />} redirectTo='/' />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Route>

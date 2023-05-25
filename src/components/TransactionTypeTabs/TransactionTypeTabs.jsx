@@ -1,8 +1,13 @@
+import { NavLinkStyled, WrapStyled } from "./TransactionTypeTabs.styled";
+
 const TransactionTypeTabs = () => {
-    return (<div>
-        <button type="button" to="expenses">Expenses</button>
-        <button type="button" to="income">Income</button>
-    </div>);
+    return (
+      <WrapStyled>
+          <NavLinkStyled to="expenses">EXPENSES</NavLinkStyled>
+          <NavLinkStyled to="income">INCOME</NavLinkStyled>
+        </WrapStyled>
+        
+    );
 };
 
 export default TransactionTypeTabs;
