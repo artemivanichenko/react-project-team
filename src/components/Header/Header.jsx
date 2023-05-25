@@ -21,6 +21,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const color = grey[700];
   const userName = useSelector(state => state.auth.userData);
+  const isLoggedIn = useAuth();
 
   const [showModal, setShowModal] = useState(false);
   const handleClose = () => {
@@ -34,37 +35,40 @@ const Header = () => {
   };
 
   return (
-    <HeaderBgr>
-      <Conteiner>
-        <img src={logo} alt="logo" />
+    <>
+      <HeaderBgr>
+        <Conteiner>
+          <img src={logo} alt="logo" />
 
-        {isLoggedIn && <Navigate>
-          <Avatar
-            sx={{
-              width: 32,
-              height: 32,
-              margin: 1.6,
-              marginRight: -5,
-              fontSize: 14,
-              background: color,
-            }}
-          >
-            {userName && userName.email.slice(0, 1).toUpperCase()}
-          </Avatar>
-          <Title>{userName && userName.email.split('@')[0]}</Title>
-          <Logout onClick={handleOpen} type="button">
-            <OutputOutlinedIcon
-              sx={{ width: 24, height: 24, margin: 2.3, marginRight: 0 }}
-              htmlColor="white"
-              alt="logout"
-            ></OutputOutlinedIcon>
-          </Logout>
-          <Btn onClick={handleOpen} type="button">
-            Exit
-          </Btn>
-        </Navigate>
-      </Conteiner>
-
+          {isLoggedIn && (
+            <Navigate>
+              <Avatar
+                sx={{
+                  width: 32,
+                  height: 32,
+                  margin: 1.6,
+                  marginRight: -5,
+                  fontSize: 14,
+                  background: color,
+                }}
+              >
+                {userName && userName.email.slice(0, 1).toUpperCase()}
+              </Avatar>
+              <Title>{userName && userName.email.split('@')[0]}</Title>
+              <Logout onClick={handleOpen} type="button">
+                <OutputOutlinedIcon
+                  sx={{ width: 24, height: 24, margin: 2.3, marginRight: 0 }}
+                  htmlColor="white"
+                  alt="logout"
+                ></OutputOutlinedIcon>
+              </Logout>
+              <Btn onClick={handleOpen} type="button">
+                Exit
+              </Btn>
+            </Navigate>
+          )}
+        </Conteiner>
+      </HeaderBgr>
       {showModal && (
         <ModalConfirm
           title="Do you really want to leave?"
@@ -72,10 +76,8 @@ const Header = () => {
           onConfirm={handleLogout}
         />
       )}
-    </HeaderBgr>
-
-    
-  )
+    </>
+  );
 };
 
 export default Header;
