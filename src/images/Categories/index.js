@@ -1,1 +1,1 @@
-export { default as armchair } from '../Categories/Expenses/armchair.png';
+export { default as alcohol } from '../Categories/Expenses/alcohol.png';

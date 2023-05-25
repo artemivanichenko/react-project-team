@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import {
   selectExpensesData,
   selectIncomesData,
@@ -7,9 +7,9 @@ import {
 import * as images from '../../images/Categories/index.js';
 
 const ReportCategories = () => {
-  const params = useParams();
-  const expenses = params.expenses;
-  let report;
+  // const params = useParams();
+  // const expenses = params.expenses;
+  // let report;
   // expenses === 'income' ? (report = reportIncomes) : (report = reportExpenses);
 
   // console.log(expenses);
@@ -37,7 +37,7 @@ const ReportCategories = () => {
         ? expensesArray.map(e => (
             <>
               <p> {e[0]}</p>
-              <img src={images.armchair} alt="armchair" />
+              <img src={images.alcohol} alt="armchair" />
               <p> {e[1].total}</p>
             </>
           ))
