@@ -5,6 +5,7 @@ export const loader = (
     height="300"
     width="500"
     color="#eef4ed"
+    // bgc
     ariaLabel="line-wave"
     wrapperStyle={{flex: 1, justifyContent: "center", alignItems: "center"}}
     wrapperClass=""

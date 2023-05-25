@@ -12,7 +12,6 @@ const initialState = {
   refreshToken: null,
   sid: null,
   email: null,
-  userData: null,
   error: null,
   isLoading: false,
   isAuth: false,
@@ -48,14 +47,19 @@ const authSlice = createSlice({
       .addCase(loginUser.pending, state => {
         state.isLoading = true;
       })
-      .addCase(loginUser.fulfilled, (state, { payload }) => {
-        return {
-          isAuth: true,
-          isLoading: false,
-          error: null,
-          ...payload,
-        };
-      })
+      .addCase(
+        loginUser.fulfilled,
+        (state, { payload: { userData, ...payload } }) => {
+          return {
+            ...state,
+            isAuth: true,
+            isLoading: false,
+            error: null,
+            ...payload,
+            email: userData.email,
+          };
+        }
+      )
       .addCase(loginUser.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;

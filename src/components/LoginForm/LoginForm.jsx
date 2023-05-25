@@ -23,12 +23,12 @@ const LoginForm = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    const form = event.currentTarget.elements;
     const formValues = {
-      email: form.email.value,
-      password: form.password.value,
+      email: inputName,
+      password: inputPassword,
     };
     const submit = event.nativeEvent.submitter.name;
+    console.log('handleSubmit');
     submit === 'login'
       ? dispatch(loginUser(formValues))
       : dispatch(registerUser(formValues));

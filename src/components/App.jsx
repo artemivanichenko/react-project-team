@@ -1,9 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Layout from './Layout/Layout';
-import { useEffect, lazy } from 'react';
+import { lazy } from 'react';
 import PrivateRoute from './PrivateRoute';
-import { useDispatch } from 'react-redux';
-import { refreshToken } from 'redux/auth/authOperations';
 import PublicRoute from './PublicRoute';
 import { loader } from './Loader/Loader';
 import { useLoading } from 'hooks';
@@ -13,12 +11,8 @@ const LoginRegistration = lazy(() => import('pages/LoginRegistration/LoginRegist
 const Report = lazy(() => import('pages/Report/Report'));
 
 export const App = () => {
-  const dispatch = useDispatch();
   const { isLoading } = useLoading();
-
-  useEffect(() => {
-    dispatch(refreshToken())
-  }, [dispatch])
+  
 
   return isLoading ? loader : (
     <Routes>

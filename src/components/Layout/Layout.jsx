@@ -12,7 +12,6 @@ import { useSelector } from 'react-redux';
 const Layout = () => {
   const isAuth = useSelector(state => state.auth.isAuth);
 
-  console.log(isAuth);
   return (
     <>
       {isAuth ? (
