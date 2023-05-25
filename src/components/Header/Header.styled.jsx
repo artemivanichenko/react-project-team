@@ -1,23 +1,32 @@
 import styled from '@emotion/styled';
 
 
-export const Conteiner = styled.div`
+export const HeaderBgr = styled.header`
 background: #1F1F27;
 box-shadow: 0px 7px 24px rgba(0, 0, 0, 0.25);
+max-width: 100%;
+`
+
+export const Conteiner = styled.div`
+
 height: 56px;
 min-width: 320px;
 display: flex;
 justify-content: space-between;
 padding-right: 20px;
+
+
 @media (min-width: 768px) {
     min-width: 768px;
+    padding-right: 20px;
         
   }
-  @media (min-width: 1280px) {
+  @media (min-width: 1120px) {
     max-width: 1280px;
     margin:auto;
     display: flex;
     justify-content: space-between;
+    padding-right: 40px;
   }
 }
 img {
@@ -94,10 +103,9 @@ width: 22px;
 height: 14px;
 margin-top: 21px;
 margin-bottom: 21px;
-border: none;
+border:none;
 position:relative;
 }
-
 
 `;
 
