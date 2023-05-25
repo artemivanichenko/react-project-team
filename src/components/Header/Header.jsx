@@ -4,15 +4,30 @@ import OutputOutlinedIcon from '@mui/icons-material/OutputOutlined';
 import Avatar from '@mui/material/Avatar';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from 'redux/auth/authOperations';
-import { Conteiner, Navigate, Title, Btn, Logout, HeaderBgr } from './Header.styled'
+import {
+  Conteiner,
+  Navigate,
+  Title,
+  Btn,
+  Logout,
+  HeaderBgr,
+} from './Header.styled';
 import { useSelector } from 'react-redux';
 import { grey } from '@mui/material/colors';
+import ModalConfirm from 'components/ModalConfirm/ModalConfirm';
+import { useState } from 'react';
 
 const Header = () => {
   const dispatch = useDispatch();
   const userName = useSelector(state => state.auth.userData);
   console.log(userName);
-
+  const [showModal, setShowModal] = useState(false);
+  const handleClose = () => {
+    setShowModal(false);
+  };
+  const handleOpen = () => {
+    setShowModal(true);
+  };
   const handleLogout = () => {
     dispatch(logoutUser());
   };
@@ -35,19 +50,25 @@ const Header = () => {
             {userName && userName.email.slice(0, 1).toUpperCase()}
           </Avatar>
           <Title>{userName && userName.email.split('@')[0]}</Title>
-          <Logout onClick={handleLogout} type="button">
+          <Logout onClick={handleOpen} type="button">
             <OutputOutlinedIcon
               sx={{ width: 24, height: 24, margin: 2.3, marginRight: 0 }}
               htmlColor="white"
               alt="logout"
             ></OutputOutlinedIcon>
           </Logout>
-        <Btn  onClick={handleLogout} type="button" >
-          Exit
-        </Btn>
-      </Navigate>
-
+          <Btn onClick={handleOpen} type="button">
+            Exit
+          </Btn>
+        </Navigate>
       </Conteiner>
+      {showModal && (
+        <ModalConfirm
+          title="Do you really want to leave?"
+          onClose={handleClose}
+          onConfirm={handleLogout}
+        />
+      )}
     </HeaderBgr>
   );
 };
