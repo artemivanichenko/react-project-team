@@ -8,13 +8,10 @@ import { Conteiner, Navigate, Title, Btn, Logout, HeaderBgr } from './Header.sty
 import { useSelector } from 'react-redux';
 import { grey } from '@mui/material/colors';
 
-
-
 const Header = () => {
   const dispatch = useDispatch();
   const userName = useSelector(state => state.auth.userData);
   console.log(userName);
-
 
   const handleLogout = () => {
     dispatch(logoutUser());
@@ -22,33 +19,36 @@ const Header = () => {
 
   return (
     <HeaderBgr>
-    <Conteiner>
+      <Conteiner>
         <img src={logo} alt="logo" />
-        {userName && userName.email }
         <Navigate>
-          
-        <Avatar sx={{ width: 32, height: 32,margin:1.6 ,marginRight:-5, fontSize:14, background:grey
-}}>{userName && userName.email.slice(0,1).toUpperCase()}</Avatar>
-        <Title>
-         {userName && userName.email.split('@')[0]}
-        </Title>
-        <Logout
-          onClick={handleLogout}
-          type="button">
-        <OutputOutlinedIcon
-          sx={{width:24, height:24, margin: 2.3, marginRight:0}}
-          htmlColor="white"
-          alt="logout"
+          <Avatar
+            sx={{
+              width: 32,
+              height: 32,
+              margin: 1.6,
+              marginRight: -5,
+              fontSize: 14,
+              background: grey,
+            }}
           >
-          </OutputOutlinedIcon>
+            {userName && userName.email.slice(0, 1).toUpperCase()}
+          </Avatar>
+          <Title>{userName && userName.email.split('@')[0]}</Title>
+          <Logout onClick={handleLogout} type="button">
+            <OutputOutlinedIcon
+              sx={{ width: 24, height: 24, margin: 2.3, marginRight: 0 }}
+              htmlColor="white"
+              alt="logout"
+            ></OutputOutlinedIcon>
           </Logout>
         <Btn  onClick={handleLogout} type="button" >
           Exit
         </Btn>
       </Navigate>
-      
+
       </Conteiner>
-      </HeaderBgr>
+    </HeaderBgr>
   );
 };
 
