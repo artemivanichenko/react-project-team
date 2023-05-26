@@ -47,7 +47,7 @@ padding-left: 20px;
 @media (min-width: 768px) {
 font-size: 29.1461px;
 line-height: 1.372;
-padding-left: 20px;
+padding-left: 20px;}
 `
 
 export const Navigate = styled.div`
@@ -105,7 +105,7 @@ border-left: solid 2px;
 }
 `;
 
-export const Logout = styled.image`
+export const Logout = styled.div`
 @media (min-width: 320px)
  {
     width: 16px;
