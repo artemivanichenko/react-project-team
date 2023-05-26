@@ -14,38 +14,40 @@ import {
   RegisterButton,
   Required
 } from './LoginForm.styled';
-//import { FcGoogle } from 'react-icons/fc';
+import { FcGoogle } from 'react-icons/fc';
 import { useState } from 'react';
 const LoginForm = () => {
   const [inputPassword, setInputPassword] = useState('');
-  const [inputName, setInputName] = useState('')
+  const [inputName, setInputName] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const dispatch = useDispatch();
-
   const handleSubmit = event => {
     event.preventDefault();
+     setIsSubmitted(true);
     const formValues = {
       email: inputName,
       password: inputPassword,
     };
     const submit = event.nativeEvent.submitter.name;
-    console.log('handleSubmit');
+    if(inputPassword && inputName)
     submit === 'login'
       ? dispatch(loginUser(formValues))
       : dispatch(registerUser(formValues));
   };
-
   const handleChangePassword = event => {
     const inputValue = event.target.value;
     setInputPassword(inputValue);
   }
   const handleChangeName = event => {
     const inputValue = event.target.value;
-    setInputName(inputValue);
+         setInputName(inputValue);
   }
+
   return (
     <FormWrapper>
       <Title>You can log in with your Google Account:</Title>
       <GoggleLink href="https://kapusta-backend.goit.global/auth/google">
+        <FcGoogle size={18} />
         Google
       </GoggleLink>
       <form onSubmit={handleSubmit}>
@@ -54,19 +56,20 @@ const LoginForm = () => {
         </Subtitle>
         <LabelWrapper>
           <Label>
-            <LabelTitle>{!inputName && <symbol style={{color: '#FE4566'}}>*</symbol>}Email:</LabelTitle>
+            <LabelTitle>{inputName.length === 0 && isSubmitted && <span style={{color: '#FE4566'}}>&#42;</span>}Email:</LabelTitle>
             <Input onChange={handleChangeName} type="email" name="email" placeholder="your@email.com" />
-            {!inputName && <Required>This is a required field</Required>}
+            {inputName.length === 0 && isSubmitted && <Required>This is a required field</Required>}
           </Label>
           <Label>
-            <LabelTitle>{!inputPassword && <symbol style={{color: '#FE4566'}}>*</symbol>}Password:</LabelTitle>
+            <LabelTitle>{inputPassword.length === 0 && isSubmitted && <span style={{color: '#FE4566'}}>&#42;</span>}Password:</LabelTitle>
             <Input
               onChange={handleChangePassword}
               type="password"
               name="password"
               placeholder="your password"
             />
-            {!inputPassword && <Required>This is a required field</Required>}
+            {inputPassword.length === 0 && isSubmitted && <Required>This is a required field</Required>}
+            {inputPassword.length > 1 && inputPassword.length < 8 && <Required>Password must be at least 8 characters</Required>}
           </Label>
         </LabelWrapper>
         <ButtonWrapper>

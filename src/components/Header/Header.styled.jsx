@@ -20,28 +20,35 @@ margin:auto;
 @media (min-width: 768px) {
     min-width: 768px;
     padding-right: 20px;
-        
+         
   }
   @media (min-width: 1280px) {
     max-width: 1280px;
     margin:auto;
-    display: flex;
-    justify-content: space-between;
     padding-right: 80px;
   }
-}
-img {
-width: 136px;
-height: 32px;  
-margin: 12px 0px 12px 20px;
 
-@media (min-width: 768px) {
-width: 170px;
-height: 40px;  
-margin: 8px 0px 8px 32px;
-  }
+`
+export const Logo = styled.span`
+@media (min-width: 320px) {
+font-family: 'Nunito';
+font-style: normal;
+font-weight: 400;
+font-size: 23.3169px;
+line-height: 1.372;
+ background: linear-gradient(180deg, #60C470 50%, rgba(96, 196, 112, 0) 107.5%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+padding-top: 10px;
+padding-left: 20px;
+
 }
-`;
+@media (min-width: 768px) {
+font-size: 29.1461px;
+line-height: 1.372;
+padding-left: 20px;}
+`
 
 export const Navigate = styled.div`
 @media (min-width: 320px) {
@@ -53,15 +60,14 @@ padding-right: 30px ;
     padding-right: 20px ;
     gap: 20px;
  }
-
 `
 
 export const Title = styled.p`
 display:none;
 
 @media (min-width: 768px) {
-    display:block;
-    color:#C7CCDC;
+display:block;
+color:#C7CCDC;
 font-weight: 400;
 font-size: 12px;
 line-height: 1.667;
@@ -71,25 +77,6 @@ margin-bottom: 21px;
 position:relative;
 margin-left:30px;
 }
-
-`;
-export const User = styled.img`
-display:block;
-    @media (min-width: 320px) {
-
- width: 32px;
- height:32px; 
- margin-top: 10px;
- margin-bottom: 10px;
- position:absolute;
- right: 60px;
-top: 5px;
-    }
-    @media (min-width: 768px) {
-    right: 158px;
-    top: 5px;
-    }
-   
 `;
 
 export const Btn = styled.button`
@@ -116,17 +103,15 @@ position:relative;
 padding-left:20px;
 border-left: solid 2px;
 }
-
 `;
 
-export const Logout = styled.image`
+export const Logout = styled.button`
 @media (min-width: 320px)
  {
     width: 16px;
     height: 16px;
     display:block;
     position:relative;
-
  }
  @media (min-width: 768px)
  {
@@ -135,22 +120,3 @@ export const Logout = styled.image`
 `
 
 
-export const Psevdo = styled.image`
-
-    @media (min-width: 320px)
- {
-    display:none;
- }
-@media (min-width: 768px)
- {
-    display:block;
- width: 0px;
- height: 36px; 
- margin-top: 10px;
- margin-bottom: 10px;
- position:absolute;
- right: 40px;
-top: -21px;
-border: 1px solid #E0E5EB;
-}
-`

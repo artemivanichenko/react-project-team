@@ -5,10 +5,12 @@ import { Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { getTransactionPeriod } from 'redux/reports/reportsOperations';
 import { useEffect, useState } from 'react';
-
+import { Period, Current, Conteiner,BtnRow } from './CurrentPeriod.styled'
+import { green } from '@mui/material/colors';
 const CurrentPeriod = () => {
   const dispatch = useDispatch();
   const [reportPeriod, setReportPeriod] = useState(DateTime.now());
+   const currentColor = green[700];
 
   useEffect(() => {
     dispatch(getTransactionPeriod(reportPeriod.toFormat('yyyy-LL')));
@@ -23,24 +25,29 @@ const CurrentPeriod = () => {
   };
 
   return (
-    <>
+    
+      <Conteiner>
+      <Current>Current period</Current>
+   <BtnRow>
       <Button
         variant="text"
-        startIcon={<ArrowBackIosIcon />}
+        startIcon={<ArrowBackIosIcon  htmlColor="green" />}
         onClick={handleMonthDecrement}
       />
-      <span>{reportPeriod.toFormat('LLLL yyyy').toUpperCase()}</span>
-      <Button
-        variant="text"
-        endIcon={<ArrowForwardIosIcon />}
-        onClick={handleMonthIncrement}
-        disabled={
-          reportPeriod.startOf('month') < DateTime.now().startOf('month')
-            ? false
-            : true
-        }
+      <Period>{reportPeriod.toFormat('LLLL yyyy').toUpperCase()}</Period>
+        <Button
+          variant="text"
+          endIcon={<ArrowForwardIosIcon />}
+          onClick={handleMonthIncrement}
+          disabled={
+          
+            reportPeriod.startOf('month') < DateTime.now().startOf('month')
+              ? false
+              : true 
+        } htmlColor={currentColor}
       />
-    </>
+     </BtnRow> 
+    </Conteiner>
   );
 };
 

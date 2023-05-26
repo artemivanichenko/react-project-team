@@ -1,0 +1,17 @@
+@import '../node_modules/react-tabs/style/react-tabs.scss';
+@import "./shared/styles/constans.scss";
+@import "./shared/styles/reset.scss";
+@import "./shared/styles/fonts.scss";
+@import "./components/TransactionTypeTabs/TransactionTypeTabs.scss";
+
+body {
+  margin: 0;
+  font-family: 'Roboto',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: 'Roboto', sans-serif;
+}

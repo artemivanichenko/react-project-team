@@ -20,22 +20,19 @@ export const TextStyled = styled.p`
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #f6f7fb;
-  //border-bottom: 4px solid #56566b;
 `;
 
 export const DivStyled = styled.div`
   width: 100%;
-  height: 242px;
   overflow: hidden auto;
   &::-webkit-scrollbar {
     display: block;
-    //height: 82px;
+    height: 82px;
     width: 6px;
     -webkit-appearance: none;
   }
   &::-webkit-scrollbar-thumb {
     border-radius: 2px;
-    //height: 82px;
     background-color: #60c470;
   }
   &::-webkit-scrollbar-track {
