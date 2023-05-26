@@ -1,16 +1,24 @@
 import { Button, ThemeProvider } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-// import { green } from '@mui/material/colors';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-// import { useParams } from 'react-router-dom';
 import {
   selectExpensesData,
   selectIncomesData,
 } from 'redux/reports/reportsSelectors';
 import * as images from '../../images/Categories/index.js';
 import { createTheme } from '@mui/material/styles';
+import {
+  NavLinkStyled,
+  StyledBox,
+  StyledButtonReport,
+  StyledImages,
+  StyledList,
+  StyledText,
+  StyledWrapper,
+} from './ReportCategories.styled.js';
+import { selectionExpenses, selectionIncome } from 'shared/category.js';
 
 const theme = createTheme({
   palette: {
@@ -22,19 +30,9 @@ const theme = createTheme({
 });
 
 const ReportCategories = () => {
-  // const params = useParams();
-  // const expenses = params.expenses;
-  // let report;
-  // expenses === 'income' ? (report = reportIncomes) : (report = reportExpenses);
-
-  // console.log(expenses);
   const [reportChoice, setReportChoice] = useState('expenses');
   const reportIncomes = useSelector(selectIncomesData);
   const reportExpenses = useSelector(selectExpensesData);
-  // const arrIncomesData = Object.values(IncomesData);
-  // console.log(Object.keys(reportExpenses));
-  // console.log(reportExpenses);
-
   const objectToArray = object => {
     return Object.entries(object).map(([name, { total, ...value }]) => {
       return { name, total, content: [value] };
@@ -51,39 +49,75 @@ const ReportCategories = () => {
       setReportChoice('expenses');
     }
   };
+
+  const filteredExpensesArray = expensesArray
+    .map(({ name, total }) => {
+      const filteredArray = selectionExpenses.filter(
+        ({ value, label, trans }) => trans === name
+      );
+
+      return [{ total, ...filteredArray[0] }];
+    })
+    .flat(Infinity);
+  const filteredIncomesArray = incomesArray
+    .map(({ name, total }) => {
+      const filteredArray = selectionIncome.filter(
+        ({ value, label, trans }) => trans === name
+      );
+
+      return [{ total, ...filteredArray[0] }];
+    })
+    .flat(Infinity);
+
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <Button
-          variant="text"
-          startIcon={<ArrowBackIosIcon />}
-          type="button"
-          onClick={handleButtonClick}
-        />
-        <p>{reportChoice.toUpperCase()}</p>
-        <Button
-          variant="text"
-          endIcon={<ArrowForwardIosIcon />}
-          type="button"
-          onClick={handleButtonClick}
-        />
-      </ThemeProvider>
-      {true
-        ? expensesArray.map(({ name, total }) => (
-            <li key={name}>
-              <p> {name}</p>
-              <img src={images.alcohol} alt="armchair" />
-              <p> {total}</p>
-            </li>
-          ))
-        : incomesArray.map(({ name, total }) => (
-            <li key={name}>
-              <p> {name}</p>
-              <img src={images.alcohol} alt="armchair" />
-              <p> {total}</p>
-            </li>
-          ))}
-    </>
+    <StyledBox>
+      <StyledButtonReport>
+        <ThemeProvider theme={theme}>
+          <Button
+            variant="text"
+            startIcon={<ArrowBackIosIcon />}
+            type="button"
+            onClick={handleButtonClick}
+          />
+          <p>{reportChoice.toUpperCase()}</p>
+          <Button
+            variant="text"
+            endIcon={<ArrowForwardIosIcon />}
+            type="button"
+            onClick={handleButtonClick}
+          />
+        </ThemeProvider>
+      </StyledButtonReport>
+      <StyledList>
+        {reportChoice === 'expenses'
+          ? filteredExpensesArray
+              .sort((a, b) => b.total - a.total)
+              .map(({ value, label, total }) => (
+                <li key={value}>
+                  <StyledText> {total}</StyledText>
+                  <NavLinkStyled to={`${value}`}>
+                    <StyledWrapper>
+                      <StyledImages src={images[value]} alt={label} />
+                    </StyledWrapper>
+                  </NavLinkStyled>
+                  <StyledText> {label}</StyledText>
+                </li>
+              ))
+          : filteredIncomesArray
+              .sort((a, b) => b.total - a.total)
+              .map(({ value, label, total }) => (
+                <li key={value}>
+                  <StyledText> {total}</StyledText>
+                  <NavLinkStyled to={`${value}`}>
+                    <StyledWrapper>
+                      <StyledImages src={images[value]} alt={label} />
+                    </StyledWrapper>
+                  </NavLinkStyled>
+                  <StyledText> {label}</StyledText>
+                </li>
+              ))}
+      </StyledList>
+    </StyledBox>
   );
 };
 export default ReportCategories;
