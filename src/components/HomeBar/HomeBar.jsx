@@ -6,7 +6,9 @@ const HomeBar = () => {
     return (
         <section>
             <Balance />
-            <NavLink to="/reports"><ReportsLink /></NavLink>
+            <NavLink to="/reports">
+                <ReportsLink />
+            </NavLink>
         </section>
     );
 };
