@@ -1,33 +1,29 @@
 import { Bar } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
+import { selectExpensesData } from 'redux/reports/reportsSelectors';
+import { useSelector } from 'react-redux';
 Chart.register(...registerables);
 
-const dataApi = [
-  { year: 2010, amount: 5000 },
-  { year: 2011, amount: 8000 },
-  { year: 2012, amount: 10000 },
-  { year: 2013, amount: 12000 },
-  { year: 2014, amount: 9000 },
-  { year: 2015, amount: 11000 },
-  { year: 2016, amount: 13000 },
-  { year: 2017, amount: 9500 },
-  { year: 2018, amount: 11500 },
-  { year: 2019, amount: 13500 },
-  { year: 2020, amount: 10000 },
-  { year: 2021, amount: 12000 },
-];
-console.log(dataApi.map(row => row.year).sort((a, b) => a - b));
-
 const ReportCharts = () => {
+  const expenses = useSelector(selectExpensesData);
+  console.log(expenses);
+  const data = Object.entries(expenses.Продукты).reduce((acc, [key, value]) => {
+    if (key !== 'total') {
+      acc.push([key, value]);
+    }
+    return acc;
+  }, []);
+
+  console.log('data', data);
   return (
     <section width="500">
       <Bar
         data={{
-          labels: dataApi.map(row => row.year).sort((a, b) => a - b),
+          labels: data.map(row => row[0]),
           datasets: [
             {
               label: 'Acquisitions by year',
-              data: dataApi.map(row => row.amount).sort((a, b) => a - b),
+              data: data.map(row => row[1]),
               backgroundColor: 'red',
             },
           ],
