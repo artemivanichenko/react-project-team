@@ -7,22 +7,41 @@ import { loader } from './Loader/Loader';
 import { useLoading } from 'hooks';
 
 const Home = lazy(() => import('pages/Home/Home'));
-const LoginRegistration = lazy(() => import('pages/LoginRegistration/LoginRegistration'));
+const LoginRegistration = lazy(() =>
+  import('pages/LoginRegistration/LoginRegistration')
+);
 const Report = lazy(() => import('pages/Report/Report'));
 
 export const App = () => {
   const { isLoading } = useLoading();
-  
 
-  return isLoading ? loader : (
+  return isLoading ? (
+    loader
+  ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<PublicRoute component={<LoginRegistration />} redirectTo='home' />} />
-        <Route path="home" element={<PrivateRoute component={<Home />} redirectTo='/' />} >
+        <Route
+          index
+          element={
+            <PublicRoute component={<LoginRegistration />} redirectTo="home" />
+          }
+        />
+        <Route
+          path="home"
+          element={<PrivateRoute component={<Home />} redirectTo="/" />}
+        >
           <Route path=":expenses" element={<Home />} />
           <Route path=":income" element={<Home />} />
         </Route>
-        <Route path="reports" element={<PrivateRoute component={<Report />} redirectTo='/' />} />
+        <Route
+          path="reports"
+          element={<PrivateRoute component={<Report />} redirectTo="/" />}
+        >
+          <Route
+            path=":value"
+            element={<PrivateRoute component={<Report />} redirectTo="/" />}
+          />
+        </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Route>
     </Routes>
