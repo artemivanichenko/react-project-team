@@ -1,5 +1,4 @@
 import DatePicker from 'react-datepicker';
-import Select from 'react-select';
 import styled from '@emotion/styled';
 
 export const WrapStyled = styled.div`
@@ -39,19 +38,19 @@ export const DatePickerStyled = styled(DatePicker)`
   }
 `;
 
-export const SelectStyled = styled(Select)`
-  width: 170px;
-  height: 46px;
-  font-size: 12px;
-  color: rgba(199, 204, 220, 0.5);
-  background: transparent;
+// export const SelectStyled = styled(Select)`
+//   width: 170px;
+//   height: 46px;
+//   font-size: 12px;
+//   color: rgba(199, 204, 220, 0.5);
+//   background: transparent;
 
-  &.react-select-container {
-    background-color: blue;
-    fill: red;
-    color: black;
-  }
-`;
+//   &.react-select-container {
+//     background-color: blue;
+//     fill: red;
+//     color: black;
+//   }
+// `;
 
 export const InputStyled = styled.input`
   height: 40px;
