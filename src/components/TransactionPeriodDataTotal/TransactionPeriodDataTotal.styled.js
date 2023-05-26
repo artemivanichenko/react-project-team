@@ -10,6 +10,7 @@ export const StyledBox = styled.div`
   border-bottom-right-radius: 30px;
   width: 280px;
   height: 85px;
+  margin-bottom: 32px;
   @media screen and (min-width: 768px) {
     width: 1034px;
     height: 50px;
