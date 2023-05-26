@@ -12,6 +12,7 @@ import {
 const initialState = {
   isLoading: false,
   error: null,
+  filterDate: null,
   newBalance: 100,
   transactionIncome: {
     description: 'Income description',
@@ -120,6 +121,11 @@ const initialState = {
 const transactionSlice = createSlice({
   name: 'transactions',
   initialState,
+  reducers: {
+    getFilterDate(state, { payload }) {
+      state.filterDate = payload;
+    },
+  },
   extraReducers: builder => {
     builder
       // ================== GET TRANSACTION INCOME
@@ -222,5 +228,5 @@ const transactionSlice = createSlice({
     // });
   },
 });
-
+export const { getFilterDate } = transactionSlice.actions;
 export default transactionSlice.reducer;
