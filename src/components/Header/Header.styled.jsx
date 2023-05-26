@@ -105,7 +105,7 @@ border-left: solid 2px;
 }
 `;
 
-export const Logout = styled.div`
+export const Logout = styled.button`
 @media (min-width: 320px)
  {
     width: 16px;
