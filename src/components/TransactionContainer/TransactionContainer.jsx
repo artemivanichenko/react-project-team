@@ -2,7 +2,7 @@ import AddTransaction from "components/AddTransaction/AddTransaction";
 import Summary from "components/Summary/Summary";
 import TransactionTypeTabs from "components/TransactionTypeTabs/TransactionTypeTabs";
 import TransactionsList from "components/TransactionsList/TransactionsList";
-import { ContainerStyled, SectionStyled } from "./TransactionContainer.styled";
+import { BoxStyled, ContainerStyled, SectionStyled } from "./TransactionContainer.styled";
 
 const TransactionContainer = () => {
     return (
@@ -10,8 +10,10 @@ const TransactionContainer = () => {
             <TransactionTypeTabs />
             <ContainerStyled>
                 <AddTransaction />
-                <TransactionsList />
-                <Summary />
+                <BoxStyled>
+                    <TransactionsList />
+                    <Summary />
+                </BoxStyled>
             </ContainerStyled>
         </SectionStyled>
     );

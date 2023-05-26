@@ -1,10 +1,12 @@
 import DatePicker from 'react-datepicker';
+
 import Select from 'react-select';
 import styled from '@emotion/styled';
 
 export const WrapStyled = styled.div`
   display: flex;
   gap: 32px;
+  align-items: center;
   padding: 32px 0 60px;
 `;
 
@@ -12,22 +14,51 @@ export const FormStyled = styled.form`
   display: flex;
 `;
 
+export const CalendarBox = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const DatePickerStyled = styled(DatePicker)`
   width: 100%;
   padding: 10px;
   margin: 0;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   background-color: transparent;
   border: none;
   outline: none;
   color: #c7ccdc;
+
+  &.react-datepicker-wrapper {
+    width: 70px;
+  }
 `;
 
 export const SelectStyled = styled(Select)`
   width: 170px;
-  height: 44px;
+  height: 46px;
   font-size: 12px;
   color: rgba(199, 204, 220, 0.5);
   background: transparent;
+
+  &.react-select-container {
+    background-color: blue;
+    fill: red;
+    color: black;
+  }
+`;
+
+export const InputStyled = styled.input`
+  height: 40px;
+  color: rgba(199, 204, 220, 0.5);
+  background: transparent;
+  border: 2px solid #474759;;
 `;
 
 export const BtnStyled = styled.button`

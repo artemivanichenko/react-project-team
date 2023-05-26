@@ -9,17 +9,21 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
+import { selectFilterDate } from 'redux/transaction/transactionSelectors';
 
 const TransactionsList = () => {
   const params = useParams();
   const expenses = params.expenses;
   const transactionExpenses = useSelector(state => state.transaction.expenses);
   const transactionIncomes = useSelector(state => state.transaction.incomes);
+  const dateFilter = useSelector(selectFilterDate);
   let transaction;
 
+  console.log('dateFilter', dateFilter);
+
   expenses === 'income'
-    ? (transaction = transactionIncomes)
-    : (transaction = transactionExpenses);
+    ? (transaction = transactionIncomes.filter(el => el.date === dateFilter))
+    : (transaction = transactionExpenses.filter(el => el.date === dateFilter));
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -42,14 +46,15 @@ const TransactionsList = () => {
   }));
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ maxWidth: 746 }} aria-label="customized table">
+    <TableContainer component={Paper} style={{ width: 'fit-content' }}>
+      <Table sx={{ width: 746 }} aria-label="customized table">
         <TableHead>
           <TableRow>
             <StyledTableCell>DATE</StyledTableCell>
             <StyledTableCell align="right">DESCRIPTION</StyledTableCell>
             <StyledTableCell align="right">CATEGORY</StyledTableCell>
             <StyledTableCell align="right">SUM</StyledTableCell>
+            <StyledTableCell align="right"></StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -61,6 +66,7 @@ const TransactionsList = () => {
               <StyledTableCell align="right">{row.description}</StyledTableCell>
               <StyledTableCell align="right">{row.category}</StyledTableCell>
               <StyledTableCell align="right">{row.amount}</StyledTableCell>
+              <StyledTableCell align="right"></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

@@ -1,4 +1,4 @@
-import logo from 'images/logo.png';
+import coin from 'images/coin.png';
 import { useAuth } from 'hooks/useAuth';
 import OutputOutlinedIcon from '@mui/icons-material/OutputOutlined';
 import Avatar from '@mui/material/Avatar';
@@ -11,6 +11,7 @@ import {
   Btn,
   Logout,
   HeaderBgr,
+  Logo
 } from './Header.styled';
 import { useSelector } from 'react-redux';
 import { grey } from '@mui/material/colors';
@@ -20,7 +21,8 @@ import { useState } from 'react';
 const Header = () => {
   const dispatch = useDispatch();
   const color = grey[700];
-  const userName = useSelector(state => state.auth.userData);
+  const style ={marginBottom:-2}
+  const userName = useSelector(state => state.auth.email);
   const isLoggedIn = useAuth();
 
   const [showModal, setShowModal] = useState(false);
@@ -37,9 +39,8 @@ const Header = () => {
   return (
     <>
       <HeaderBgr>
-        <Conteiner>
-          <img src={logo} alt="logo" />
-
+        <Conteiner >
+          <Logo >Budget B<img src={coin} alt="coin" style={style} />ss</Logo>
           {isLoggedIn && (
             <Navigate>
               <Avatar
@@ -52,9 +53,9 @@ const Header = () => {
                   background: color,
                 }}
               >
-                {userName && userName.email.slice(0, 1).toUpperCase()}
+                {userName && userName.slice(0, 1).toUpperCase()}
               </Avatar>
-              <Title>{userName && userName.email.split('@')[0]}</Title>
+              <Title>{userName && userName.split('@')[0]}</Title>
               <Logout onClick={handleOpen} type="button">
                 <OutputOutlinedIcon
                   sx={{ width: 24, height: 24, margin: 2.3, marginRight: 0 }}
