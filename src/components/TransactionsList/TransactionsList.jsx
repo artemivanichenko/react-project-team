@@ -22,8 +22,8 @@ const TransactionsList = () => {
   console.log('dateFilter', dateFilter);
 
   expenses === 'income'
-    ? (transaction = transactionIncomes)
-    : (transaction = transactionExpenses);
+    ? (transaction = transactionIncomes.filter(el => el.date === dateFilter))
+    : (transaction = transactionExpenses.filter(el => el.date === dateFilter));
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {

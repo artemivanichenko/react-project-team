@@ -60,6 +60,7 @@ const AddTransaction = () => {
 
   useEffect(() => {
     setForm(prev => ({ ...prev, date: curDate }));
+    console.log('add', curDate);
     dispatch(getFilterDate(curDate));
   }, [curDate, dispatch]);
 
@@ -71,7 +72,7 @@ const AddTransaction = () => {
           selected={startDate}
           onChange={date => setStartDate(date)}
           maxDate={new Date()}
-          name="data"
+          name="date"
         />
       </CalendarBox>
       <FormStyled onSubmit={handleSubmit}>
