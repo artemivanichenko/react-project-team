@@ -3,7 +3,7 @@ import Layout from './Layout/Layout';
 import { lazy } from 'react';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-import { loader } from './Loader/Loader';
+import { Loader } from './Loader/Loader';
 import { useLoading } from 'hooks';
 
 const Home = lazy(() => import('pages/Home/Home'));
@@ -15,9 +15,8 @@ const Report = lazy(() => import('pages/Report/Report'));
 export const App = () => {
   const { isLoading } = useLoading();
 
-  return isLoading ? (
-    loader
-  ) : (
+
+  return isLoading ? <Loader/> : (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route
