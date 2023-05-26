@@ -1,1 +1,13 @@
 export { default as alcohol } from '../Categories/Expenses/alcohol.png';
+export { default as cash } from '../Categories/Expenses/cash.png';
+export { default as communication } from '../Categories/Expenses/communication.png';
+export { default as education } from '../Categories/Expenses/education.png';
+export { default as entertainment } from '../Categories/Expenses/entertainment.png';
+export { default as health } from '../Categories/Expenses/health.png';
+export { default as hobbies } from '../Categories/Expenses/hobbies.png';
+export { default as housing } from '../Categories/Expenses/housing.png';
+export { default as products } from '../Categories/Expenses/products.png';
+export { default as technique } from '../Categories/Expenses/technique.png';
+export { default as transport } from '../Categories/Expenses/transport.png';
+export { default as cardwallet } from '../Categories/Income/cardwallet.png';
+export { default as moneytransfer } from '../Categories/Income/moneytransfer.png';
