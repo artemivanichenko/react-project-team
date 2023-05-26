@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addBalance } from 'redux/transaction/transactionOperations';
 import { selectBalance } from 'redux/transaction/transactionSelectors';
-
+import { Form, Title } from './Balance.styled'
 const Balance = () => {
   const balance = useSelector(selectBalance);
   console.log(balance);
@@ -15,13 +15,13 @@ const Balance = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <label>
-        <p>balance:</p>
+        <Title>Balance:</Title>
         <input type="number" placeholder="00.00 UAH" name="balance" />
       </label>
       <button type="submit">Confirm</button>
-    </form>
+    </Form>
   );
 };
 

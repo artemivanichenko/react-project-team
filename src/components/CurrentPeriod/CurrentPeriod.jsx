@@ -5,6 +5,7 @@ import { Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { getTransactionPeriod } from 'redux/reports/reportsOperations';
 import { useEffect, useState } from 'react';
+import { Period, Current, Conteiner,BtnRow } from './CurrentPeriod.styled'
 
 const CurrentPeriod = () => {
   const dispatch = useDispatch();
@@ -23,16 +24,19 @@ const CurrentPeriod = () => {
   };
 
   return (
-    <>
+    
+      <Conteiner>
+      <Current>Current period</Current>
+   <BtnRow>
       <Button
         variant="text"
-        startIcon={<ArrowBackIosIcon />}
+        startIcon={<ArrowBackIosIcon  htmlColor="green" />}
         onClick={handleMonthDecrement}
       />
-      <span>{reportPeriod.toFormat('LLLL yyyy').toUpperCase()}</span>
+      <Period>{reportPeriod.toFormat('LLLL yyyy').toUpperCase()}</Period>
       <Button
         variant="text"
-        endIcon={<ArrowForwardIosIcon />}
+        endIcon={<ArrowForwardIosIcon htmlColor="green" />}
         onClick={handleMonthIncrement}
         disabled={
           reportPeriod.startOf('month') < DateTime.now().startOf('month')
@@ -40,7 +44,8 @@ const CurrentPeriod = () => {
             : true
         }
       />
-    </>
+     </BtnRow> 
+    </Conteiner>
   );
 };
 
