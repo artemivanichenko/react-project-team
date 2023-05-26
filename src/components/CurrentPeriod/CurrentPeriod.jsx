@@ -7,10 +7,12 @@ import { getTransactionPeriod } from 'redux/reports/reportsOperations';
 import { useEffect, useState } from 'react';
 import { Period, Current, Conteiner,BtnRow } from './CurrentPeriod.styled'
 import { green } from '@mui/material/colors';
+// import  {condition}  from './CurrentPeriod.styled';
 const CurrentPeriod = () => {
   const dispatch = useDispatch();
   const [reportPeriod, setReportPeriod] = useState(DateTime.now());
-   const currentColor = green[700];
+  const currentColor = green[700];
+  // const condition = new Date().getMonth();
 
   useEffect(() => {
     dispatch(getTransactionPeriod(reportPeriod.toFormat('yyyy-LL')));
@@ -40,11 +42,10 @@ const CurrentPeriod = () => {
           endIcon={<ArrowForwardIosIcon />}
           onClick={handleMonthIncrement}
           disabled={
-          
             reportPeriod.startOf('month') < DateTime.now().startOf('month')
-              ? false
+              ? false 
               : true 
-        } htmlColor={currentColor}
+         } htmlColor={currentColor}
       />
      </BtnRow> 
     </Conteiner>

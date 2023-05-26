@@ -42,14 +42,38 @@ line-height: 1.372;
   background-clip: text;
 padding-top: 10px;
 padding-left: 20px;
-
+position:relative;
 }
 @media (min-width: 768px) {
 font-size: 29.1461px;
 line-height: 1.372;
-padding-left: 20px;}
-`
+padding-left: 20px;
 
+}
+img{
+    @media (min-width: 768px)
+ {
+    display: inline;
+    position:absolute;
+    left:139px;
+    bottom:16px;
+}
+display: inline;
+     @media (min-width: 1280px) {
+    position:absolute;
+    left:140px;
+    bottom:16px;}
+
+}
+`
+export const Span = styled.span`
+@media (min-width: 320px) {
+display:none;
+}
+ @media (min-width: 768px)
+ {
+  display:inline-block;  
+}`
 export const Navigate = styled.div`
 @media (min-width: 320px) {
 display: flex;
@@ -105,18 +129,31 @@ border-left: solid 2px;
 }
 `;
 
-export const Logout = styled.button`
+export const Logout = styled.div`
 @media (min-width: 320px)
  {
     width: 16px;
     height: 16px;
     display:block;
     position:relative;
+    
  }
  @media (min-width: 768px)
  {
     display:none;
+  
 }
+
+
 `
 
-
+// export const getColor = (condition) => {
+//   switch (condition) {
+//     case true:
+//       return 'disable';
+//     case false:
+//       return 'success';
+//     default:
+//       return 'default';
+//   }
+// };
