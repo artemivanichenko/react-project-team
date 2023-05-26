@@ -1,6 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addBalance } from 'redux/transaction/transactionOperations';
 import { selectBalance } from 'redux/transaction/transactionSelectors';
+import {
+  FormStyled,
+  TextStyled,
+  ButtonStyled,
+  StyledNumericFormat,
+} from './Balance.styled';
 
 const Balance = () => {
   const balance = useSelector(selectBalance);
@@ -15,13 +21,45 @@ const Balance = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        <p>balance:</p>
-        <input type="number" placeholder="00.00 UAH" name="balance" />
-      </label>
-      <button type="submit">Confirm</button>
-    </form>
+    <FormStyled onSubmit={handleSubmit}>
+      <TextStyled>Balance:</TextStyled>
+      <StyledNumericFormat
+        required
+        name="balance"
+        value={balance}
+        suffix=" UAH"
+        placeholder="00.00 UAH"
+        //thousandSeparator
+        // customInput={TextField}
+        // {...materialUITextFieldProps}
+        onValueChange={(values, sourceInfo) => {
+          console.log(values, sourceInfo);
+        }}
+      />
+      <ButtonStyled type="submit">Confirm</ButtonStyled>
+      {/* <Button
+        type="submit"
+        variant="outlined"
+        sx={{
+          backgroundColor: 'transparent',
+          border: '2px solid #80848F',
+          borderRadius: 16,
+          width: 125,
+          height: 44,
+          color: '#C7CCDC',
+          '&:hover': {
+            backgroundColor: '#42A652',
+            border: '2px solid #42A652',
+            color: '#F6F7FB',
+          },
+          //mt: 10,
+          //borderTopLeftRadius: 20,
+          //borderTopRightRadius: 20,
+        }}
+      >
+        Confirm
+      </Button> */}
+    </FormStyled>
   );
 };
 
