@@ -5,6 +5,8 @@ export const FormStyled = styled.form`
   display: flex;
   align-items: center;
   gap: 20px;
+  width: 334px;
+  margin: 40px auto 8px auto;
 `;
 
 export const TextStyled = styled.p`
@@ -47,9 +49,4 @@ export const StyledNumericFormat = styled(NumericFormat)`
   text-align: end;
   box-sizing: border-box;
   padding: 12px 20px 12px 8px;
-  /* &:focus {
-    background-color: transparent;
-    border: 2px solid #80848f;
-    color: #f6f7fb;
-  } */
 `;
