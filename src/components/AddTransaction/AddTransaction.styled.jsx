@@ -44,8 +44,14 @@ export const SelectStyled = styled(Select)`
   width: 170px;
   height: 46px;
   font-size: 12px;
-  color: rgb(249, 250, 253);
+  color: rgba(199, 204, 220, 0.5);
   background: transparent;
+
+  &.react-select-container {
+    background-color: blue;
+    fill: red;
+    color: black;
+  }
 `;
 
 export const InputStyled = styled.input`

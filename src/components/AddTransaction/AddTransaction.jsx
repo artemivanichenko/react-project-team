@@ -18,6 +18,7 @@ import {
   InputStyled,
 } from './AddTransaction.styled';
 import { selectionExpenses, selectionIncome } from 'shared/category';
+import { getFilterDate } from 'redux/transaction/transactionSlice';
 
 const AddTransaction = () => {
   const dispatch = useDispatch();
@@ -59,7 +60,9 @@ const AddTransaction = () => {
 
   useEffect(() => {
     setForm(prev => ({ ...prev, date: curDate }));
-  }, [curDate]);
+    console.log('add', curDate);
+    dispatch(getFilterDate(curDate));
+  }, [curDate, dispatch]);
 
   return (
     <WrapStyled>
@@ -69,7 +72,7 @@ const AddTransaction = () => {
           selected={startDate}
           onChange={date => setStartDate(date)}
           maxDate={new Date()}
-          name="data"
+          name="date"
         />
       </CalendarBox>
       <FormStyled onSubmit={handleSubmit}>
@@ -82,13 +85,13 @@ const AddTransaction = () => {
         <SelectStyled
           options={options}
           placeholder="Product category"
-          styles={{
-            control: (baseStyles, state) => ({
-              ...baseStyles,
-              border: '2px solid #474759',
-              background: 'transparent',
-            }),
-          }}
+          // styles={{
+          //   control: (baseStyles, state) => ({
+          //     ...baseStyles,
+          //     border: '2px solid #474759',
+          //     background: 'transparent',
+          //   }),
+          // }}
           name="category"
           onChange={data =>
             setForm(prev => ({ ...form, category: data.trans }))
