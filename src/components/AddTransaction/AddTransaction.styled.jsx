@@ -65,8 +65,8 @@ export const BtnStyled = styled.button`
   width: 136px;
   height: 44px;
   margin-left: 16px;
-  font-family: 'Roboto';
-  font-style: normal;
+  /* font-family: 'Roboto';
+  font-style: normal; */
   font-weight: 700;
   font-size: 12px;
   line-height: 1.17x;

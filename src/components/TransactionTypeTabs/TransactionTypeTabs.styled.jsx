@@ -22,12 +22,10 @@ export const NavLinkStyled = styled(NavLink)`
 
   &.active {
     background: #383847;
-  }
-  &:first-of-type {
     color: #60c470;
   }
 `;
 
-export const WrapStyled =styled.div`
-    display: flex;
-`
+export const WrapStyled = styled.div`
+  display: flex;
+`;

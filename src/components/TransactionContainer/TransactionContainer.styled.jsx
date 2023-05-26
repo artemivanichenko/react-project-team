@@ -18,5 +18,6 @@ export const ContainerStyled = styled.div`
 
 export const BoxStyled = styled.div`
   display: flex;
-  justify-content: space-between;
+  gap: 75px;
+  /* justify-content: space-between; */
 `
