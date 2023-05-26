@@ -4,14 +4,18 @@ export const FormWrapper = styled.div`
   @media screen and (max-width: 1370px){
   margin: 50px 50px 0px 0;
   } 
-  @media screen and (min-width: 768px) and (max-width: 1280px) {
+  @media screen and (min-width: 768px) and (max-width: 1281px) {
       padding: 40px 20px;
       margin-top: 220px;
       margin-left: 70px;
     }
   @media screen and (min-width: 320px) and (max-width: 500px){
-    margin: 10px 15px;
+    margin: 20px 15px;
     width: 220px;
+  }
+  @media screen and (min-width: 500px) and (max-width: 767px){
+    margin: 50px auto;
+    width: 320px;
   }
   margin: 50px 150px 0px 0;
   padding: 40px 30px;
@@ -45,7 +49,8 @@ export const GoggleLink = styled.a`
   color: black;
   background-color: #f6f7fb;
   &:hover {
-    background-color: #ededed;
+    background-color: #dddddd;
+    transition: all 300ms ease 0s;
   }
   margin-bottom: 32px;
   @media screen and (min-width: 320px) and (max-width: 500px){
@@ -119,6 +124,7 @@ export const LoginButton = styled.button`
   cursor: pointer;
   &:hover {
     background-color: #308e3f;
+    transition: all 300ms ease 0s;
   }
   font-family: 'Roboto', sans-serif;
   font-style: normal;
@@ -143,7 +149,8 @@ export const RegisterButton = styled.button`
   height: 44px;
   cursor: pointer;
   &:hover {
-    background-color: #e4e5e9;
+    background-color: #dddddd;
+    transition: all 300ms ease 0s;
   }
   font-family: 'Roboto', sans-serif;
   font-style: normal;
@@ -162,4 +169,5 @@ export const RegisterButton = styled.button`
 
 export const Required = styled.p `
   color: #FE4566;
+  font-size: smaller;
 `
