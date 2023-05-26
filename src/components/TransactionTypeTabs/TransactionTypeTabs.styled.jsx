@@ -1,14 +1,5 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-
-export const TabStyled = styled(Tab)`
-
-`;
-
-export const TabsStyled = styled(Tabs)``;
-
-export const TabListStyled = styled(TabList)``;
 
 export const NavLinkStyled = styled(NavLink)`
   display: block;

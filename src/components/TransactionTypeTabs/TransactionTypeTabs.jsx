@@ -2,6 +2,7 @@ import { useState } from "react";
 import { NavLinkStyled, WrapStyled } from "./TransactionTypeTabs.styled";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
+
 const TransactionTypeTabs = () => {
 const [tabIndex, setTabIndex] = useState(0);
 
