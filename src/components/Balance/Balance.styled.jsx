@@ -12,12 +12,6 @@ export const TooltipStyled = styled(({ className, ...other }) => (
     border-radius: 30px;
     box-sizing: border-box;
 
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 1.43;
-    color: #ffffff;
     background: linear-gradient(118.06deg, #58bb67 3.05%, #368342 125.62%);
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
 
@@ -84,6 +78,10 @@ export const StyledNumericFormat = styled(NumericFormat)`
   border: 2px solid #80848f;
   border-top-left-radius: 16px;
   border-bottom-left-radius: 16px;
+  &:hover,
+  :focus {
+    background-color: rgba(86, 86, 107, 0.3);
+  }
 
   @media (min-width: 768px) {
     width: 125px;
@@ -128,5 +126,17 @@ export const ButtonStyled = styled.button`
     height: 44px;
     border-radius: 16px;
     text-align: center;
+  }
+`;
+
+export const MessageStyled = styled.p`
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.43;
+  color: #ffffff;
+  &:first-of-type {
+    margin-bottom: 24px;
   }
 `;

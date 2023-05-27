@@ -1,10 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { addBalance } from 'redux/transaction/transactionOperations';
-import {
-  selectBalance,
-  selectExpenses,
-} from 'redux/transaction/transactionSelectors';
+import { selectBalance } from 'redux/transaction/transactionSelectors';
 import {
   TooltipStyled,
   FormStyled,
@@ -12,6 +9,7 @@ import {
   BoxStyled,
   ButtonStyled,
   StyledNumericFormat,
+  MessageStyled,
 } from './Balance.styled';
 
 const Balance = () => {
@@ -28,7 +26,7 @@ const Balance = () => {
   };
 
   const balance = useSelector(selectBalance);
-  const expenses = useSelector(selectExpenses);
+  //const expenses = useSelector(selectExpenses);
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
@@ -36,19 +34,14 @@ const Balance = () => {
     const newBalance = Number.parseFloat(
       e.currentTarget.elements.balance.value
     );
-    console.log(newBalance);
     dispatch(addBalance({ newBalance }));
   };
 
-  // if (balance === 0 && expenses.length === 0)
+  // if (&& expenses.length === 0)
   if (balance === 0 && toggleOpen) {
     handleOpen();
     setToggleOpen(false);
   }
-  // } else {
-  //   handleClose();
-  //   setToggle(true);
-  // }
 
   if (balance !== 0 && toggleClose) {
     handleClose();
@@ -66,18 +59,32 @@ const Balance = () => {
           disableFocusListener
           disableHoverListener
           disableTouchListener
-          title="Hello! To get started, enter the current balance of your account! 
-          You can't spend money until you have it :)"
+          title={
+            <>
+              <MessageStyled>
+                Hello! To get started, enter the current balance of your
+                account!
+              </MessageStyled>
+              <MessageStyled>
+                You can't spend money until you have it :)
+              </MessageStyled>
+            </>
+          }
           arrow
           placement="bottom-end"
         >
           <div>
             <StyledNumericFormat
               required
-              name="balance"
+              decimalScale={2}
+              fixedDecimalScale
+              //type="number"
+              minLength={1}
+              maxLength={17}
               value={balance}
               suffix=" UAH"
               placeholder="00.00 UAH"
+              name="balance"
               onValueChange={(values, sourceInfo) => {
                 console.log(values, sourceInfo);
               }}
