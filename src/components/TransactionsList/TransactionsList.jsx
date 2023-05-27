@@ -34,36 +34,40 @@ const TransactionsList = () => {
 
   return (
     <TableStyled>
-      <TableHeadRowStyled>
-        <TableHeadColumnStyled>DATE</TableHeadColumnStyled>
-        <TableHeadColumnStyled>DESCRIPTION</TableHeadColumnStyled>
-        <TableHeadColumnStyled>CATEGORY</TableHeadColumnStyled>
-        <TableHeadColumnStyled>SUM</TableHeadColumnStyled>
-        <TableHeadColumnStyled></TableHeadColumnStyled>
-      </TableHeadRowStyled>
-      {transaction.map(el => (
-        <TableRowStyled key={el._id}>
-          <TableColumnStyled>{el.date}</TableColumnStyled>
-          <TableColumnStyled>{el.description}</TableColumnStyled>
-          <TableColumnStyled>
-            {categoryChange
-              .filter(({ value, label, trans }) => trans === el.category)
-              .map(el => el.label)
-              .join()}
-          </TableColumnStyled>
-          <TableColumnStyled data-color={expenses}>
-            {el.amount.toFixed(2)} UAH.
-          </TableColumnStyled>
-          <TableColumnStyled>
-            <BtnDelStyled
-              type="button"
-              onClick={() => dispatch(deleteTransaction(el._id))}
-            >
-              <SvgStyled src={icon} />
-            </BtnDelStyled>
-          </TableColumnStyled>
-        </TableRowStyled>
-      ))}
+      <thead>
+        <TableHeadRowStyled>
+          <TableHeadColumnStyled>DATE</TableHeadColumnStyled>
+          <TableHeadColumnStyled>DESCRIPTION</TableHeadColumnStyled>
+          <TableHeadColumnStyled>CATEGORY</TableHeadColumnStyled>
+          <TableHeadColumnStyled>SUM</TableHeadColumnStyled>
+          <TableHeadColumnStyled></TableHeadColumnStyled>
+        </TableHeadRowStyled>
+      </thead>
+      <tbody>
+        {transaction.map(el => (
+          <TableRowStyled key={el._id}>
+            <TableColumnStyled>{el.date}</TableColumnStyled>
+            <TableColumnStyled>{el.description}</TableColumnStyled>
+            <TableColumnStyled>
+              {categoryChange
+                .filter(({ value, label, trans }) => trans === el.category)
+                .map(el => el.label)
+                .join()}
+            </TableColumnStyled>
+            <TableColumnStyled data-color={expenses}>
+              {el.amount.toFixed(2)} UAH.
+            </TableColumnStyled>
+            <TableColumnStyled>
+              <BtnDelStyled
+                type="button"
+                onClick={() => dispatch(deleteTransaction(el._id))}
+              >
+                <SvgStyled src={icon} />
+              </BtnDelStyled>
+            </TableColumnStyled>
+          </TableRowStyled>
+        ))}
+      </tbody>
     </TableStyled>
   );
 };

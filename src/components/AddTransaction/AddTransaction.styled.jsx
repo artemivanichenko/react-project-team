@@ -15,6 +15,7 @@ export const FormStyled = styled.form`
 export const CalendarBox = styled.div`
   display: flex;
   align-items: center;
+  width: 104px;
 `;
 
 export const DatePickerStyled = styled(DatePicker)`
@@ -52,6 +53,10 @@ export const InputStyled = styled.input`
   color: rgba(199, 204, 220, 0.5);
   background: transparent;
   border: 2px solid #474759;
+  font-family: "Roboto";
+  font-weight: 900;
+  font-size: 12px;
+  line-height: 1.17;
 
   &:first-of-type {
     border-top-left-radius: 16px;
