@@ -55,7 +55,7 @@ const TransactionsList = () => {
                 .join()}
             </TableColumnStyled>
             <TableColumnStyled data-color={expenses}>
-              {el.amount.toFixed(2)} UAH.
+              {expenses === 'income' ? el.amount.toFixed(2) : `-${el.amount.toFixed(2)}`} UAH.
             </TableColumnStyled>
             <TableColumnStyled>
               <BtnDelStyled

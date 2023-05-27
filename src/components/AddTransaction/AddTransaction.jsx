@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import 'react-datepicker/dist/react-datepicker.css';
 import Select from 'react-select';
@@ -19,6 +19,7 @@ import {
 import { selectionExpenses, selectionIncome } from 'shared/category';
 import { getFilterDate } from 'redux/transaction/transactionSlice';
 import { objectStyle } from './AddTransactionStyle';
+import { NumericFormat } from 'react-number-format';
 
 const AddTransaction = () => {
   const dispatch = useDispatch();
@@ -26,13 +27,15 @@ const AddTransaction = () => {
   const expenses = params.expenses;
 
   const [options, setOptions] = useState([]);
+  const [selected, setSelected] = useState([]);
+  const selectInputRef = useRef();
 
   const [startDate, setStartDate] = useState(new Date());
   const curDate = startDate.toISOString().split('T')[0];
 
   const [form, setForm] = useState({
     date: '',
-    amount: 0,
+    amount: '',
     description: '',
     category: '',
   });
@@ -58,11 +61,18 @@ const AddTransaction = () => {
     setForm('');
   };
 
+  const handleClickReset = () => {
+    setForm(prev => ({ ...prev, amount: '', category: '' }));
+    setSelected([]);
+  };
+
   useEffect(() => {
     setForm(prev => ({ ...prev, date: curDate }));
     console.log('add', curDate);
     dispatch(getFilterDate(curDate));
   }, [curDate, dispatch]);
+
+  console.log('form', form);
 
   return (
     <WrapStyled>
@@ -85,21 +95,33 @@ const AddTransaction = () => {
         <Select
           options={options}
           placeholder="Product category"
+          value={selected}
           styles={objectStyle}
           name="category"
           onChange={data =>
             setForm(prev => ({ ...form, category: data.trans }))
           }
         />
-        <InputStyled
-          type="number"
-          step="0.01"
-          placeholder="0.00"
-          name="amount"
-          onChange={handleChange}
+        <NumericFormat
+          // defaultValue="1"
+          placeholder="0.00 UAH"
+          value={form.amount}
+          allowEmptyFormatting={false}
+          allowNegative={false}
+          decimalScale={2}
+          allowedDecimalSeparators={['.']}
+          allowLeadingZeros={false}
+          thousandSeparator=" "
+          suffix=" UAH"
+          displayType="input"
+          onValueChange={({ floatValue }, sourceInfo) => {
+            setForm(prev => ({ ...prev, amount: floatValue }));
+          }}
         />
         <BtnStyled type="submit">Input</BtnStyled>
-        <BtnStyled type="reset">Clear</BtnStyled>
+        <BtnStyled type="reset" onClick={handleClickReset}>
+          Clear
+        </BtnStyled>
       </FormStyled>
     </WrapStyled>
   );
