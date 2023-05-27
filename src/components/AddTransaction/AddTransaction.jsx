@@ -22,6 +22,8 @@ import { selectionExpenses, selectionIncome } from 'shared/category';
 import { getFilterDate } from 'redux/transaction/transactionSlice';
 import { objectStyle } from './AddTransactionStyle';
 import { selectBalance } from 'redux/transaction/transactionSelectors';
+import { registerLocale } from 'react-datepicker';
+import uk from 'date-fns/locale/uk';
 
 const AddTransaction = () => {
   const dispatch = useDispatch();
@@ -66,7 +68,7 @@ const AddTransaction = () => {
 
   const handleClickReset = () => {
     setForm(prev => ({ ...prev, amount: '', category: '' }));
-    setSelected([]);
+    setSelected(null);
   };
 
   useEffect(() => {
@@ -79,17 +81,21 @@ const AddTransaction = () => {
   }, [dispatch]);
   console.log('form', form, balance);
 
+registerLocale('uk', uk)
+
   return (
     <WrapStyled>
       <CalendarBox>
         <CalendarMonthIcon color="success" />
         <DatePickerStyled
+          locale="uk"
           selected={startDate}
           onChange={date => setStartDate(date)}
           maxDate={new Date()}
           name="date"
         />
       </CalendarBox>
+
       <FormStyled onSubmit={handleSubmit}>
         <InputStyled
           type="text"
@@ -97,21 +103,23 @@ const AddTransaction = () => {
           placeholder="Product description"
           onChange={handleChange}
         />
+
         <Select
           options={options}
           placeholder="Product category"
-          value={selected}
+          // value={selected}
           styles={objectStyle}
           name="category"
           onChange={data =>
             setForm(prev => ({ ...form, category: data.trans }))
           }
         />
+
         <NumericFormat
           // defaultValue="1"
           placeholder="0.00 UAH"
           value={form.amount}
-          allowEmptyFormatting={false}
+          // allowEmptyFormatting={false}
           allowNegative={false}
           decimalScale={2}
           allowedDecimalSeparators={['.']}
