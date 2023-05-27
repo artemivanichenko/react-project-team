@@ -27,8 +27,12 @@ const TransactionsList = () => {
   const categoryChange = [...selectionExpenses, ...selectionIncome];
 
   expenses === 'income'
-    ? (transaction = transactionIncomes.filter(el => el.date === dateFilter))
-    : (transaction = transactionExpenses.filter(el => el.date === dateFilter));
+    ? (transaction = transactionIncomes
+        .filter(el => el.date.includes(dateFilter))
+        .sort((a, b) => Date.parse(b.date) - Date.parse(a.date)))
+    : (transaction = transactionExpenses
+        .filter(el => el.date.includes(dateFilter))
+        .sort((a, b) => Date.parse(b.date) - Date.parse(a.date)));
   
   console.log('trans', transaction.length);
 
@@ -55,7 +59,10 @@ const TransactionsList = () => {
                 .join()}
             </TableColumnStyled>
             <TableColumnStyled data-color={expenses}>
-              {expenses === 'income' ? el.amount.toFixed(2) : `-${el.amount.toFixed(2)}`} UAH.
+              {expenses === 'income'
+                ? el.amount.toFixed(2)
+                : `-${el.amount.toFixed(2)}`}{' '}
+              UAH.
             </TableColumnStyled>
             <TableColumnStyled>
               <BtnDelStyled

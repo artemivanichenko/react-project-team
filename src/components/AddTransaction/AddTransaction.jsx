@@ -1,9 +1,11 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import 'react-datepicker/dist/react-datepicker.css';
 import Select from 'react-select';
+import { NumericFormat } from 'react-number-format';
+
 import {
   addTransactionExpense,
   addTransactionIncome,
@@ -19,7 +21,7 @@ import {
 import { selectionExpenses, selectionIncome } from 'shared/category';
 import { getFilterDate } from 'redux/transaction/transactionSlice';
 import { objectStyle } from './AddTransactionStyle';
-import { NumericFormat } from 'react-number-format';
+import { selectBalance } from 'redux/transaction/transactionSelectors';
 
 const AddTransaction = () => {
   const dispatch = useDispatch();
@@ -28,10 +30,11 @@ const AddTransaction = () => {
 
   const [options, setOptions] = useState([]);
   const [selected, setSelected] = useState([]);
-  const selectInputRef = useRef();
 
   const [startDate, setStartDate] = useState(new Date());
   const curDate = startDate.toISOString().split('T')[0];
+
+  const balance = useSelector(selectBalance);
 
   const [form, setForm] = useState({
     date: '',
@@ -71,8 +74,10 @@ const AddTransaction = () => {
     console.log('add', curDate);
     dispatch(getFilterDate(curDate));
   }, [curDate, dispatch]);
-
-  console.log('form', form);
+  useEffect(() => {
+    dispatch(getFilterDate(''));
+  }, [dispatch]);
+  console.log('form', form, balance);
 
   return (
     <WrapStyled>
@@ -114,6 +119,10 @@ const AddTransaction = () => {
           thousandSeparator=" "
           suffix=" UAH"
           displayType="input"
+          isAllowed={values => {
+            const { floatValue } = values;
+            return floatValue < balance && floatValue >= 1;
+          }}
           onValueChange={({ floatValue }, sourceInfo) => {
             setForm(prev => ({ ...prev, amount: floatValue }));
           }}
