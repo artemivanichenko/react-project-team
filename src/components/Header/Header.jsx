@@ -11,8 +11,7 @@ import {
   Btn,
   Logout,
   HeaderBgr,
-  Logo,
-  Span
+  Logo
 } from './Header.styled';
 import { useSelector } from 'react-redux';
 import { grey } from '@mui/material/colors';
@@ -41,8 +40,8 @@ const Header = () => {
     <>
       <HeaderBgr>
         <Conteiner >
-          <Logo >Budget B<img src={coin} alt="coin" style={style} /><Span>. </Span>
-            ss</Logo>
+          <Logo >Budget B
+            <img src={coin} alt="coin" style={style} />ss</Logo>
           {isLoggedIn && (
             <Navigate>
               <Avatar

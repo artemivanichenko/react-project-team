@@ -53,16 +53,11 @@ padding-left: 20px;
 img{
     @media (min-width: 768px)
  {
-    display: inline;
-    position:absolute;
-    left:139px;
-    bottom:16px;
+   
 }
 display: inline;
      @media (min-width: 1280px) {
-    position:absolute;
-    left:140px;
-    bottom:16px;}
+   }
 
 }
 `
@@ -77,8 +72,9 @@ display:none;
 export const Navigate = styled.div`
 @media (min-width: 320px) {
 display: flex;
-gap: 40px;
-padding-right: 30px ;
+gap: 28px;
+padding-right: 40px;
+
 }
  @media (min-width: 768px) {
     padding-right: 20px ;
@@ -147,13 +143,3 @@ export const Logout = styled.div`
 
 `
 
-// export const getColor = (condition) => {
-//   switch (condition) {
-//     case true:
-//       return 'disable';
-//     case false:
-//       return 'success';
-//     default:
-//       return 'default';
-//   }
-// };
