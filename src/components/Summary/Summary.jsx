@@ -62,15 +62,20 @@ const Summary = () => {
       <TextStyled>Summary</TextStyled>
       <DivStyled>
         <ListStyled>
-          {sumValues.map(
-            (sum, idx) =>
-              idx <= currentMonth && (
+          {sumValues.map((sum, idx) => {
+            if (idx <= currentMonth) {
+              if (sum === 'N/A') {
+                sum = 0;
+              }
+              return (
                 <ListItem key={monthEng[idx]}>
                   <MonthStyled>{monthEng[idx]}</MonthStyled>
                   <SumStyled>{sum}</SumStyled>
                 </ListItem>
-              )
-          )}
+              );
+            }
+            return null;
+          })}
         </ListStyled>
       </DivStyled>
     </WrapperStyled>
