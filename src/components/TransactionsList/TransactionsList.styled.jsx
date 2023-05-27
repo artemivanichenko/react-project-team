@@ -125,10 +125,10 @@ export const TableColumnStyled = styled.td`
   }
   &:nth-child(4) {
     font-weight: 700;
-    color: #60c470;
+    color:#fe4566 ;
   }
   &[data-color='income'] {
-    color: #fe4566;
+    color: #60c470;
   }
   &:last-child {
     padding: 0;
