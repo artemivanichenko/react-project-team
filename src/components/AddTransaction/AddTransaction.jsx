@@ -2,9 +2,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import 'react-datepicker/dist/react-datepicker.css';
 import Select from 'react-select';
 import { NumericFormat } from 'react-number-format';
+import 'react-datepicker/dist/react-datepicker.css';
+import { registerLocale } from 'react-datepicker';
+import uk from 'date-fns/locale/uk';
 
 import {
   addTransactionExpense,
@@ -22,17 +24,16 @@ import { selectionExpenses, selectionIncome } from 'shared/category';
 import { getFilterDate } from 'redux/transaction/transactionSlice';
 import { objectStyle } from './AddTransactionStyle';
 import { selectBalance } from 'redux/transaction/transactionSelectors';
-import { registerLocale } from 'react-datepicker';
-import uk from 'date-fns/locale/uk';
 
 const AddTransaction = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const expenses = params.expenses;
-
+  
   const [options, setOptions] = useState([]);
   const [selected, setSelected] = useState([]);
-
+  
+  registerLocale('uk', uk);
   const [startDate, setStartDate] = useState(new Date());
   const curDate = startDate.toISOString().split('T')[0];
 
@@ -68,20 +69,20 @@ const AddTransaction = () => {
 
   const handleClickReset = () => {
     setForm(prev => ({ ...prev, amount: '', category: '' }));
-    setSelected(null);
+    setSelected([]);
   };
 
   useEffect(() => {
     setForm(prev => ({ ...prev, date: curDate }));
-    console.log('add', curDate);
     dispatch(getFilterDate(curDate));
   }, [curDate, dispatch]);
+
   useEffect(() => {
     dispatch(getFilterDate(''));
   }, [dispatch]);
-  console.log('form', form, balance);
 
-registerLocale('uk', uk)
+  console.log('form', form, balance, selected);
+
 
   return (
     <WrapStyled>
@@ -116,10 +117,8 @@ registerLocale('uk', uk)
         />
 
         <NumericFormat
-          // defaultValue="1"
           placeholder="0.00 UAH"
           value={form.amount}
-          // allowEmptyFormatting={false}
           allowNegative={false}
           decimalScale={2}
           allowedDecimalSeparators={['.']}
