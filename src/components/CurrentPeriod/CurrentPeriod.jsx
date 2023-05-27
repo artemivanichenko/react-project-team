@@ -10,12 +10,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { green } from '@mui/material/colors';
 
 
-const CurrentPeriod = () => {
-  const dispatch = useDispatch();
-  const [reportPeriod, setReportPeriod] = useState(DateTime.now());
-  const currentColor = green[700];
-
-
 
   const theme = createTheme({
     palette: {
@@ -48,24 +42,6 @@ const CurrentPeriod = () => {
       <Conteiner>
         <Current>Current period</Current>
 
-        <BtnRow>
-          <Button
-            variant="text"
-            startIcon={<ArrowBackIosIcon htmlColor="green" />}
-            onClick={handleMonthDecrement}
-          />
-          <Period>{reportPeriod.toFormat('LLLL yyyy').toUpperCase()}</Period>
-          <Button
-            variant="text"
-            endIcon={<ArrowForwardIosIcon />}
-            onClick={handleMonthIncrement}
-            disabled={
-              reportPeriod.startOf('month') < DateTime.now().startOf('month')
-                ? false
-                : true
-            } htmlColor={currentColor}
-          />
-        </BtnRow>
 
         <BtnRow>
           <ThemeProvider theme={theme}>
@@ -95,5 +71,5 @@ const CurrentPeriod = () => {
       </Conteiner>
     );
   };
-}
+
 export default CurrentPeriod;
