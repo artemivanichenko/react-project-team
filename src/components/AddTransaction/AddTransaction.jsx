@@ -2,9 +2,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import 'react-datepicker/dist/react-datepicker.css';
 import Select from 'react-select';
 import { NumericFormat } from 'react-number-format';
+import 'react-datepicker/dist/react-datepicker.css';
+import { registerLocale } from 'react-datepicker';
+import uk from 'date-fns/locale/uk';
 
 import {
   addTransactionExpense,
@@ -27,10 +29,11 @@ const AddTransaction = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const expenses = params.expenses;
-
+  
   const [options, setOptions] = useState([]);
   const [selected, setSelected] = useState([]);
-
+  
+  registerLocale('uk', uk);
   const [startDate, setStartDate] = useState(new Date());
   const curDate = startDate.toISOString().split('T')[0];
 
@@ -71,25 +74,29 @@ const AddTransaction = () => {
 
   useEffect(() => {
     setForm(prev => ({ ...prev, date: curDate }));
-    console.log('add', curDate);
     dispatch(getFilterDate(curDate));
   }, [curDate, dispatch]);
+
   useEffect(() => {
     dispatch(getFilterDate(''));
   }, [dispatch]);
-  console.log('form', form, balance);
+
+  console.log('form', form, balance, selected);
+
 
   return (
     <WrapStyled>
       <CalendarBox>
         <CalendarMonthIcon color="success" />
         <DatePickerStyled
+          locale="uk"
           selected={startDate}
           onChange={date => setStartDate(date)}
           maxDate={new Date()}
           name="date"
         />
       </CalendarBox>
+
       <FormStyled onSubmit={handleSubmit}>
         <InputStyled
           type="text"
@@ -97,21 +104,21 @@ const AddTransaction = () => {
           placeholder="Product description"
           onChange={handleChange}
         />
+
         <Select
           options={options}
           placeholder="Product category"
-          value={selected}
+          // value={selected}
           styles={objectStyle}
           name="category"
           onChange={data =>
             setForm(prev => ({ ...form, category: data.trans }))
           }
         />
+
         <NumericFormat
-          // defaultValue="1"
           placeholder="0.00 UAH"
           value={form.amount}
-          allowEmptyFormatting={false}
           allowNegative={false}
           decimalScale={2}
           allowedDecimalSeparators={['.']}
