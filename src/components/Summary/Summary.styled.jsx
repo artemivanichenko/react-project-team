@@ -13,6 +13,9 @@ export const TextStyled = styled.p`
   margin-bottom: 0;
   padding: 12px 0;
   width: 100%;
+
+  font-family: 'Roboto';
+  font-style: normal;
   font-weight: 700;
   font-size: 12px;
   line-height: 1.16;
@@ -61,6 +64,10 @@ export const ListItem = styled.li`
   padding-bottom: 12px;
   display: flex;
   justify-content: space-between;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
   font-size: 12px;
   line-height: 1.16;
   letter-spacing: 0.04em;
