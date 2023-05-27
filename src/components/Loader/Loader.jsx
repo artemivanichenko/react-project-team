@@ -1,17 +1,27 @@
-import { LineWave } from 'react-loader-spinner';
+import { LoaderContainer, Container, Wave } from './Loader.styled';
 
-export const loader = (
-  <LineWave
-    height="300"
-    width="500"
-    color="#eef4ed"
-    // bgc
-    ariaLabel="line-wave"
-    wrapperStyle={{flex: 1, justifyContent: "center", alignItems: "center"}}
-    wrapperClass=""
-    visible={true}
-    firstLineColor=""
-    middleLineColor=""
-    lastLineColor=""
-  />
-);
+export const Loader = () => {
+  return (
+    <Container>
+    <LoaderContainer>
+      <Wave
+        height="300"
+        width="500"
+        color="#6e8b75"
+        // bgc
+        ariaLabel="line-wave"
+        wrapperStyle={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+
+        }}
+        wrapperClass=""
+        visible={true}
+        firstLineColor=""
+        middleLineColor=""
+        lastLineColor=""
+      />
+    </LoaderContainer></Container>
+  );
+};

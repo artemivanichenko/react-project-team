@@ -23,6 +23,16 @@ justify-content: flex-end;
 align-items: center;
     align-items: center;
     flex-direction: column;
+//     @media (min-width: 768px) {
+//         margin-left: 0px;
+//     justify-content: flex-end;
+// align-items: center;
+//     align-items: center;}
+//     @media (min-width: 1280px) {
+//       margin-left: 40px;  
+//       width:100%;
+//     }
+
 `
 
 export const BtnRow = styled.div`

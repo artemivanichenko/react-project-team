@@ -69,6 +69,7 @@ const LoginForm = () => {
               placeholder="your password"
             />
             {inputPassword.length === 0 && isSubmitted && <Required>This is a required field</Required>}
+            {inputPassword.length > 1 && inputPassword.length < 8 && <Required>Password must be at least 8 characters</Required>}
           </Label>
         </LabelWrapper>
         <ButtonWrapper>
