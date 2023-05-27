@@ -142,7 +142,7 @@ const ReportCharts = () => {
                 layout: {
                   padding: 20,
                 },
-                // maintainAspectRatio: false,
+                maintainAspectRatio: false,
                 scales: {
                   x: {
                     grid: {
@@ -194,9 +194,9 @@ const ReportCharts = () => {
                     data: data.map(row => row[1]),
 
                     barThickness: 15,
-                    minBarLength: 50,
+                    minBarLength: 70,
                     //   maxBarThickness: 38,
-                    categoryPercentage: 1, // Задает фиксированную ширину категории (бара)
+                    // categoryPercentage: 1, // Задает фиксированную ширину категории (бара)
                     //   barPercentage: 0.5,
                     grouped: true,
                     borderRadius: 8,
