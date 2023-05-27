@@ -40,7 +40,8 @@ const Header = () => {
     <>
       <HeaderBgr>
         <Conteiner >
-          <Logo >Budget B<img src={coin} alt="coin" style={style} />ss</Logo>
+          <Logo >Budget B
+            <img src={coin} alt="coin" style={style} />ss</Logo>
           {isLoggedIn && (
             <Navigate>
               <Avatar
@@ -56,8 +57,9 @@ const Header = () => {
                 {userName && userName.slice(0, 1).toUpperCase()}
               </Avatar>
               <Title>{userName && userName.split('@')[0]}</Title>
-              <Logout onClick={handleOpen} type="button">
+              <Logout >
                 <OutputOutlinedIcon
+                  onClick={handleOpen} type="button"
                   sx={{ width: 24, height: 24, margin: 2.3, marginRight: 0 }}
                   htmlColor="white"
                   alt="logout"

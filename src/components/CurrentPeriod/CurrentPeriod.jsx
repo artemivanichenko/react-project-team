@@ -9,61 +9,67 @@ import { Period, Current, Conteiner, BtnRow } from './CurrentPeriod.styled';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { green } from '@mui/material/colors';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      // Purple and green play nicely together.
-      main: green[700],
+
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+     
+        main: green[700],
+      },
     },
-  },
-});
+  });
 
-const CurrentPeriod = () => {
-  const dispatch = useDispatch();
-  const [reportPeriod, setReportPeriod] = useState(DateTime.now());
+  const CurrentPeriod = () => {
+    const dispatch = useDispatch();
+    const [reportPeriod, setReportPeriod] = useState(DateTime.now());
 
-  useEffect(() => {
-    dispatch(getTransactionPeriod(reportPeriod.toFormat('yyyy-LL')));
-  }, [dispatch, reportPeriod]);
 
-  const handleMonthDecrement = () => {
-    setReportPeriod(prev => prev.minus({ month: 1 }));
-  };
+    useEffect(() => {
+      dispatch(getTransactionPeriod(reportPeriod.toFormat('yyyy-LL')));
+    }, [dispatch, reportPeriod]);
 
-  const handleMonthIncrement = () => {
-    setReportPeriod(prev => prev.plus({ month: 1 }));
-  };
+    const handleMonthDecrement = () => {
+      setReportPeriod(prev => prev.minus({ month: 1 }));
+    };
 
-  return (
+    const handleMonthIncrement = () => {
+      setReportPeriod(prev => prev.plus({ month: 1 }));
+    };
+
+    return (
     
-    <Conteiner>
-      <Current>Current period</Current>
-      <BtnRow>
-        <ThemeProvider theme={theme}>
-          <IconButton
-            color="primary"
-            size='small'
-            onClick={handleMonthDecrement}
-          >
-            <ArrowBackIosIcon fontSize='inherit' />
-          </IconButton>
-          <Period>{reportPeriod.toFormat('LLLL yyyy').toUpperCase()}</Period>
-          <IconButton
-            color="primary"
-            size='small'
-            onClick={handleMonthIncrement}
-            disabled={
-              reportPeriod.startOf('month') < DateTime.now().startOf('month')
-                ? false
-                : true
-            }
-          >
-            <ArrowForwardIosIcon fontSize='inherit' />
-          </IconButton>
-        </ThemeProvider>
-      </BtnRow>
-    </Conteiner>
-  );
-};
+      <Conteiner>
+        <Current>Current period</Current>
+
+
+        <BtnRow>
+          <ThemeProvider theme={theme}>
+            <IconButton
+              color="primary"
+              size='small'
+              onClick={handleMonthDecrement}
+            >
+              <ArrowBackIosIcon fontSize='inherit' />
+            </IconButton>
+            <Period>{reportPeriod.toFormat('LLLL yyyy').toUpperCase()}</Period>
+            <IconButton
+              color="primary"
+              size='small'
+              onClick={handleMonthIncrement}
+              disabled={
+                reportPeriod.startOf('month') < DateTime.now().startOf('month')
+                  ? false
+                  : true
+              }
+            >
+              <ArrowForwardIosIcon fontSize='inherit' />
+            </IconButton>
+          </ThemeProvider>
+        </BtnRow>
+
+      </Conteiner>
+    );
+  };
 
 export default CurrentPeriod;
