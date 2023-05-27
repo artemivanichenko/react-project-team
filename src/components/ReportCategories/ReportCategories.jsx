@@ -15,7 +15,9 @@ import {
   StyledButtonReport,
   StyledImages,
   StyledList,
+  StyledSection,
   StyledText,
+  StyledTitle,
   StyledWrapper,
 } from './ReportCategories.styled.js';
 import { selectionExpenses, selectionIncome } from 'shared/category.js';
@@ -70,54 +72,60 @@ const ReportCategories = () => {
     .flat(Infinity);
 
   return (
-    <StyledBox>
-      <StyledButtonReport>
-        <ThemeProvider theme={theme}>
-          <Button
-            variant="text"
-            startIcon={<ArrowBackIosIcon />}
-            type="button"
-            onClick={handleButtonClick}
-          />
-          <p>{reportChoice.toUpperCase()}</p>
-          <Button
-            variant="text"
-            endIcon={<ArrowForwardIosIcon />}
-            type="button"
-            onClick={handleButtonClick}
-          />
-        </ThemeProvider>
-      </StyledButtonReport>
-      <StyledList>
-        {reportChoice === 'expenses'
-          ? filteredExpensesArray
-              .sort((a, b) => b.total - a.total)
-              .map(({ value, label, total }) => (
-                <li key={value}>
-                  <StyledText> {total}</StyledText>
-                  <NavLinkStyled to={`${value}`}>
-                    <StyledWrapper>
-                      <StyledImages src={images[value]} alt={label} />
-                    </StyledWrapper>
-                  </NavLinkStyled>
-                  <StyledText> {label}</StyledText>
-                </li>
-              ))
-          : filteredIncomesArray
-              .sort((a, b) => b.total - a.total)
-              .map(({ value, label, total }) => (
-                <li key={value}>
-                  <StyledText> {total}</StyledText>
-                  <NavLinkStyled to={`${value}`}>
-                    <StyledWrapper>
-                      <StyledImages src={images[value]} alt={label} />
-                    </StyledWrapper>
-                  </NavLinkStyled>
-                  <StyledText> {label}</StyledText>
-                </li>
-              ))}
-      </StyledList>
-    </StyledBox>
+    <StyledSection>
+      <StyledBox>
+        <StyledButtonReport>
+          <ThemeProvider theme={theme}>
+            <Button
+              variant="text"
+              startIcon={<ArrowBackIosIcon />}
+              type="button"
+              onClick={handleButtonClick}
+            />
+            <StyledTitle>{reportChoice.toUpperCase()}</StyledTitle>
+            <Button
+              variant="text"
+              endIcon={<ArrowForwardIosIcon />}
+              type="button"
+              onClick={handleButtonClick}
+            />
+          </ThemeProvider>
+        </StyledButtonReport>
+        <StyledList>
+          {reportChoice === 'expenses'
+            ? filteredExpensesArray
+                .sort((a, b) => b.total - a.total)
+                .map(({ value, label, total }) => (
+                  <li key={value}>
+                    <StyledText>
+                      {Number.isInteger(total) ? total.toFixed(2) : total}
+                    </StyledText>
+                    <NavLinkStyled to={`${value}`}>
+                      <StyledWrapper>
+                        <StyledImages src={images[value]} alt={label} />
+                      </StyledWrapper>
+                    </NavLinkStyled>
+                    <StyledText> {label.toUpperCase()}</StyledText>
+                  </li>
+                ))
+            : filteredIncomesArray
+                .sort((a, b) => b.total - a.total)
+                .map(({ value, label, total }) => (
+                  <li key={value}>
+                    <StyledText>
+                      {Number.isInteger(total) ? total.toFixed(2) : total}
+                    </StyledText>
+                    <NavLinkStyled to={`${value}`}>
+                      <StyledWrapper>
+                        <StyledImages src={images[value]} alt={label} />
+                      </StyledWrapper>
+                    </NavLinkStyled>
+                    <StyledText> {label.toUpperCase()}</StyledText>
+                  </li>
+                ))}
+        </StyledList>
+      </StyledBox>
+    </StyledSection>
   );
 };
 export default ReportCategories;

@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { useParams } from 'react-router';
 import {
   selectMonthExpenses,
   selectMonthIncome,
@@ -18,12 +19,15 @@ import {
   SumStyled,
 } from './Summary.styled';
 
-const Summary = ({ type = 'expense' }) => {
+const Summary = () => {
+  const params = useParams();
+  const expenses = params.expenses;
+
   let conditionalSelect = null;
   const monthExpenses = useSelector(selectMonthExpenses);
   const monthIncome = useSelector(selectMonthIncome);
 
-  type === 'expense'
+  expenses === 'expenses'
     ? (conditionalSelect = monthExpenses)
     : (conditionalSelect = monthIncome);
 
@@ -32,10 +36,10 @@ const Summary = ({ type = 'expense' }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    type === 'expense'
+    expenses === 'expenses'
       ? dispatch(getTransactionExpense())
       : dispatch(getTransactionIncome());
-  }, [dispatch, type]);
+  }, [dispatch, expenses]);
 
   const currentMonth = new Date().getMonth();
   const monthEng = [
