@@ -12,7 +12,7 @@ import {
 const initialState = {
   isLoading: false,
   error: null,
-  filterDate: null,
+  filterDate: '',
   newBalance: 100,
   transactionIncome: {
     description: 'Income description',
@@ -192,8 +192,7 @@ const transactionSlice = createSlice({
       .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        // TO DO!!!
-      })
+     })
       .addCase(deleteTransaction.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
