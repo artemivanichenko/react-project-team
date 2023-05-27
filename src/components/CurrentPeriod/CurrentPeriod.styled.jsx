@@ -37,7 +37,4 @@ align-items: center;
 
 export const BtnRow = styled.div`
 display: flex;
-Button{
-    
-}
 `
