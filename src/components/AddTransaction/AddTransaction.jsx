@@ -95,6 +95,7 @@ const AddTransaction = () => {
         />
         <InputStyled
           type="number"
+          step="0.01"
           placeholder="0.00"
           name="amount"
           onChange={handleChange}

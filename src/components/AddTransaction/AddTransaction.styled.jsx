@@ -5,7 +5,7 @@ export const WrapStyled = styled.div`
   display: flex;
   gap: 32px;
   align-items: center;
-  padding: 32px 0 60px;
+  padding-bottom: 60px;
 `;
 
 export const FormStyled = styled.form`
@@ -34,43 +34,45 @@ export const DatePickerStyled = styled(DatePicker)`
   color: #c7ccdc;
 
   &.react-datepicker-wrapper {
-    width: 70px;
+    width: 70%;
+  }
+  
+  &.react-datepicker__input-container {
+    width: 70%;
+  }
+
+  & div {
+    width: 70%;
   }
 `;
 
-// export const SelectStyled = styled(Select)`
-//   width: 170px;
-//   height: 46px;
-//   font-size: 12px;
-//   color: rgba(199, 204, 220, 0.5);
-//   background: transparent;
-
-//   &.react-select-container {
-//     background-color: blue;
-//     fill: red;
-//     color: black;
-//   }
-// `;
-
 export const InputStyled = styled.input`
   height: 40px;
+  padding-left: 20px;
   color: rgba(199, 204, 220, 0.5);
   background: transparent;
-  border: 2px solid #474759;;
+  border: 2px solid #474759;
+
+  &:first-of-type {
+    border-top-left-radius: 16px;
+  }
+  &:last-of-type {
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+  }
 `;
 
 export const BtnStyled = styled.button`
   width: 136px;
   height: 44px;
   margin-left: 16px;
-  font-family: 'Roboto';
-  font-style: normal;
+  /* font-family: 'Roboto';
+  font-style: normal; */
   font-weight: 700;
   font-size: 12px;
   line-height: 1.17x;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-
   color: #ffffff;
   background: linear-gradient(
     115.74deg,
@@ -87,5 +89,10 @@ export const BtnStyled = styled.button`
     box-shadow: 1px 3px 5px rgba(96, 196, 112, 0.35);
     border: none;
     border-radius: 16px;
+  }
+
+  &:hover {
+    outline: 2px solid #c7ccdc;
+    background: rgba(66, 166, 83, 0.2);
   }
 `;

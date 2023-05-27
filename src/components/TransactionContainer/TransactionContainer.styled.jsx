@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 
 export const SectionStyled = styled.section`
-  width: 1128px;
+  width: 85.8vw;
   margin: 0 auto;
   padding-left: 15px;
+  padding-right: 15px;
 `;
 
 export const ContainerStyled = styled.div`
@@ -18,5 +19,6 @@ export const ContainerStyled = styled.div`
 
 export const BoxStyled = styled.div`
   display: flex;
+  /* gap: 75px; */
   justify-content: space-between;
 `
