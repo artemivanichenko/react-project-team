@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import 'react-datepicker/dist/react-datepicker.css';
 import Select from 'react-select';
-
 import {
   addTransactionExpense,
   addTransactionIncome,
@@ -13,7 +12,6 @@ import {
   FormStyled,
   WrapStyled,
   BtnStyled,
-  // SelectStyled,
   DatePickerStyled,
   CalendarBox,
   InputStyled,
@@ -95,6 +93,7 @@ const AddTransaction = () => {
         />
         <InputStyled
           type="number"
+          step="0.01"
           placeholder="0.00"
           name="amount"
           onChange={handleChange}
