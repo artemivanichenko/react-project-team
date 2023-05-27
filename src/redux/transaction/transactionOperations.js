@@ -11,7 +11,7 @@ import {
 } from 'services/kapustaApi';
 
 export const getTransactionIncome = createAsyncThunk(
-  'transaction/income/get',
+  'transaction/incomes/get',
   async (_, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await getTransactionIncomeApi();
@@ -24,7 +24,7 @@ export const getTransactionIncome = createAsyncThunk(
 );
 
 export const addTransactionIncome = createAsyncThunk(
-  'transaction/income/add',
+  'transaction/incomes/add',
   async (transactionForm, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await addTransactionIncomeApi(transactionForm);
@@ -39,7 +39,7 @@ export const addTransactionIncome = createAsyncThunk(
 );
 
 export const getTransactionExpense = createAsyncThunk(
-  'transaction/expense/get',
+  'transaction/expenses/get',
   async (_, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await getTransactionExpenseApi();
@@ -52,7 +52,7 @@ export const getTransactionExpense = createAsyncThunk(
 );
 
 export const addTransactionExpense = createAsyncThunk(
-  'transaction/expense/add',
+  'transaction/expenses/add',
   async (transactionForm, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await addTransactionExpenseApi(transactionForm);
