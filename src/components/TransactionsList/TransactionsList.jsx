@@ -5,7 +5,7 @@ import { selectFilterDate } from 'redux/transaction/transactionSelectors';
 
 import {
   BtnDelStyled,
-  ImgDelStyled,
+  SvgStyled,
   TableColumnStyled,
   TableHeadColumnStyled,
   TableHeadRowStyled,
@@ -29,6 +29,8 @@ const TransactionsList = () => {
   expenses === 'income'
     ? (transaction = transactionIncomes.filter(el => el.date === dateFilter))
     : (transaction = transactionExpenses.filter(el => el.date === dateFilter));
+  
+  console.log('trans', transaction.length);
 
   return (
     <TableStyled>
@@ -49,13 +51,15 @@ const TransactionsList = () => {
               .map(el => el.label)
               .join()}
           </TableColumnStyled>
-          <TableColumnStyled>{el.amount} UAH.</TableColumnStyled>
+          <TableColumnStyled data-color={expenses}>
+            {el.amount.toFixed(2)} UAH.
+          </TableColumnStyled>
           <TableColumnStyled>
             <BtnDelStyled
               type="button"
-              onClick={() => dispatch(deleteTransaction(el.id))}
+              onClick={() => dispatch(deleteTransaction(el._id))}
             >
-              <ImgDelStyled src={icon} />
+              <SvgStyled src={icon} />
             </BtnDelStyled>
           </TableColumnStyled>
         </TableRowStyled>

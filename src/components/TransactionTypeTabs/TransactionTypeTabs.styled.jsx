@@ -14,7 +14,7 @@ export const NavLinkStyled = styled(NavLink)`
   text-transform: uppercase;
   text-decoration: none;
   text-align: center;
-  background: linear-gradient(245.22deg, #383847 14.1%, #2d2d38 89.51%);
+  background: linear-gradient(5.22deg, #383847 14.1%, #2d2d38 89.51%);
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
   border: none;

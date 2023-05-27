@@ -1,9 +1,67 @@
+import { HandySvg } from 'handy-svg';
 import styled from 'styled-components';
 
 export const TableStyled = styled.table`
-  width: 100%;
+  width: 58.3vw;
+  max-height: 100px;
   table-layout: fixed;
   border-spacing: 0;
+
+  overflow: hidden auto;
+  &::-webkit-scrollbar {
+    display: block;
+    height: 82px;
+    width: 6px;
+    -webkit-appearance: none;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: #60c470;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-track-piece:end {
+    background-color: transparent;
+    margin-bottom: 2px;
+  }
+  &::-webkit-scrollbar-track-piece:start {
+    background-color: transparent;
+    margin-top: 2px;
+  }
+`;
+
+export const ListStyled = styled.ul`
+  height: 280px;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style: none;
+`;
+
+export const ListItem = styled.li`
+  padding-top: 12px;
+  padding-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  line-height: 1.16;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #c7ccdc;
+  border-bottom: 2px solid #383847;
+
+  &:first-of-type {
+    border-top: 4px solid #383847;
+  }
+`;
+
+export const MonthStyled = styled.span`
+  padding-left: 12px;
+`;
+
+export const SumStyled = styled.span`
+  padding-right: 12px;
 `;
 
 export const TableHeadRowStyled = styled.tr`
@@ -16,7 +74,6 @@ export const TableHeadRowStyled = styled.tr`
   text-transform: uppercase;
   color: #f6f7fb;
   background: rgba(86, 86, 107, 0.5);
-  /*  */
 `;
 
 export const TableHeadColumnStyled = styled.td`
@@ -24,20 +81,20 @@ export const TableHeadColumnStyled = styled.td`
   margin: 0;
 
   &:first-child {
-    width: 18%;
+    width: 20%;
     border-top-left-radius: 20px;
   }
   &:nth-child(2) {
-    width: 26%;
+    width: 30%;
   }
   &:nth-child(3) {
-    width: 31%;
+    width: 25%;
   }
   &:nth-child(4) {
-    width: 15%;
+    width: 20%;
   }
   &:last-child {
-    width: 10%;
+    width: 5%;
     border-top-right-radius: 20px;
   }
   &:nth-child(n + 3) {
@@ -70,6 +127,9 @@ export const TableColumnStyled = styled.td`
     font-weight: 700;
     color: #60c470;
   }
+  &[data-color='income'] {
+    color: #fe4566;
+  }
   &:last-child {
     padding: 0;
     margin-top: 2px;
@@ -91,8 +151,10 @@ export const BtnDelStyled = styled.button`
   }
 `;
 
-export const ImgDelStyled = styled.img`
-  margin: 0;
-  width: 15px;
-  height: 18px;
+export const SvgStyled = styled(HandySvg)`
+  fill: rgba(199, 204, 220, 0.5);
+
+  &:hover {
+    fill: #f6f7fb;
+  }
 `;
