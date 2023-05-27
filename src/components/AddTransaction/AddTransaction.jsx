@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import 'react-datepicker/dist/react-datepicker.css';
-
+import Select from 'react-select';
 import {
   addTransactionExpense,
   addTransactionIncome,
@@ -12,13 +12,13 @@ import {
   FormStyled,
   WrapStyled,
   BtnStyled,
-  SelectStyled,
   DatePickerStyled,
   CalendarBox,
   InputStyled,
 } from './AddTransaction.styled';
 import { selectionExpenses, selectionIncome } from 'shared/category';
 import { getFilterDate } from 'redux/transaction/transactionSlice';
+import { objectStyle } from './AddTransactionStyle';
 
 const AddTransaction = () => {
   const dispatch = useDispatch();
@@ -82,16 +82,10 @@ const AddTransaction = () => {
           placeholder="Product description"
           onChange={handleChange}
         />
-        <SelectStyled
+        <Select
           options={options}
           placeholder="Product category"
-          // styles={{
-          //   control: (baseStyles, state) => ({
-          //     ...baseStyles,
-          //     border: '2px solid #474759',
-          //     background: 'transparent',
-          //   }),
-          // }}
+          styles={objectStyle}
           name="category"
           onChange={data =>
             setForm(prev => ({ ...form, category: data.trans }))
@@ -99,6 +93,7 @@ const AddTransaction = () => {
         />
         <InputStyled
           type="number"
+          step="0.01"
           placeholder="0.00"
           name="amount"
           onChange={handleChange}
