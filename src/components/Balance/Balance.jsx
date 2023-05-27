@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { addBalance } from 'redux/transaction/transactionOperations';
@@ -35,14 +35,15 @@ const Balance = () => {
   const expenses = useSelector(selectExpenses);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (newBalance > 0) {
+      dispatch(addBalance({ newBalance }));
+    }
+  }, [newBalance, dispatch]);
+
   const handleSubmit = e => {
     e.preventDefault();
-    setNewBalance(
-      Number.parseFloat(e.currentTarget.elements.balance.value)
-      // const newBalance = Number.parseFloat(
-      //   e.currentTarget.elements.balance.value
-    );
-    dispatch(addBalance({ newBalance }));
+    setNewBalance(Number.parseFloat(e.currentTarget.elements.balance.value));
     if (newBalance <= 0) {
       return toast.warn('The balance should be positive!');
     }
