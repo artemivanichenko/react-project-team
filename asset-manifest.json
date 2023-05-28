@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/goit-bc50-react-project/static/css/main.d44848bb.css",
-    "main.js": "/goit-bc50-react-project/static/js/main.2d399836.js",
+    "main.js": "/goit-bc50-react-project/static/js/main.c2457535.js",
     "static/js/764.e2740415.chunk.js": "/goit-bc50-react-project/static/js/764.e2740415.chunk.js",
     "static/js/995.4f3ee19d.chunk.js": "/goit-bc50-react-project/static/js/995.4f3ee19d.chunk.js",
-    "static/js/844.73c7ca9f.chunk.js": "/goit-bc50-react-project/static/js/844.73c7ca9f.chunk.js",
-    "static/css/260.d83f0a8a.chunk.css": "/goit-bc50-react-project/static/css/260.d83f0a8a.chunk.css",
-    "static/js/260.de95cbd2.chunk.js": "/goit-bc50-react-project/static/js/260.de95cbd2.chunk.js",
-    "static/css/79.d829dac4.chunk.css": "/goit-bc50-react-project/static/css/79.d829dac4.chunk.css",
-    "static/js/79.845c4df5.chunk.js": "/goit-bc50-react-project/static/js/79.845c4df5.chunk.js",
-    "static/js/898.33bc6128.chunk.js": "/goit-bc50-react-project/static/js/898.33bc6128.chunk.js",
+    "static/js/92.229743a2.chunk.js": "/goit-bc50-react-project/static/js/92.229743a2.chunk.js",
+    "static/css/130.047e43fa.chunk.css": "/goit-bc50-react-project/static/css/130.047e43fa.chunk.css",
+    "static/js/130.87d27253.chunk.js": "/goit-bc50-react-project/static/js/130.87d27253.chunk.js",
+    "static/css/812.55d6f5ce.chunk.css": "/goit-bc50-react-project/static/css/812.55d6f5ce.chunk.css",
+    "static/js/812.ad46abd9.chunk.js": "/goit-bc50-react-project/static/js/812.ad46abd9.chunk.js",
+    "static/js/100.464366d6.chunk.js": "/goit-bc50-react-project/static/js/100.464366d6.chunk.js",
     "static/js/0.190036a1.chunk.js": "/goit-bc50-react-project/static/js/0.190036a1.chunk.js",
     "static/js/470.4497d6ed.chunk.js": "/goit-bc50-react-project/static/js/470.4497d6ed.chunk.js",
     "static/media/bgOverlaytablet.png": "/goit-bc50-react-project/static/media/bgOverlaytablet.28a063493ec24cd1428a.png",
@@ -34,20 +34,20 @@
     "static/media/delete.svg": "/goit-bc50-react-project/static/media/delete.fd86929c549b22a25a1684264eca7497.svg",
     "index.html": "/goit-bc50-react-project/index.html",
     "main.d44848bb.css.map": "/goit-bc50-react-project/static/css/main.d44848bb.css.map",
-    "main.2d399836.js.map": "/goit-bc50-react-project/static/js/main.2d399836.js.map",
+    "main.c2457535.js.map": "/goit-bc50-react-project/static/js/main.c2457535.js.map",
     "764.e2740415.chunk.js.map": "/goit-bc50-react-project/static/js/764.e2740415.chunk.js.map",
     "995.4f3ee19d.chunk.js.map": "/goit-bc50-react-project/static/js/995.4f3ee19d.chunk.js.map",
-    "844.73c7ca9f.chunk.js.map": "/goit-bc50-react-project/static/js/844.73c7ca9f.chunk.js.map",
-    "260.d83f0a8a.chunk.css.map": "/goit-bc50-react-project/static/css/260.d83f0a8a.chunk.css.map",
-    "260.de95cbd2.chunk.js.map": "/goit-bc50-react-project/static/js/260.de95cbd2.chunk.js.map",
-    "79.d829dac4.chunk.css.map": "/goit-bc50-react-project/static/css/79.d829dac4.chunk.css.map",
-    "79.845c4df5.chunk.js.map": "/goit-bc50-react-project/static/js/79.845c4df5.chunk.js.map",
-    "898.33bc6128.chunk.js.map": "/goit-bc50-react-project/static/js/898.33bc6128.chunk.js.map",
+    "92.229743a2.chunk.js.map": "/goit-bc50-react-project/static/js/92.229743a2.chunk.js.map",
+    "130.047e43fa.chunk.css.map": "/goit-bc50-react-project/static/css/130.047e43fa.chunk.css.map",
+    "130.87d27253.chunk.js.map": "/goit-bc50-react-project/static/js/130.87d27253.chunk.js.map",
+    "812.55d6f5ce.chunk.css.map": "/goit-bc50-react-project/static/css/812.55d6f5ce.chunk.css.map",
+    "812.ad46abd9.chunk.js.map": "/goit-bc50-react-project/static/js/812.ad46abd9.chunk.js.map",
+    "100.464366d6.chunk.js.map": "/goit-bc50-react-project/static/js/100.464366d6.chunk.js.map",
     "0.190036a1.chunk.js.map": "/goit-bc50-react-project/static/js/0.190036a1.chunk.js.map",
     "470.4497d6ed.chunk.js.map": "/goit-bc50-react-project/static/js/470.4497d6ed.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d44848bb.css",
-    "static/js/main.2d399836.js"
+    "static/js/main.c2457535.js"
   ]
 }
