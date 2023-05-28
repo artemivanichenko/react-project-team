@@ -1,29 +1,25 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const StyledSection = styled.section`
-  width: 1034px;
-  margin: 0 auto;
-  padding-left: 15px;
-  padding-right: 15px;
-`;
-
 export const StyledBox = styled.div`
   display: flex;
   flex-direction: column;
   background-color: rgba(56, 56, 71, 0.8);
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
-  border-bottom-left-radius: 30px;
-  border-bottom-right-radius: 30px;
-  width: 280px;
-  height: 85px;
+  width: 320px;
+  margin: auto;
   margin-bottom: 40px;
-  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
-    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
   @media screen and (min-width: 768px) {
-    width: 1034px;
+    width: 704px;
     height: 346px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+      0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+  }
+  @media screen and (min-width: 1278px) {
+    width: 1034px;
   }
 `;
 export const StyledButtonReport = styled.div`
@@ -33,15 +29,36 @@ export const StyledButtonReport = styled.div`
   align-items: center;
   margin-top: 20px;
 `;
+export const StyledItem = styled.li``;
+export const StyledLine = styled.div`
+  display: none;
+  border-bottom: 2px solid #80848f;
+  width: 280px;
+  padding: 0 20px;
+`;
 export const StyledList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  padding-left: 222px;
-  padding-right: 222px;
   justify-content: center;
-  gap: 40px;
+  gap: 23px;
   margin-top: 24px;
   margin-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  ${StyledItem}:nth-child(3n) + ${StyledLine} {
+    display: block;
+  }
+  @media screen and (min-width: 768px) {
+    padding-left: 50px;
+    padding-right: 50px;
+    ${StyledItem}:nth-child(3n) + ${StyledLine} {
+      display: none;
+    }
+  }
+  @media screen and (min-width: 1278px) {
+    padding-left: 222px;
+    padding-right: 222px;
+  }
 `;
 export const StyledWrapper = styled.div`
   height: 64px;
@@ -49,16 +66,9 @@ export const StyledWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* margin-top: 6px;
-  margin-bottom: 6px; */
-
   border-radius: 50%;
   background-color: rgba(86, 86, 107, 0.2);
   transition: all 0.2s;
-
-  /* &:hover {
-    box-shadow: 0 7px 30px rgb(65 132 144 / 50%), 0 3px 16px rgb(0 0 0 / 50%);
-  } */
 `;
 export const NavLinkStyled = styled(NavLink)`
   display: flex;
@@ -71,14 +81,14 @@ export const NavLinkStyled = styled(NavLink)`
   width: 64px;
   box-sizing: border-box;
   &.active {
-    border: 1px solid #42a652;
+    border: 2px solid #42a652;
     box-shadow: 0px 0px 6px #41a350;
   }
   &:hover {
-    box-shadow: 0 7px 30px rgb(65 132 144 / 50%), 0 3px 16px rgb(0 0 0 / 50%);
+    box-shadow: 0px 0px 6px #41a350;
   }
   &.active:hover {
-    box-shadow: none;
+    box-shadow: 0px 0px 6px #41a350;
   }
 `;
 export const StyledImages = styled.img`
@@ -91,7 +101,7 @@ export const StyledText = styled.p`
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 10px;
   line-height: 100%;
   letter-spacing: 0.02em;
   color: rgba(199, 204, 220, 1);
@@ -100,13 +110,13 @@ export const StyledText = styled.p`
   align-items: center;
   @media screen and (min-width: 768px) {
     flex-direction: row;
+    font-size: 12px;
   }
 `;
 
 export const StyledTitle = styled.h2`
   font-family: 'Roboto';
-  font-style: 'bolt';
-  /* font-weight: 700; */
+  font-weight: 700;
   font-size: 14px;
   line-height: 100%;
   letter-spacing: 0.02em;
@@ -114,7 +124,4 @@ export const StyledTitle = styled.h2`
   display: flex;
   justify-content: center;
   align-items: center;
-  @media screen and (min-width: 768px) {
-    /* flex-direction: row; */
-  }
 `;

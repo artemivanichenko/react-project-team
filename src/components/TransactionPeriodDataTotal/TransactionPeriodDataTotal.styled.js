@@ -1,10 +1,5 @@
 import styled from 'styled-components';
-export const StyledSection = styled.section`
-  width: 1034px;
-  margin: 0 auto;
-  padding-left: 15px;
-  padding-right: 15px;
-`;
+
 export const StyledBox = styled.div`
   display: flex;
   background-color: rgba(56, 56, 71, 0.8);
@@ -13,13 +8,19 @@ export const StyledBox = styled.div`
   border-top-right-radius: 30px;
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
-  width: 280px;
+  width: 320px;
   height: 85px;
+  margin: auto;
   margin-bottom: 32px;
+  padding-top: 7px;
+  padding-bottom: 7px;
   box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-
   @media screen and (min-width: 768px) {
+    width: 704px;
+    height: 50px;
+  }
+  @media screen and (min-width: 1278px) {
     width: 1034px;
     height: 50px;
   }
@@ -40,7 +41,7 @@ export const StyledText = styled.p`
   padding-left: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   &:first-child {
     border-left: none;

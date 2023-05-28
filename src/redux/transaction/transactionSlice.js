@@ -7,6 +7,7 @@ import {
   deleteTransaction,
   addBalance,
 } from './transactionOperations';
+// import { getAuthUser } from 'redux/auth/authOperations';
 
 const initialState = {
   isLoading: false,
@@ -68,7 +69,7 @@ const transactionSlice = createSlice({
       .addCase(addTransactionIncome.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-      console.log(payload);
+        console.log(payload);
       })
       .addCase(addTransactionIncome.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -81,9 +82,9 @@ const transactionSlice = createSlice({
       .addCase(addTransactionExpense.fulfilled, (state, { payload, type }) => {
         state.isLoading = false;
         state.error = null;
-    const transactionType = type.split('/')[1];
-    // console.log(transactionType);
-    state[transactionType].push(payload);
+        const transactionType = type.split('/')[1];
+        // console.log(transactionType);
+        state[transactionType].push(payload);
       })
       .addCase(addTransactionExpense.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -97,8 +98,8 @@ const transactionSlice = createSlice({
       .addCase(deleteTransaction.fulfilled, (state, { meta }) => {
         state.isLoading = false;
         state.error = null;
-     state.expenses = state.expenses.filter(el => el._id !== meta.arg);
-     state.incomes = state.incomes.filter(el => el._id !== meta.arg);
+        state.expenses = state.expenses.filter(el => el._id !== meta.arg);
+        state.incomes = state.incomes.filter(el => el._id !== meta.arg);
       })
       .addCase(deleteTransaction.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -118,6 +119,14 @@ const transactionSlice = createSlice({
         state.isLoading = false;
         state.error = payload;
       });
+    // // ================= GET AUTH USER =======================
+    // .addCase(getAuthUser.fulfilled, (state, { payload }) => {
+    //   return {
+    //     ...state,
+    //     ...payload,
+    //   };
+    // });
+
     // // ============== GET USER INFO
     // .addCase(getUserInfo.pending, state => {
     //   state.isLoading = true;
