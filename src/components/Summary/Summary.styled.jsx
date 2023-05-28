@@ -27,6 +27,7 @@ export const TextStyled = styled.p`
 
 export const DivStyled = styled.div`
   width: 100%;
+  height: 242px;
   overflow: hidden auto;
   &::-webkit-scrollbar {
     display: block;
@@ -52,7 +53,6 @@ export const DivStyled = styled.div`
 `;
 
 export const ListStyled = styled.ul`
-  height: 280px;
   padding-left: 0;
   margin-top: 0;
   margin-bottom: 0;
