@@ -3,11 +3,12 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import {
   ContainerPublic,
-  ContainerPrived,
+  ContainerPrivate,
   ContentImage,
   BgOverlay,
 } from './Layout.styled';
 import { useSelector } from 'react-redux';
+import { Loader } from 'components/Loader/Loader';
 
 const Layout = () => {
   const isAuth = useSelector(state => state.auth.isAuth);
@@ -15,20 +16,20 @@ const Layout = () => {
   return (
     <>
       {isAuth ? (
-        <ContainerPrived>
-          <BgOverlay>
+        <ContainerPrivate>
+          {/* <BgOverlay> */}
             <Header />
-            <Suspense fallback={<h1>Loading...</h1>}>
+            <Suspense fallback={<Loader/>}>
               <Outlet />
             </Suspense>
-          </BgOverlay>
-        </ContainerPrived>
+          {/* </BgOverlay> */}
+        </ContainerPrivate>
       ) : (
         <ContainerPublic>
           <BgOverlay>
             <ContentImage>
               <Header />
-              <Suspense fallback={<h1>Loading...</h1>}>
+              <Suspense fallback={<Loader/>}>
                 <Outlet />
               </Suspense>
             </ContentImage>

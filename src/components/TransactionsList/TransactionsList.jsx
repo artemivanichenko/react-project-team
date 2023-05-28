@@ -2,11 +2,11 @@ import * as React from 'react';
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFilterDate, selectIncome, selectExpenses } from 'redux/transaction/transactionSelectors';
-
+import sprite from 'images/sprite.svg';
 import {
   BtnDelStyled,
   ScrollWrapStyled,
-  SvgStyled,
+  // SvgStyled,
   TableColumnStyled,
   TableHeadColumnStyled,
   TableHeadRowStyled,
@@ -14,18 +14,17 @@ import {
   TableStyled,
 } from './TransactionsList.styled';
 import { selectionExpenses, selectionIncome } from '../../shared/category';
-import { delete as icon } from '../../images/Categories/index';
+// import { delete as icon } from '../../images/Categories/index';
 import { deleteTransaction } from 'redux/transaction/transactionOperations';
 import { useMemo } from 'react';
 
 const TransactionsList = () => {
-  const params = useParams();
-  const expenses = params.expenses;
+  const {transactionType} = useParams();
+  // const expenses = transactionType;
   const dispatch = useDispatch();
   const transactionExpenses = useSelector(selectExpenses);
   const transactionIncomes = useSelector(selectIncome);
   const dateFilter = useSelector(selectFilterDate);
-  let transaction;
   const categoryChange = [...selectionExpenses, ...selectionIncome];
 
   const transactionIncome = useMemo(() => {
@@ -39,9 +38,8 @@ const TransactionsList = () => {
       .sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
   }, [dateFilter, transactionExpenses]);
 
-  expenses === 'income'
-    ? (transaction = transactionIncome)
-    : (transaction = transactionExpense);
+  const transaction = transactionType === 'income'
+    ? transactionIncome : transactionExpense;
 
   // console.log('trans', transaction.length);
 
@@ -71,8 +69,8 @@ const TransactionsList = () => {
                     .map(el => el.label)
                     .join()}
                 </TableColumnStyled>
-                <TableColumnStyled data-color={expenses}>
-                  {expenses === 'income'
+                <TableColumnStyled data-color={transactionType}>
+                  {transactionType === 'income'
                     ? el.amount.toFixed(2)
                     : `-${el.amount.toFixed(2)}`}{' '}
                   UAH.
@@ -80,9 +78,10 @@ const TransactionsList = () => {
                 <TableColumnStyled>
                   <BtnDelStyled
                     type="button"
-                    onClick={() => dispatch(deleteTransaction([el._id, expenses]))}
+                    onClick={() => dispatch(deleteTransaction([el._id, transactionType]))}
                   >
-                    <SvgStyled src={icon} />
+                    {/* <SvgStyled src={icon} /> */}
+                    <svg><use href={sprite+'#icon-delete'}></use></svg>
                   </BtnDelStyled>
                 </TableColumnStyled>
               </TableRowStyled>

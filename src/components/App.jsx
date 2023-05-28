@@ -22,15 +22,15 @@ export const App = () => {
         <Route
           index
           element={
-            <PublicRoute component={<LoginRegistration />} redirectTo="home" />
+            <PublicRoute component={<LoginRegistration />} redirectTo="home/expenses" />
           }
         />
         <Route
-          path="home"
+          path="home/:transactionType"
           element={<PrivateRoute component={<Home />} redirectTo="/" />}
         >
-          <Route path=":expenses" element={<Home />} />
-          <Route path=":income" element={<Home />} />
+          {/* <Route path=":expenses" element={<Home />} />
+          <Route path=":income" element={<Home />} /> */}
         </Route>
         <Route
           path="reports"
