@@ -60,7 +60,7 @@ const AddTransaction = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('form', form, curDate);
+    // console.log('form', form, curDate);
     expenses !== 'income'
       ? dispatch(addTransactionExpense(form))
       : dispatch(addTransactionIncome(form));
@@ -82,7 +82,6 @@ const AddTransaction = () => {
   }, [dispatch]);
 
   console.log('form', form, balance, selected);
-
 
   return (
     <WrapStyled>

@@ -44,7 +44,7 @@ const ReportCategories = () => {
 
   const expensesArray = objectToArray(reportExpenses);
   const incomesArray = objectToArray(reportIncomes);
-  console.log(expensesArray);
+  // console.log(expensesArray);
   const handleButtonClick = () => {
     if (reportChoice === 'expenses') {
       setReportChoice('incomes');

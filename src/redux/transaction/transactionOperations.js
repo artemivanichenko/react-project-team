@@ -11,7 +11,7 @@ import {
 } from 'services/kapustaApi';
 
 export const getTransactionIncome = createAsyncThunk(
-  'transaction/incomes/get',
+  'transaction/income/get',
   async (_, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await getTransactionIncomeApi();
@@ -24,10 +24,11 @@ export const getTransactionIncome = createAsyncThunk(
 );
 
 export const addTransactionIncome = createAsyncThunk(
-  'transaction/incomes/add',
+  'transaction/income/add',
   async (transactionForm, { rejectWithValue, dispatch }) => {
     try {
-      const { data } = await addTransactionIncomeApi(transactionForm);
+      await addTransactionIncomeApi(transactionForm);
+      const { data } = await getTransactionIncomeApi();
       return data;
     } catch (error) {
       dispatch(
@@ -55,7 +56,8 @@ export const addTransactionExpense = createAsyncThunk(
   'transaction/expenses/add',
   async (transactionForm, { rejectWithValue, dispatch }) => {
     try {
-      const { data } = await addTransactionExpenseApi(transactionForm);
+      await addTransactionExpenseApi(transactionForm);
+      const { data } = await getTransactionExpenseApi();
       return data;
     } catch (error) {
       dispatch(
@@ -71,9 +73,13 @@ export const addTransactionExpense = createAsyncThunk(
 
 export const deleteTransaction = createAsyncThunk(
   'transaction/delete',
-  async (transactionId, { rejectWithValue, dispatch }) => {
+  async ([transactionId, expenses], { rejectWithValue, dispatch }) => {
     try {
-      const { data } = await deleteTransactionApi(transactionId);
+      await deleteTransactionApi(transactionId);
+      const { data } =
+        expenses === 'income'
+          ? await getTransactionIncomeApi()
+          : await getTransactionExpenseApi();
       return data;
     } catch (error) {
       dispatch(

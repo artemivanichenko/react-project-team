@@ -8,7 +8,7 @@ const [tabIndex, setTabIndex] = useState(0);
 
   const handleSelect = (selectedIndex) => {
     setTabIndex(selectedIndex);
-    console.log(selectedIndex);
+    // console.log(selectedIndex);
   }
 
   return (
