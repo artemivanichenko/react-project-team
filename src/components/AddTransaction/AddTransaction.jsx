@@ -81,8 +81,7 @@ const AddTransaction = () => {
     dispatch(getFilterDate(''));
   }, [dispatch]);
 
-  // console.log('form', form, balance, selected);
-
+  console.log('form', form, balance, selected);
 
   return (
     <WrapStyled>
