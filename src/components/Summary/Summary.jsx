@@ -4,6 +4,8 @@ import { useParams } from 'react-router';
 import {
   selectMonthExpenses,
   selectMonthIncome,
+  selectIncome,
+  selectExpenses,
 } from 'redux/transaction/transactionSelectors';
 import {
   getTransactionExpense,
@@ -26,6 +28,8 @@ const Summary = () => {
   let conditionalSelect = null;
   const monthExpenses = useSelector(selectMonthExpenses);
   const monthIncome = useSelector(selectMonthIncome);
+  const transactionIncome = useSelector(selectIncome);
+  const transactionExpenses = useSelector(selectExpenses);
 
   expenses === 'expenses'
     ? (conditionalSelect = monthExpenses)
@@ -39,7 +43,7 @@ const Summary = () => {
     expenses === 'expenses'
       ? monthExpenses.length === 0 && dispatch(getTransactionExpense())
       : monthIncome.length === 0 && dispatch(getTransactionIncome());
-  }, [dispatch, expenses, monthExpenses, monthIncome]);
+  }, [dispatch, expenses, transactionIncome, transactionExpenses]);
 
   const currentMonth = new Date().getMonth();
   const monthEng = [

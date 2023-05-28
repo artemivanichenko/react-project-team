@@ -12,3 +12,5 @@ export const selectBalance = state => state.auth.balance;
 export const selectFilterDate = state => state.transaction.filterDate;
 
 export const selectExpenses = state => state.transaction.expenses;
+
+export const selectIncome = state => state.transaction.incomes;

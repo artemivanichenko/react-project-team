@@ -66,8 +66,10 @@ const transactionSlice = createSlice({
       .addCase(addTransactionIncome.fulfilled, (state, { payload, type }) => {
         state.isLoading = false;
         state.error = null;
-        const transactionType = type.split('/')[1];
-        state[transactionType].push(payload.transaction);
+        state.incomes = payload.incomes;
+        state.monthStatsIncome = payload.monthsStats;
+        // const transactionType = type.split('/')[1];
+        // state[transactionType].push(payload.transaction);
       })
       .addCase(addTransactionIncome.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -80,8 +82,10 @@ const transactionSlice = createSlice({
       .addCase(addTransactionExpense.fulfilled, (state, { payload, type }) => {
         state.isLoading = false;
         state.error = null;
-        const transactionType = type.split('/')[1];
-        state[transactionType].push(payload.transaction);
+        state.expenses = payload.expenses;
+        state.monthStatsExpenses = payload.monthsStats;
+        // const transactionType = type.split('/')[1];
+        // state[transactionType].push(payload.transaction);
       })
       .addCase(addTransactionExpense.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -91,11 +95,13 @@ const transactionSlice = createSlice({
       .addCase(deleteTransaction.pending, state => {
         state.isLoading = true;
       })
-      .addCase(deleteTransaction.fulfilled, (state, { meta }) => {
-        state.isLoading = false;
-        state.error = null;
-        state.expenses = state.expenses.filter(el => el._id !== meta.arg);
-        state.incomes = state.incomes.filter(el => el._id !== meta.arg);
+      .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
+        return {
+          ...state,
+          isLoading: false,
+          error: null,
+          ...payload,
+        };
       })
       .addCase(deleteTransaction.rejected, (state, { payload }) => {
         state.isLoading = false;

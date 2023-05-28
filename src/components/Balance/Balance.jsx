@@ -6,6 +6,7 @@ import { addBalance } from 'redux/transaction/transactionOperations';
 import {
   selectBalance,
   selectExpenses,
+  selectIncome,
 } from 'redux/transaction/transactionSelectors';
 import {
   TooltipStyled,
@@ -33,6 +34,7 @@ const Balance = () => {
 
   const balance = useSelector(selectBalance);
   const expenses = useSelector(selectExpenses);
+  const incomes = useSelector(selectIncome);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -49,7 +51,7 @@ const Balance = () => {
     }
   };
 
-  if (balance === 0 && toggleOpen && expenses.length === 0) {
+  if (balance === 0 && toggleOpen && expenses.length === 0 && incomes.length === 0) {
     handleOpen();
     setToggleOpen(false);
   }

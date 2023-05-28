@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectFilterDate } from 'redux/transaction/transactionSelectors';
+import { selectFilterDate, selectIncome, selectExpenses } from 'redux/transaction/transactionSelectors';
 
 import {
   BtnDelStyled,
@@ -22,8 +22,8 @@ const TransactionsList = () => {
   const params = useParams();
   const expenses = params.expenses;
   const dispatch = useDispatch();
-  const transactionExpenses = useSelector(state => state.transaction.expenses);
-  const transactionIncomes = useSelector(state => state.transaction.incomes);
+  const transactionExpenses = useSelector(selectExpenses);
+  const transactionIncomes = useSelector(selectIncome);
   const dateFilter = useSelector(selectFilterDate);
   let transaction;
   const categoryChange = [...selectionExpenses, ...selectionIncome];
@@ -80,7 +80,7 @@ const TransactionsList = () => {
                 <TableColumnStyled>
                   <BtnDelStyled
                     type="button"
-                    onClick={() => dispatch(deleteTransaction(el._id))}
+                    onClick={() => dispatch(deleteTransaction([el._id, expenses]))}
                   >
                     <SvgStyled src={icon} />
                   </BtnDelStyled>
