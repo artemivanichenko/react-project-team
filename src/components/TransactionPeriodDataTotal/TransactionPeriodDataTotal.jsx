@@ -5,7 +5,6 @@ import {
 } from 'redux/reports/reportsSelectors';
 import {
   StyledBox,
-  StyledSection,
   StyledText,
   StyledTotalAmount,
 } from './TransactionPeriodDataTotal.styled';
@@ -15,24 +14,19 @@ const TransactionPeriodDataTotal = () => {
   const ExpensesTotal = useSelector(selectExpensesTotal);
 
   return (
-    <StyledSection>
-      <StyledBox>
-        <StyledText>
-          Expenses:
-          <StyledTotalAmount red>
-            {' '}
-            - {IncomesTotal.toFixed(2)} UAH
-          </StyledTotalAmount>
-        </StyledText>
-        <StyledText>
-          Income:{' '}
-          <StyledTotalAmount>
-            {' '}
-            + {ExpensesTotal.toFixed(2)} UAH
-          </StyledTotalAmount>
-        </StyledText>
-      </StyledBox>
-    </StyledSection>
+    <StyledBox>
+      <StyledText>
+        Expenses:
+        <StyledTotalAmount red>
+          {' '}
+          - {IncomesTotal.toFixed(2)} UAH
+        </StyledTotalAmount>
+      </StyledText>
+      <StyledText>
+        Income:{' '}
+        <StyledTotalAmount> + {ExpensesTotal.toFixed(2)} UAH</StyledTotalAmount>
+      </StyledText>
+    </StyledBox>
   );
 };
 
