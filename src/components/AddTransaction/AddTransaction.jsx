@@ -3,7 +3,6 @@ import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import Select from 'react-select';
-import { NumericFormat } from 'react-number-format';
 import 'react-datepicker/dist/react-datepicker.css';
 import { registerLocale } from 'react-datepicker';
 import uk from 'date-fns/locale/uk';
