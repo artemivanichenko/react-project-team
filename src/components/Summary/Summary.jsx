@@ -37,9 +37,9 @@ const Summary = () => {
 
   useEffect(() => {
     expenses === 'expenses'
-      ? dispatch(getTransactionExpense())
-      : dispatch(getTransactionIncome());
-  }, [dispatch, expenses]);
+      ? monthExpenses.length === 0 && dispatch(getTransactionExpense())
+      : monthIncome.length === 0 && dispatch(getTransactionIncome());
+  }, [dispatch, expenses, monthExpenses, monthIncome]);
 
   const currentMonth = new Date().getMonth();
   const monthEng = [
