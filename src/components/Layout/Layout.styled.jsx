@@ -13,6 +13,7 @@ export const ContainerPublic = styled.div`
       ),
       #383847;
     height: 100vh;
+    background-attachment: fixed;
   }
   @media screen and (min-width: 768px) {
     background: radial-gradient(
@@ -22,6 +23,7 @@ export const ContainerPublic = styled.div`
       ),
       #383847;
     height: 100vh;
+    background-attachment: fixed;
   }
   @media screen and (min-width: 1280px) {
     background: radial-gradient(
@@ -30,7 +32,7 @@ export const ContainerPublic = styled.div`
         rgba(56, 56, 71, 0)
       ),
       #383847;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat;background-attachment: fixed;
   }
 `;
 
@@ -43,25 +45,27 @@ export const BgOverlay = styled.div`
       ),
       #383847;
 
-    height: 100%;
+    height: 100vh;
+    background-attachment: fixed;
   }
   @media screen and (min-width: 768px) {
     background: url(${bgOverlayTablet});
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center calc(50% + 70px);
-    height: 100%;
+    height: 100vh;
   }
   @media screen and (min-width: 1280px) {
     background: url(${bgBM});
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center calc(50% + 70px);
-    height: 100%;
+    height: 100vh;
   }
 `;
 
 export const ContentImage = styled.div`
+background-attachment: fixed;
   @media screen and (min-width: 320px) {
   }
   @media screen and (min-width: 768px) {
@@ -88,6 +92,7 @@ export const ContentImage = styled.div`
 `;
 
 export const ContainerPrived = styled.div`
+background-attachment: fixed;
   @media screen and (min-width: 320px) and (max-width: 480px) {
   }
   @media screen and (min-width: 768px) {
@@ -97,7 +102,7 @@ export const ContainerPrived = styled.div`
         rgba(56, 56, 71, 0)
       ),
       #383847;
-    height: 100%;
+    height: 100vh;
   }
   @media screen and (min-width: 1280px) {
     background: radial-gradient(
@@ -106,6 +111,6 @@ export const ContainerPrived = styled.div`
         rgba(56, 56, 71, 0)
       ),
       #383847;
-    height: 100%;
+    height: 100vh;
   }
 `;

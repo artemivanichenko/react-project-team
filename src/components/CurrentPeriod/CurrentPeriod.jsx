@@ -34,7 +34,6 @@ const CurrentPeriod = () => {
   const dispatch = useDispatch();
   const [reportPeriod, setReportPeriod] = useState(DateTime.now());
 
-
   useEffect(() => {
     dispatch(getTransactionPeriod(reportPeriod.toFormat('yyyy-LL')));
   }, [dispatch, reportPeriod]);

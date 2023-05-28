@@ -8,44 +8,15 @@ import {
 const initialState = {
   isLoading: false,
   error: null,
-  incomeCategories: ['З/П', 'Доп. доход'],
-  expenseCategories: [
-    'Продукты',
-    'Алкоголь',
-    'Развлечения',
-    'Здоровье',
-    'Транспорт',
-    'Всё для дома',
-    'Техника',
-    'Коммуналка и связь',
-    'Спорт и хобби',
-    'Образование',
-    'Прочее',
-  ],
+  incomeCategories: [],
+  expenseCategories: [],
   incomes: {
-    incomeTotal: 12000,
-    incomesData: {
-      'З/П': {
-        total: 12000,
-        Аванс: 5000,
-        Основная: 7000,
-      },
-    },
+    incomeTotal: 0,
+    incomesData: {},
   },
   expenses: {
-    expenseTotal: 5200,
-    expensesData: {
-      Транспорт: {
-        total: 4000,
-        СТО: 3500,
-        Мойка: 500,
-      },
-      'Всё для дома': {
-        total: 1200,
-        Вазон: 150,
-        'Шкаф-купе': 1050,
-      },
-    },
+    expenseTotal: 0,
+    expensesData: {},
   },
 };
 

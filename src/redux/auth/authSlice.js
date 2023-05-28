@@ -6,6 +6,7 @@ import {
   refreshToken,
   registerUser,
 } from './authOperations';
+import { addBalance } from 'redux/transaction/transactionOperations';
 
 const initialState = {
   accessToken: null,
@@ -15,6 +16,7 @@ const initialState = {
   error: null,
   isLoading: false,
   isAuth: false,
+  balance: null,
 };
 
 const authSlice = createSlice({
@@ -108,6 +110,10 @@ const authSlice = createSlice({
       .addCase(refreshToken.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
+      })
+      // ================ ADD BALANCE ====================
+      .addCase(addBalance.fulfilled, (state, { payload }) => {
+        state.balance = payload.newBalance;
       });
   },
 });

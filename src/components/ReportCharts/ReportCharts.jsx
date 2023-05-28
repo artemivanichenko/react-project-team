@@ -77,6 +77,7 @@ const progressBar = {
 const ReportCharts = () => {
   //   const isHorizontalChart = window.innerWidth <= 767;
   const isHorizontalChart = useMediaQuery({ query: '(min-width: 768px)' });
+  console.log(isHorizontalChart);
   const { value } = useParams();
   const reportExpenses = useSelector(selectExpensesData);
   const reportIncomes = useSelector(selectIncomesData);
@@ -133,6 +134,8 @@ const ReportCharts = () => {
       {data.length && (
         <ChartWrapper>
           {isHorizontalChart ? (
+            <>
+            <h1>Vertical</h1>
             <Bar
               data={{
                 labels: data.map(row => row[0]),
@@ -212,8 +215,11 @@ const ReportCharts = () => {
                   },
                 },
               }}
-            />
+              />
+              </>
           ) : (
+              <>
+                <h1>Horizontal</h1>
             <Bar
               data={{
                 labels: data.map(row => row[0]),
@@ -298,180 +304,11 @@ const ReportCharts = () => {
                 },
               }}
               plugins={[progressBar]}
-            />
+            /></>
           )}
         </ChartWrapper>
       )}
     </>
-
-    // <ChartWrapper>
-    //   {isHorizontalChart ? (
-    //     <Bar
-    //       data={{
-    //         labels: data.map(row => row[0]),
-    //         datasets: [
-    //           {
-    //             label: '',
-    //             data: data.map(row => row[1]),
-    //             // indexAxis: 'y',
-    //             barThickness: 38,
-    //             //   maxBarThickness: 38,
-    //             categoryPercentage: 0.5, // Задает фиксированную ширину категории (бара)
-    //             //   barPercentage: 0.5,
-    //             grouped: true,
-    //             borderRadius: 8,
-    //             backgroundColor: function (context) {
-    //               const color = { first: '#383C46', end: '#60C470' };
-    //               const color1 = { first: '#373745', end: '#5B5B6D' };
-    //               const chart = context.chart;
-    //               const { ctx, chartArea } = chart;
-    //               // console.log(chart);
-    //               if (!chartArea) {
-    //                 // This case happens on initial chart load
-    //                 return;
-    //               }
-    //               return [
-    //                 getGradientColor(ctx, chartArea, color),
-    //                 getGradientColor(ctx, chartArea, color1),
-    //                 getGradientColor(ctx, chartArea, color1),
-    //               ];
-    //             },
-    //           },
-    //         ],
-    //       }}
-    //       options={{
-    //         layout: {
-    //           padding: 20,
-    //         },
-    //         // maintainAspectRatio: false,
-    //         scales: {
-    //           x: {
-    //             grid: {
-    //               display: false,
-    //             },
-    //             ticks: {
-    //               color: '#C7CCDC',
-    //             },
-    //           },
-    //           y: {
-    //             border: {
-    //               display: false,
-    //             },
-    //             grid: {
-    //               lineWidth: 2,
-    //             },
-
-    //             ticks: {
-    //               display: false, // Скрываем метки на оси y
-    //             },
-    //           },
-    //         },
-    //         plugins: {
-    //           legend: {
-    //             display: false, // Убираем легенду
-    //           },
-    //           tooltip: {
-    //             enabled: false,
-    //           },
-    //           datalabels: {
-    //             anchor: 'end',
-    //             align: 'top',
-    //             color: '#C7CCDC',
-    //             formatter: function (value) {
-    //               return `${value} UAH`;
-    //             },
-    //           },
-    //         },
-    //       }}
-    //     />
-    //   ) : (
-    //     <Bar
-    //       data={{
-    //         labels: data.map(row => row[0]),
-
-    //         datasets: [
-    //           {
-    //             label: '',
-    //             data: data.map(row => row[1]),
-
-    //             barThickness: 15,
-    //             minBarLength: 50,
-    //             //   maxBarThickness: 38,
-    //             categoryPercentage: 1, // Задает фиксированную ширину категории (бара)
-    //             //   barPercentage: 0.5,
-    //             grouped: true,
-    //             borderRadius: 8,
-    //             backgroundColor: function (context) {
-    //               const color = { first: '#383C46', end: '#60C470' };
-    //               const color1 = { first: '#373745', end: '#5B5B6D' };
-    //               const chart = context.chart;
-    //               const { ctx, chartArea } = chart;
-
-    //               if (!chartArea) {
-    //                 // This case happens on initial chart load
-    //                 return;
-    //               }
-    //               return [
-    //                 getGradientColorHorizontal(ctx, chartArea, color),
-    //                 getGradientColorHorizontal(ctx, chartArea, color1),
-    //                 getGradientColorHorizontal(ctx, chartArea, color1),
-    //               ];
-    //             },
-    //           },
-    //         ],
-    //       }}
-    //       options={{
-    //         indexAxis: 'y',
-
-    //         layout: {
-    //           padding: 20,
-    //         },
-    //         responsive: true, // Разрешаем графику адаптироваться к размеру контейнера
-    //         // maintainAspectRatio: false, // Разрешаем графику растягиваться внутри контейнера
-    //         scales: {
-    //           x: {
-    //             display: false,
-    //             grid: {
-    //               display: false,
-    //             },
-    //           },
-    //           y: {
-    //             beginAtZero: true,
-    //             grid: {
-    //               display: false,
-    //             },
-    //             border: {
-    //               display: false,
-    //             },
-
-    //             ticks: {
-    //               display: false,
-    //               color: '#C7CCDC',
-    //             },
-    //           },
-    //         },
-    //         plugins: {
-    //           legend: {
-    //             display: false, // Убираем легенду
-    //           },
-    //           tooltip: {
-    //             enabled: false,
-    //           },
-    //           datalabels: {
-    //             anchor: 'end',
-    //             align: 'top',
-    //             color: '#C7CCDC',
-    //             padding: 6,
-    //             formatter: function (value) {
-    //               return `${value} UAH`;
-    //             },
-    //           },
-    //         },
-    //       }}
-    //       plugins={[progressBar]}
-    //     />
-    //   )}
-    // </ChartWrapper>
   );
 };
 
