@@ -43,7 +43,7 @@ const TransactionsList = () => {
     ? (transaction = transactionIncome)
     : (transaction = transactionExpense);
 
-  console.log('trans', transaction.length);
+  // console.log('trans', transaction.length);
 
   return (
     <div>

@@ -7,7 +7,6 @@ import {
   deleteTransaction,
   addBalance,
 } from './transactionOperations';
-// import { getAuthUser } from 'redux/auth/authOperations';
 
 const initialState = {
   isLoading: false,
@@ -39,7 +38,6 @@ const transactionSlice = createSlice({
       .addCase(getTransactionIncome.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        // TO CHECK below!!!
         state.incomes = payload.incomes;
         state.monthStatsIncome = payload.monthsStats;
       })
@@ -54,7 +52,6 @@ const transactionSlice = createSlice({
       .addCase(getTransactionExpense.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        // TO CHECK below!!!
         state.expenses = payload.expenses;
         state.monthStatsExpenses = payload.monthsStats;
       })
@@ -66,10 +63,11 @@ const transactionSlice = createSlice({
       .addCase(addTransactionIncome.pending, state => {
         state.isLoading = true;
       })
-      .addCase(addTransactionIncome.fulfilled, (state, { payload }) => {
+      .addCase(addTransactionIncome.fulfilled, (state, { payload, type }) => {
         state.isLoading = false;
         state.error = null;
-        console.log(payload);
+        const transactionType = type.split('/')[1];
+        state[transactionType].push(payload.transaction);
       })
       .addCase(addTransactionIncome.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -83,14 +81,12 @@ const transactionSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         const transactionType = type.split('/')[1];
-        // console.log(transactionType);
-        state[transactionType].push(payload);
+        state[transactionType].push(payload.transaction);
       })
       .addCase(addTransactionExpense.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       })
-
       // ================== DELETE TRANSACTION
       .addCase(deleteTransaction.pending, state => {
         state.isLoading = true;
@@ -113,20 +109,11 @@ const transactionSlice = createSlice({
         state.newBalance = payload.newBalance;
         state.isLoading = false;
         state.error = null;
-        // TO DO!!!
       })
       .addCase(addBalance.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       });
-    // // ================= GET AUTH USER =======================
-    // .addCase(getAuthUser.fulfilled, (state, { payload }) => {
-    //   return {
-    //     ...state,
-    //     ...payload,
-    //   };
-    // });
-
     // // ============== GET USER INFO
     // .addCase(getUserInfo.pending, state => {
     //   state.isLoading = true;

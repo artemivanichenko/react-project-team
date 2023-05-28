@@ -97,7 +97,7 @@ const Balance = () => {
               placeholder="00.00 UAH"
               name="balance"
               onValueChange={(values, sourceInfo) => {
-                console.log(values, sourceInfo);
+                // console.log(values, sourceInfo);
               }}
             />
           </div>
