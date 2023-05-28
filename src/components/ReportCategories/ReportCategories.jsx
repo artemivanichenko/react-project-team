@@ -14,8 +14,9 @@ import {
   StyledBox,
   StyledButtonReport,
   StyledImages,
+  StyledItem,
+  StyledLine,
   StyledList,
-  StyledSection,
   StyledText,
   StyledTitle,
   StyledWrapper,
@@ -72,60 +73,57 @@ const ReportCategories = () => {
     .flat(Infinity);
 
   return (
-    <StyledSection>
-      <StyledBox>
-        <StyledButtonReport>
-          <ThemeProvider theme={theme}>
-            <Button
-              variant="text"
-              startIcon={<ArrowBackIosIcon />}
-              type="button"
-              onClick={handleButtonClick}
-            />
-            <StyledTitle>{reportChoice.toUpperCase()}</StyledTitle>
-            <Button
-              variant="text"
-              endIcon={<ArrowForwardIosIcon />}
-              type="button"
-              onClick={handleButtonClick}
-            />
-          </ThemeProvider>
-        </StyledButtonReport>
-        <StyledList>
-          {reportChoice === 'expenses'
-            ? filteredExpensesArray
-                .sort((a, b) => b.total - a.total)
-                .map(({ value, label, total }) => (
-                  <li key={value}>
-                    <StyledText>
-                      {Number.isInteger(total) ? total.toFixed(2) : total}
-                    </StyledText>
+    <StyledBox>
+      <StyledButtonReport>
+        <ThemeProvider theme={theme}>
+          <Button
+            variant="text"
+            startIcon={<ArrowBackIosIcon />}
+            type="button"
+            onClick={handleButtonClick}
+          />
+          <StyledTitle>{reportChoice.toUpperCase()}</StyledTitle>
+          <Button
+            variant="text"
+            endIcon={<ArrowForwardIosIcon />}
+            type="button"
+            onClick={handleButtonClick}
+          />
+        </ThemeProvider>
+      </StyledButtonReport>
+      <StyledList>
+        {reportChoice === 'expenses'
+          ? filteredExpensesArray
+              .sort((a, b) => b.total - a.total)
+              .map(({ value, label, total }) => (
+                <>
+                  <StyledLine />
+                  <StyledItem key={value}>
+                    <StyledText>{total.toFixed(2)}</StyledText>
                     <NavLinkStyled to={`${value}`}>
                       <StyledWrapper>
                         <StyledImages src={images[value]} alt={label} />
                       </StyledWrapper>
                     </NavLinkStyled>
                     <StyledText> {label.toUpperCase()}</StyledText>
-                  </li>
-                ))
-            : filteredIncomesArray
-                .sort((a, b) => b.total - a.total)
-                .map(({ value, label, total }) => (
-                  <li key={value}>
-                    <StyledText>
-                      {Number.isInteger(total) ? total.toFixed(2) : total}
-                    </StyledText>
-                    <NavLinkStyled to={`${value}`}>
-                      <StyledWrapper>
-                        <StyledImages src={images[value]} alt={label} />
-                      </StyledWrapper>
-                    </NavLinkStyled>
-                    <StyledText> {label.toUpperCase()}</StyledText>
-                  </li>
-                ))}
-        </StyledList>
-      </StyledBox>
-    </StyledSection>
+                  </StyledItem>
+                </>
+              ))
+          : filteredIncomesArray
+              .sort((a, b) => b.total - a.total)
+              .map(({ value, label, total }) => (
+                <StyledItem key={value}>
+                  <StyledText>{total.toFixed(2)}</StyledText>
+                  <NavLinkStyled to={`${value}`}>
+                    <StyledWrapper>
+                      <StyledImages src={images[value]} alt={label} />
+                    </StyledWrapper>
+                  </NavLinkStyled>
+                  <StyledText> {label.toUpperCase()}</StyledText>
+                </StyledItem>
+              ))}
+      </StyledList>
+    </StyledBox>
   );
 };
 export default ReportCategories;
