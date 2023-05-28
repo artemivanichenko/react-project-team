@@ -15,8 +15,8 @@ const [tabIndex, setTabIndex] = useState(0);
     <WrapStyled>
       <Tabs selectedIndex={tabIndex} onSelect={handleSelect}>
         <TabList>
-          <Tab><NavLinkStyled to="expenses">EXPENSES</NavLinkStyled></Tab>
-          <Tab><NavLinkStyled to="income">INCOME</NavLinkStyled></Tab>
+          <Tab><NavLinkStyled to="/home/expenses">EXPENSES</NavLinkStyled></Tab>
+          <Tab><NavLinkStyled to="/home/income">INCOME</NavLinkStyled></Tab>
         </TabList>
         <TabPanel />
         <TabPanel />

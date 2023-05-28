@@ -49,14 +49,14 @@ export const BgOverlay = styled.div`
     background-attachment: fixed;
   }
   @media screen and (min-width: 768px) {
-    background: url(${bgOverlayTablet});
+    /* background-image: url(${bgOverlayTablet}); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center calc(50% + 70px);
     height: 100vh;
   }
   @media screen and (min-width: 1280px) {
-    background: url(${bgBM});
+    /* background-image: url(${bgBM}); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center calc(50% + 70px);
@@ -91,17 +91,20 @@ background-attachment: fixed;
   }
 `;
 
-export const ContainerPrived = styled.div`
-background-attachment: fixed;
+export const ContainerPrivate = styled.div`
+
+overflow-y: scroll;
   @media screen and (min-width: 320px) and (max-width: 480px) {
   }
   @media screen and (min-width: 768px) {
-    background: radial-gradient(
+    background: url(${bgOverlayTablet}), radial-gradient(
         320px at 10% calc(100% - 80%),
         rgba(176, 232, 185, 0.3),
         rgba(56, 56, 71, 0)
-      ),
-      #383847;
+      ), #383847;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center calc(50% + 70px);
     height: 100vh;
   }
   @media screen and (min-width: 1280px) {
@@ -109,8 +112,8 @@ background-attachment: fixed;
         320px at 10% calc(100% - 80%),
         rgba(176, 232, 185, 0.3),
         rgba(56, 56, 71, 0)
-      ),
-      #383847;
+      )
+      , #383847, url()(${bgBM});
     height: 100vh;
   }
 `;

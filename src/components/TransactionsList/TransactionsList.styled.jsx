@@ -1,4 +1,4 @@
-import { HandySvg } from 'handy-svg';
+// import { HandySvg } from 'handy-svg';
 import styled from 'styled-components';
 
 export const ScrollWrapStyled = styled.div`
@@ -121,12 +121,20 @@ export const BtnDelStyled = styled.button`
   &:hover {
     background: rgba(86, 86, 107, 0.5);
   }
-`;
-
-export const SvgStyled = styled(HandySvg)`
-  fill: rgba(199, 204, 220, 0.5);
-
-  &:hover {
-    fill: #f6f7fb;
+  & svg {
+    width: 15px;
+    height: 18px;
+    fill: rgba(199, 204, 220, 0.5);
+    &:hover {
+      fill: #f6f7fb;
+    }
   }
 `;
+
+// export const SvgStyled = styled(HandySvg)`
+//   fill: rgba(199, 204, 220, 0.5);
+
+//   &:hover {
+//     fill: #f6f7fb;
+//   }
+// `;

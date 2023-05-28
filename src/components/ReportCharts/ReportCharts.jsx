@@ -10,6 +10,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { useMediaQuery } from 'react-responsive';
 import { useParams } from 'react-router-dom';
 import { selectionIncome, selectionExpenses } from 'shared/category';
+import { useEffect, useState } from 'react';
 
 Chart.register(...registerables, ChartDataLabels);
 Chart.defaults.borderColor = ['#474759'];
@@ -75,9 +76,17 @@ const progressBar = {
 };
 
 const ReportCharts = () => {
-  //   const isHorizontalChart = window.innerWidth <= 767;
-  const isHorizontalChart = useMediaQuery({ query: '(min-width: 768px)' });
-  console.log(isHorizontalChart);
+const isVertical = useMediaQuery({ query: '(min-width: 768px)' });
+    const [isChangingScreens, setIsChangingScreens] = useState(false);
+    console.log("ReportCharts");
+    useEffect(() => {
+        setIsChangingScreens(true);
+    }, [isVertical])
+
+    useEffect(() => {
+        isChangingScreens && setIsChangingScreens(false);
+    }, [isChangingScreens])
+
   const { value } = useParams();
   const reportExpenses = useSelector(selectExpensesData);
   const reportIncomes = useSelector(selectIncomesData);
@@ -131,11 +140,9 @@ const ReportCharts = () => {
 
   return (
     <>
-      {data.length && (
+      {data.length > 0 && (
         <ChartWrapper>
-          {isHorizontalChart ? (
-            <>
-            <h1>Vertical</h1>
+          {!isChangingScreens && (isVertical ? (
             <Bar
               data={{
                 labels: data.map(row => row[0]),
@@ -216,10 +223,7 @@ const ReportCharts = () => {
                 },
               }}
               />
-              </>
           ) : (
-              <>
-                <h1>Horizontal</h1>
             <Bar
               data={{
                 labels: data.map(row => row[0]),
@@ -304,8 +308,8 @@ const ReportCharts = () => {
                 },
               }}
               plugins={[progressBar]}
-            /></>
-          )}
+            />
+          ))}
         </ChartWrapper>
       )}
     </>

@@ -31,7 +31,7 @@ const AddTransaction = () => {
   const expenses = params.expenses;
   
   const [options, setOptions] = useState([]);
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState(null);
   
   registerLocale('uk', uk);
   const [startDate, setStartDate] = useState(new Date());
@@ -69,7 +69,7 @@ const AddTransaction = () => {
 
   const handleClickReset = () => {
     setForm(prev => ({ ...prev, amount: '', category: '' }));
-    setSelected([]);
+    setSelected(null);
   };
 
   useEffect(() => {
@@ -107,11 +107,13 @@ const AddTransaction = () => {
         <Select
           options={options}
           placeholder="Product category"
-          // value={selected}
+          value={selected}
           styles={objectStyle}
           name="category"
-          onChange={data =>
-            setForm(prev => ({ ...form, category: data.trans }))
+          onChange={data => {
+            setForm(prev => ({ ...form, category: data.trans }));
+            setSelected(data);
+          }
           }
         />
 

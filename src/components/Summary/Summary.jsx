@@ -22,28 +22,25 @@ import {
 } from './Summary.styled';
 
 const Summary = () => {
-  const params = useParams();
-  const expenses = params.expenses;
+  const {transactionType} = useParams();
 
-  let conditionalSelect = null;
   const monthExpenses = useSelector(selectMonthExpenses);
   const monthIncome = useSelector(selectMonthIncome);
   const transactionIncome = useSelector(selectIncome);
   const transactionExpenses = useSelector(selectExpenses);
 
-  expenses === 'expenses'
-    ? (conditionalSelect = monthExpenses)
-    : (conditionalSelect = monthIncome);
+  const conditionalSelect = transactionType === 'expenses'
+    ? monthExpenses : monthIncome;
 
   const sumValues = Object.values(conditionalSelect);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    expenses === 'expenses'
+    transactionType === 'expenses'
       ? monthExpenses.length === 0 && dispatch(getTransactionExpense())
       : monthIncome.length === 0 && dispatch(getTransactionIncome());
-  }, [dispatch, expenses, transactionIncome, transactionExpenses, monthExpenses, monthIncome]);
+  }, [dispatch, transactionType, transactionIncome, transactionExpenses, monthExpenses, monthIncome]);
 
   const currentMonth = new Date().getMonth();
   const monthEng = [
