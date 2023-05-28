@@ -60,8 +60,8 @@ const progressBar = {
     } = chart;
     ctx.save();
     data.datasets[0].data.forEach((datapoint, index) => {
-      const fontSizelabel = 12;
-      ctx.font = '12px';
+      const fontSizelabel = 10;
+      ctx.font = '8px';
 
       ctx.fillStyle = '#C7CCDC';
       ctx.textAlign = 'left';
@@ -76,16 +76,16 @@ const progressBar = {
 };
 
 const ReportCharts = () => {
-const isVertical = useMediaQuery({ query: '(min-width: 768px)' });
-    const [isChangingScreens, setIsChangingScreens] = useState(false);
-    console.log("ReportCharts");
-    useEffect(() => {
-        setIsChangingScreens(true);
-    }, [isVertical])
+  const isVertical = useMediaQuery({ query: '(min-width: 768px)' });
+  const [isChangingScreens, setIsChangingScreens] = useState(false);
+  console.log('ReportCharts');
+  useEffect(() => {
+    setIsChangingScreens(true);
+  }, [isVertical]);
 
-    useEffect(() => {
-        isChangingScreens && setIsChangingScreens(false);
-    }, [isChangingScreens])
+  useEffect(() => {
+    isChangingScreens && setIsChangingScreens(false);
+  }, [isChangingScreens]);
 
   const { value } = useParams();
   const reportExpenses = useSelector(selectExpensesData);
@@ -142,174 +142,183 @@ const isVertical = useMediaQuery({ query: '(min-width: 768px)' });
     <>
       {data.length > 0 && (
         <ChartWrapper>
-          {!isChangingScreens && (isVertical ? (
-            <Bar
-              data={{
-                labels: data.map(row => row[0]),
-                datasets: [
-                  {
-                    label: '',
-                    data: data.map(row => row[1]),
-                    // indexAxis: 'y',
-                    barThickness: 38,
+          {!isChangingScreens &&
+            (isVertical ? (
+              <Bar
+                data={{
+                  labels: data.map(row => row[0]),
+                  datasets: [
+                    {
+                      label: '',
+                      data: data.map(row => row[1]),
+                      // indexAxis: 'y',
+                      barThickness: 38,
 
-                    //   maxBarThickness: 38,
-                    categoryPercentage: 0.5, // Задает фиксированную ширину категории (бара)
-                    //   barPercentage: 0.5,
-                    grouped: true,
-                    borderRadius: 8,
-                    backgroundColor: function (context) {
-                      const color = { first: '#383C46', end: '#60C470' };
-                      const color1 = { first: '#373745', end: '#5B5B6D' };
-                      const chart = context.chart;
-                      const { ctx, chartArea } = chart;
-                      // console.log(chart);
-                      if (!chartArea) {
-                        // This case happens on initial chart load
-                        return;
-                      }
-                      return [
-                        getGradientColor(ctx, chartArea, color),
-                        getGradientColor(ctx, chartArea, color1),
-                        getGradientColor(ctx, chartArea, color1),
-                      ];
+                      //   maxBarThickness: 38,
+                      categoryPercentage: 1, // Задает фиксированную ширину категории (бара)
+                      //   barPercentage: 0.5,
+                      grouped: true,
+                      borderRadius: 8,
+                      backgroundColor: function (context) {
+                        const color = { first: '#383C46', end: '#60C470' };
+                        const color1 = { first: '#373745', end: '#5B5B6D' };
+                        const chart = context.chart;
+                        const { ctx, chartArea } = chart;
+                        // console.log(chart);
+                        if (!chartArea) {
+                          // This case happens on initial chart load
+                          return;
+                        }
+                        return [
+                          getGradientColor(ctx, chartArea, color),
+                          getGradientColor(ctx, chartArea, color1),
+                          getGradientColor(ctx, chartArea, color1),
+                        ];
+                      },
+                    },
+                  ],
+                }}
+                options={{
+                  layout: {
+                    padding: 20,
+                  },
+                  maintainAspectRatio: false,
+                  scales: {
+                    x: {
+                      grid: {
+                        display: false,
+                      },
+                      ticks: {
+                        color: '#C7CCDC',
+                      },
+                    },
+                    y: {
+                      border: {
+                        display: false,
+                      },
+                      grid: {
+                        lineWidth: 2,
+                      },
+
+                      ticks: {
+                        display: false, // Скрываем метки на оси y
+                      },
                     },
                   },
-                ],
-              }}
-              options={{
-                layout: {
-                  padding: 20,
-                },
-                maintainAspectRatio: false,
-                scales: {
-                  x: {
-                    grid: {
-                      display: false,
+                  plugins: {
+                    legend: {
+                      display: false, // Убираем легенду
                     },
-                    ticks: {
+                    tooltip: {
+                      enabled: false,
+                    },
+                    datalabels: {
+                      anchor: 'end',
+                      align: 'top',
                       color: '#C7CCDC',
-                    },
-                  },
-                  y: {
-                    border: {
-                      display: false,
-                    },
-                    grid: {
-                      lineWidth: 2,
-                    },
 
-                    ticks: {
-                      display: false, // Скрываем метки на оси y
+                      formatter: function (value) {
+                        return `${value} UAH`;
+                      },
                     },
                   },
-                },
-                plugins: {
-                  legend: {
-                    display: false, // Убираем легенду
-                  },
-                  tooltip: {
-                    enabled: false,
-                  },
-                  datalabels: {
-                    anchor: 'end',
-                    align: 'top',
-                    color: '#C7CCDC',
-
-                    formatter: function (value) {
-                      return `${value} UAH`;
-                    },
-                  },
-                },
-              }}
+                }}
               />
-          ) : (
-            <Bar
-              data={{
-                labels: data.map(row => row[0]),
+            ) : (
+              <Bar
+                data={{
+                  labels: data.map(row => row[0]),
 
-                datasets: [
-                  {
-                    label: '',
-                    data: data.map(row => row[1]),
+                  datasets: [
+                    {
+                      label: '',
+                      data: data.map(row => row[1]),
 
-                    barThickness: 15,
-                    minBarLength: 70,
-                    //   maxBarThickness: 38,
-                    // categoryPercentage: 1, // Задает фиксированную ширину категории (бара)
-                    //   barPercentage: 0.5,
-                    grouped: true,
-                    borderRadius: 8,
-                    backgroundColor: function (context) {
-                      const color = { first: '#383C46', end: '#60C470' };
-                      const color1 = { first: '#373745', end: '#5B5B6D' };
-                      const chart = context.chart;
-                      const { ctx, chartArea } = chart;
+                      barThickness: 15,
+                      minBarLength: 70,
+                      //   maxBarThickness: 38,
+                      categoryPercentage: 0.5, // Задает фиксированную ширину категории (бара)
+                      barPercentage: 0.2,
+                      grouped: true,
+                      borderRadius: 8,
+                      backgroundColor: function (context) {
+                        const color = { first: '#383C46', end: '#60C470' };
+                        const color1 = { first: '#373745', end: '#5B5B6D' };
+                        const chart = context.chart;
+                        const { ctx, chartArea } = chart;
 
-                      if (!chartArea) {
-                        // This case happens on initial chart load
-                        return;
-                      }
-                      return [
-                        getGradientColorHorizontal(ctx, chartArea, color),
-                        getGradientColorHorizontal(ctx, chartArea, color1),
-                        getGradientColorHorizontal(ctx, chartArea, color1),
-                      ];
+                        if (!chartArea) {
+                          // This case happens on initial chart load
+                          return;
+                        }
+                        return [
+                          getGradientColorHorizontal(ctx, chartArea, color),
+                          getGradientColorHorizontal(ctx, chartArea, color1),
+                          getGradientColorHorizontal(ctx, chartArea, color1),
+                        ];
+                      },
+                    },
+                  ],
+                }}
+                options={{
+                  indexAxis: 'y',
+
+                  layout: {
+                    padding: 20,
+                  },
+                  responsive: true, // Разрешаем графику адаптироваться к размеру контейнера
+                  // maintainAspectRatio: false, // Разрешаем графику растягиваться внутри контейнера
+                  scales: {
+                    x: {
+                      display: false,
+                      grid: {
+                        display: false,
+                      },
+                    },
+                    y: {
+                      beginAtZero: true,
+                      grid: {
+                        display: false,
+                      },
+                      border: {
+                        display: false,
+                      },
+
+                      ticks: {
+                        display: false,
+                        color: '#C7CCDC',
+                      },
                     },
                   },
-                ],
-              }}
-              options={{
-                indexAxis: 'y',
-
-                layout: {
-                  padding: 20,
-                },
-                responsive: true, // Разрешаем графику адаптироваться к размеру контейнера
-                // maintainAspectRatio: false, // Разрешаем графику растягиваться внутри контейнера
-                scales: {
-                  x: {
-                    display: false,
-                    grid: {
-                      display: false,
+                  plugins: {
+                    legend: {
+                      display: false, // Убираем легенду
                     },
-                  },
-                  y: {
-                    beginAtZero: true,
-                    grid: {
-                      display: false,
+                    tooltip: {
+                      enabled: false,
                     },
-                    border: {
-                      display: false,
-                    },
-
-                    ticks: {
-                      display: false,
+                    datalabels: {
+                      anchor: 'end',
+                      align: 'top',
                       color: '#C7CCDC',
+                      padding: 4,
+                      // offset: 2,
+                      formatter: function (value) {
+                        return `${value} UAH`;
+                      },
+                      labels: {
+                        title: {
+                          font: {
+                            size: '10px',
+                          },
+                        },
+                      },
                     },
                   },
-                },
-                plugins: {
-                  legend: {
-                    display: false, // Убираем легенду
-                  },
-                  tooltip: {
-                    enabled: false,
-                  },
-                  datalabels: {
-                    anchor: 'end',
-                    align: 'top',
-                    color: '#C7CCDC',
-                    padding: 6,
-                    formatter: function (value) {
-                      return `${value} UAH`;
-                    },
-                  },
-                },
-              }}
-              plugins={[progressBar]}
-            />
-          ))}
+                }}
+                plugins={[progressBar]}
+              />
+            ))}
         </ChartWrapper>
       )}
     </>

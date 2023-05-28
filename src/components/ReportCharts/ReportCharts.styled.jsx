@@ -11,7 +11,9 @@ export const ChartWrapper = styled.div`
     width: auto;
     padding: 0 10px 0 0;
     /* max-width: 440px; */
-    height: auto;
+    /* height: auto; */
+    min-height: 50px;
+
     background: none;
     box-shadow: none;
     border-radius: none;

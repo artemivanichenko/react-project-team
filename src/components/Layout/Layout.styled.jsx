@@ -32,40 +32,41 @@ export const ContainerPublic = styled.div`
         rgba(56, 56, 71, 0)
       ),
       #383847;
-    background-repeat: no-repeat;background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 `;
 
 export const BgOverlay = styled.div`
+  overflow-y: scroll;
   @media screen and (min-width: 320px) {
     background: radial-gradient(
-        320px at left top,
-        rgba(176, 232, 185, 0.2),
-        rgba(56, 56, 71, 0)
-      ),
-      #383847;
+      320px at left top,
+      rgba(176, 232, 185, 0.2),
+      rgba(56, 56, 71, 0)
+    );
 
     height: 100vh;
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
   }
   @media screen and (min-width: 768px) {
-    /* background-image: url(${bgOverlayTablet}); */
+    background-image: url(${bgOverlayTablet});
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center calc(50% + 70px);
-    height: 100vh;
+    height: 100%;
   }
   @media screen and (min-width: 1280px) {
-    /* background-image: url(${bgBM}); */
+    background-image: url(${bgBM});
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center calc(50% + 70px);
-    height: 100vh;
+    height: 100%;
   }
 `;
 
 export const ContentImage = styled.div`
-background-attachment: fixed;
+  background-attachment: fixed;
   @media screen and (min-width: 320px) {
   }
   @media screen and (min-width: 768px) {
@@ -92,19 +93,18 @@ background-attachment: fixed;
 `;
 
 export const ContainerPrivate = styled.div`
-
-overflow-y: scroll;
-  @media screen and (min-width: 320px) and (max-width: 480px) {
+  overflow-y: scroll;
+  @media screen and (min-width: 320px) {
+    background-color: #31313d;
   }
   @media screen and (min-width: 768px) {
-    background: url(${bgOverlayTablet}), radial-gradient(
+    background: radial-gradient(
         320px at 10% calc(100% - 80%),
         rgba(176, 232, 185, 0.3),
         rgba(56, 56, 71, 0)
-      ), #383847;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center calc(50% + 70px);
+      ),
+      #383847;
+
     height: 100vh;
   }
   @media screen and (min-width: 1280px) {
@@ -112,8 +112,9 @@ overflow-y: scroll;
         320px at 10% calc(100% - 80%),
         rgba(176, 232, 185, 0.3),
         rgba(56, 56, 71, 0)
-      )
-      , #383847, url()(${bgBM});
+      ),
+      #383847;
+
     height: 100vh;
   }
 `;
