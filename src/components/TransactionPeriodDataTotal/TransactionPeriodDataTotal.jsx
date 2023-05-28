@@ -10,6 +10,8 @@ import {
 } from './TransactionPeriodDataTotal.styled';
 
 const TransactionPeriodDataTotal = () => {
+  
+
   const IncomesTotal = useSelector(selectIncomesTotal);
   const ExpensesTotal = useSelector(selectExpensesTotal);
 
