@@ -1,8 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { useParams } from 'react-router';
 import {
   selectMonthExpenses,
   selectMonthIncome,
+  selectIncome,
+  selectExpenses,
 } from 'redux/transaction/transactionSelectors';
 import {
   getTransactionExpense,
@@ -18,12 +21,17 @@ import {
   SumStyled,
 } from './Summary.styled';
 
-const Summary = ({ type = 'expense' }) => {
+const Summary = () => {
+  const params = useParams();
+  const expenses = params.expenses;
+
   let conditionalSelect = null;
   const monthExpenses = useSelector(selectMonthExpenses);
   const monthIncome = useSelector(selectMonthIncome);
+  const transactionIncome = useSelector(selectIncome);
+  const transactionExpenses = useSelector(selectExpenses);
 
-  type === 'expense'
+  expenses === 'expenses'
     ? (conditionalSelect = monthExpenses)
     : (conditionalSelect = monthIncome);
 
@@ -32,10 +40,10 @@ const Summary = ({ type = 'expense' }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    type === 'expense'
-      ? dispatch(getTransactionExpense())
-      : dispatch(getTransactionIncome());
-  }, [dispatch, type]);
+    expenses === 'expenses'
+      ? monthExpenses.length === 0 && dispatch(getTransactionExpense())
+      : monthIncome.length === 0 && dispatch(getTransactionIncome());
+  }, [dispatch, expenses, transactionIncome, transactionExpenses, monthExpenses, monthIncome]);
 
   const currentMonth = new Date().getMonth();
   const monthEng = [
@@ -58,15 +66,20 @@ const Summary = ({ type = 'expense' }) => {
       <TextStyled>Summary</TextStyled>
       <DivStyled>
         <ListStyled>
-          {sumValues.map(
-            (sum, idx) =>
-              idx <= currentMonth && (
+          {sumValues.map((sum, idx) => {
+            if (idx <= currentMonth) {
+              if (sum === 'N/A') {
+                sum = 0;
+              }
+              return (
                 <ListItem key={monthEng[idx]}>
                   <MonthStyled>{monthEng[idx]}</MonthStyled>
                   <SumStyled>{sum}</SumStyled>
                 </ListItem>
-              )
-          )}
+              );
+            }
+            return null;
+          })}
         </ListStyled>
       </DivStyled>
     </WrapperStyled>

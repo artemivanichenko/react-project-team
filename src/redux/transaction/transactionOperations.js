@@ -27,7 +27,8 @@ export const addTransactionIncome = createAsyncThunk(
   'transaction/income/add',
   async (transactionForm, { rejectWithValue, dispatch }) => {
     try {
-      const { data } = await addTransactionIncomeApi(transactionForm);
+      await addTransactionIncomeApi(transactionForm);
+      const { data } = await getTransactionIncomeApi();
       return data;
     } catch (error) {
       dispatch(
@@ -39,7 +40,7 @@ export const addTransactionIncome = createAsyncThunk(
 );
 
 export const getTransactionExpense = createAsyncThunk(
-  'transaction/expense/get',
+  'transaction/expenses/get',
   async (_, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await getTransactionExpenseApi();
@@ -52,10 +53,11 @@ export const getTransactionExpense = createAsyncThunk(
 );
 
 export const addTransactionExpense = createAsyncThunk(
-  'transaction/expense/add',
+  'transaction/expenses/add',
   async (transactionForm, { rejectWithValue, dispatch }) => {
     try {
-      const { data } = await addTransactionExpenseApi(transactionForm);
+      await addTransactionExpenseApi(transactionForm);
+      const { data } = await getTransactionExpenseApi();
       return data;
     } catch (error) {
       dispatch(
@@ -71,9 +73,13 @@ export const addTransactionExpense = createAsyncThunk(
 
 export const deleteTransaction = createAsyncThunk(
   'transaction/delete',
-  async (transactionId, { rejectWithValue, dispatch }) => {
+  async ([transactionId, expenses], { rejectWithValue, dispatch }) => {
     try {
-      const { data } = await deleteTransactionApi(transactionId);
+      await deleteTransactionApi(transactionId);
+      const { data } =
+        expenses === 'income'
+          ? await getTransactionIncomeApi()
+          : await getTransactionExpenseApi();
       return data;
     } catch (error) {
       dispatch(

@@ -10,17 +10,30 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { green } from '@mui/material/colors';
 
 const theme = createTheme({
+  components: {
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          padding: 0,
+          marginTop: "7px",
+        }
+      }
+    }
+  },
   palette: {
     primary: {
-      // Purple and green play nicely together.
       main: green[700],
     },
+    action: {
+      disabled: '#C7CCDC50',
+    }
   },
 });
 
 const CurrentPeriod = () => {
   const dispatch = useDispatch();
   const [reportPeriod, setReportPeriod] = useState(DateTime.now());
+
 
   useEffect(() => {
     dispatch(getTransactionPeriod(reportPeriod.toFormat('yyyy-LL')));
@@ -62,6 +75,7 @@ const CurrentPeriod = () => {
           </IconButton>
         </ThemeProvider>
       </BtnRow>
+
     </Conteiner>
   );
 };

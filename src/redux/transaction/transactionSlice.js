@@ -6,116 +6,19 @@ import {
   addTransactionExpense,
   deleteTransaction,
   addBalance,
-  // getUserInfo,
 } from './transactionOperations';
 
 const initialState = {
   isLoading: false,
   error: null,
-  filterDate: null,
-  newBalance: 100,
-  transactionIncome: {
-    description: 'Income description',
-    amount: 100,
-    date: '2023-05-23',
-    category: 'Доп. доход',
-    _id: '507f1f77bcf86cd799439011',
-  },
-  incomes: [
-    {
-      description: 'Income description',
-      amount: 100,
-      date: '2023-05-23',
-      category: 'Доп. доход',
-      _id: '507f1f77bcf86cd799439011',
-    },
-    {
-      description: 'Income description',
-      amount: 200,
-      date: '2023-05-23',
-      category: 'Доп. доход',
-      _id: '507f1f77bcf86cd799439012',
-    },
-    {
-      description: 'Income description',
-      amount: 300,
-      date: '2023-05-23',
-      category: 'Доп. доход',
-      _id: '507f1f77bcf86cd799439013',
-    },
-    {
-      description: 'Income description',
-      amount: 400,
-      date: '2023-05-23',
-      category: 'Доп. доход',
-      _id: '507f1f77bcf86cd799439014',
-    },
-  ],
-  monthStatsIncome: {
-    Январь: 5,
-    Февраль: 100,
-    Март: 'N/A',
-    Апрель: 15,
-    Май: 1,
-    Июнь: 'N/A',
-    Июль: 3,
-    Август: 18,
-    Сентябрь: 47,
-    Октябрь: 77,
-    Ноябрь: 96,
-    Декабрь: 123,
-  },
-  transactionExpense: {
-    description: 'Expense description',
-    amount: 100,
-    date: '2020-12-31',
-    category: 'Продукты',
-    _id: '507f1f77bcf86cd799439011',
-  },
-  expenses: [
-    {
-      description: 'Expense description',
-      amount: 100,
-      date: '2023-05-23',
-      category: 'Продукты',
-      _id: '507f1f77bcf86cd799439016',
-    },
-    {
-      description: 'Expense description',
-      amount: 50,
-      date: '2023-05-23',
-      category: 'Продукты',
-      _id: '507f1f77bcf86cd799439017',
-    },
-    {
-      description: 'Expense description',
-      amount: 60,
-      date: '2023-05-23',
-      category: 'Продукты',
-      _id: '507f1f77bcf86cd799439018',
-    },
-    {
-      description: 'Expense description',
-      amount: 80,
-      date: '2023-05-23',
-      category: 'Продукты',
-      _id: '507f1f77bcf86cd799439019',
-    },
-  ],
-  monthStatsExpenses: {
-    Январь: 5,
-    Февраль: 100,
-    Март: 90,
-    Апрель: 48,
-    Май: 1,
-    Июнь: 50,
-    Июль: 3,
-    Август: 'N/A',
-    Сентябрь: 'N/A',
-    Октябрь: 77,
-    Ноябрь: 'N/A',
-    Декабрь: 123,
-  },
+  filterDate: '',
+  newBalance: null,
+  transactionIncome: [],
+  incomes: [],
+  monthStatsIncome: [],
+  transactionExpense: [],
+  expenses: [],
+  monthStatsExpenses: [],
 };
 
 const transactionSlice = createSlice({
@@ -135,7 +38,6 @@ const transactionSlice = createSlice({
       .addCase(getTransactionIncome.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        // TO CHECK below!!!
         state.incomes = payload.incomes;
         state.monthStatsIncome = payload.monthsStats;
       })
@@ -150,7 +52,6 @@ const transactionSlice = createSlice({
       .addCase(getTransactionExpense.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        // TO CHECK below!!!
         state.expenses = payload.expenses;
         state.monthStatsExpenses = payload.monthsStats;
       })
@@ -162,10 +63,13 @@ const transactionSlice = createSlice({
       .addCase(addTransactionIncome.pending, state => {
         state.isLoading = true;
       })
-      .addCase(addTransactionIncome.fulfilled, (state, { payload }) => {
+      .addCase(addTransactionIncome.fulfilled, (state, { payload, type }) => {
         state.isLoading = false;
         state.error = null;
-        // TO DO!!!
+        state.incomes = payload.incomes;
+        state.monthStatsIncome = payload.monthsStats;
+        // const transactionType = type.split('/')[1];
+        // state[transactionType].push(payload.transaction);
       })
       .addCase(addTransactionIncome.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -175,24 +79,29 @@ const transactionSlice = createSlice({
       .addCase(addTransactionExpense.pending, state => {
         state.isLoading = true;
       })
-      .addCase(addTransactionExpense.fulfilled, (state, { payload }) => {
+      .addCase(addTransactionExpense.fulfilled, (state, { payload, type }) => {
         state.isLoading = false;
         state.error = null;
-        // TO DO!!!
+        state.expenses = payload.expenses;
+        state.monthStatsExpenses = payload.monthsStats;
+        // const transactionType = type.split('/')[1];
+        // state[transactionType].push(payload.transaction);
       })
       .addCase(addTransactionExpense.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       })
-
       // ================== DELETE TRANSACTION
       .addCase(deleteTransaction.pending, state => {
         state.isLoading = true;
       })
       .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = null;
-        // TO DO!!!
+        return {
+          ...state,
+          isLoading: false,
+          error: null,
+          ...payload,
+        };
       })
       .addCase(deleteTransaction.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -206,7 +115,6 @@ const transactionSlice = createSlice({
         state.newBalance = payload.newBalance;
         state.isLoading = false;
         state.error = null;
-        // TO DO!!!
       })
       .addCase(addBalance.rejected, (state, { payload }) => {
         state.isLoading = false;

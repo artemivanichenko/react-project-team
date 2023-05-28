@@ -1,13 +1,12 @@
 import { HandySvg } from 'handy-svg';
 import styled from 'styled-components';
 
-export const TableStyled = styled.table`
-  width: 58.3vw;
-  max-height: 100px;
-  table-layout: fixed;
-  border-spacing: 0;
+export const ScrollWrapStyled = styled.div`
+max-width: 58.3vw;
+  max-height: 360px;
+  overflow-x: hidden;
+  overflow-y: scroll;
 
-  overflow: hidden auto;
   &::-webkit-scrollbar {
     display: block;
     height: 82px;
@@ -31,41 +30,14 @@ export const TableStyled = styled.table`
   }
 `;
 
-export const ListStyled = styled.ul`
-  height: 280px;
-  padding-left: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-  list-style: none;
-`;
-
-export const ListItem = styled.li`
-  padding-top: 12px;
-  padding-bottom: 12px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  line-height: 1.16;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #c7ccdc;
-  border-bottom: 2px solid #383847;
-
-  &:first-of-type {
-    border-top: 4px solid #383847;
-  }
-`;
-
-export const MonthStyled = styled.span`
-  padding-left: 12px;
-`;
-
-export const SumStyled = styled.span`
-  padding-right: 12px;
+export const TableStyled = styled.table`
+  width: 58.3vw;
+  table-layout: auto;
+  border-spacing: 0;
 `;
 
 export const TableHeadRowStyled = styled.tr`
-  width: 100%;
+  min-width: 746px;
   height: 38px;
   font-weight: 700;
   font-size: 12px;
@@ -81,20 +53,20 @@ export const TableHeadColumnStyled = styled.td`
   margin: 0;
 
   &:first-child {
-    width: 20%;
+    /* width: 20%; */
     border-top-left-radius: 20px;
   }
   &:nth-child(2) {
-    width: 30%;
+    /* width: 30%; */
   }
   &:nth-child(3) {
-    width: 25%;
+    /* width: 25%; */
   }
   &:nth-child(4) {
-    width: 20%;
+    /* width: 20%; */
   }
   &:last-child {
-    width: 5%;
+    /* width: 5%; */
     border-top-right-radius: 20px;
   }
   &:nth-child(n + 3) {
@@ -125,14 +97,14 @@ export const TableColumnStyled = styled.td`
   }
   &:nth-child(4) {
     font-weight: 700;
-    color: #60c470;
-  }
-  &[data-color='income'] {
     color: #fe4566;
   }
+  &[data-color='income'] {
+    color: #60c470;
+  }
   &:last-child {
-    padding: 0;
-    margin-top: 2px;
+    padding: 4px;
+    /* margin-top: 2px; */
     border-right: 2px solid #474759;
   }
 `;

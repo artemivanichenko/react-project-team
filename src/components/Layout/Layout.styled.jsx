@@ -43,21 +43,21 @@ export const BgOverlay = styled.div`
       ),
       #383847;
 
-    height: 100vh;
+    height: 100%;
   }
   @media screen and (min-width: 768px) {
     background: url(${bgOverlayTablet});
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center calc(50% + 70px);
-    height: 100vh;
+    height: 100%;
   }
   @media screen and (min-width: 1280px) {
     background: url(${bgBM});
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center calc(50% + 70px);
-    height: 100vh;
+    height: 100%;
   }
 `;
 
@@ -97,7 +97,7 @@ export const ContainerPrived = styled.div`
         rgba(56, 56, 71, 0)
       ),
       #383847;
-    height: 100vh;
+    height: 100%;
   }
   @media screen and (min-width: 1280px) {
     background: radial-gradient(
@@ -106,6 +106,6 @@ export const ContainerPrived = styled.div`
         rgba(56, 56, 71, 0)
       ),
       #383847;
-    height: 100vh;
+    height: 100%;
   }
 `;
