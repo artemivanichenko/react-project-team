@@ -1,4 +1,7 @@
-import { selectExpensesData } from 'redux/reports/reportsSelectors';
+import {
+  selectExpensesData,
+  selectIncomesData,
+} from 'redux/reports/reportsSelectors';
 import { useSelector } from 'react-redux';
 import { ChartWrapper } from './ReportCharts.styled';
 import { Bar } from 'react-chartjs-2';
@@ -75,30 +78,55 @@ const ReportCharts = () => {
   //   const isHorizontalChart = window.innerWidth <= 767;
   const isHorizontalChart = useMediaQuery({ query: '(min-width: 768px)' });
   const { value } = useParams();
+  const reportExpenses = useSelector(selectExpensesData);
+  const reportIncomes = useSelector(selectIncomesData);
   //выбранная категория ///
-  const categoryExpense = value => {
-    return selectionExpenses
+  const categoryChart = value => {
+    const expense = selectionExpenses
       .filter(el => el.value === value)
       .map(({ trans }) => trans)
       .join();
+    const income = selectionIncome
+      .filter(el => el.value === value)
+      .map(({ trans }) => trans)
+      .join();
+    return expense ? expense : income;
   };
 
-  const reportExpenses = useSelector(selectExpensesData);
-  const objectToArray = (object, category) => {
-    const objcategory = Object.entries(object)
+  const objectToArray = (expense, income, category) => {
+    const objcategoryExpense = Object.entries(expense)
       .map(([name, { total, ...value }]) => {
         return { name, content: value };
       })
       .filter(el => el.name === category)
       .map(({ name, content }) => content);
+    const objcategoryIncome = Object.entries(income)
+      .map(([name, { total, ...value }]) => {
+        return { name, content: value };
+      })
+      .filter(el => el.name === category)
+      .map(({ name, content }) => content);
+    console.log(objcategoryExpense, objcategoryIncome);
 
-    const res = objcategory.length ? Object.entries(objcategory[0]) : [];
+    const res = [];
+    if (objcategoryExpense.length) {
+      return Object.entries(objcategoryExpense[0]);
+    }
+    if (objcategoryIncome.length) {
+      return Object.entries(objcategoryIncome[0]);
+    }
 
+    console.log(res);
     return res;
   };
-  const expensesArray = objectToArray(reportExpenses, categoryExpense(value));
 
-  const data = expensesArray.sort((a, b) => b[1] - a[1]);
+  const dataArray = objectToArray(
+    reportExpenses,
+    reportIncomes,
+    categoryChart(value)
+  );
+
+  const data = dataArray.sort((a, b) => b[1] - a[1]);
 
   return (
     <>
@@ -114,6 +142,7 @@ const ReportCharts = () => {
                     data: data.map(row => row[1]),
                     // indexAxis: 'y',
                     barThickness: 38,
+
                     //   maxBarThickness: 38,
                     categoryPercentage: 0.5, // Задает фиксированную ширину категории (бара)
                     //   barPercentage: 0.5,
@@ -176,6 +205,7 @@ const ReportCharts = () => {
                     anchor: 'end',
                     align: 'top',
                     color: '#C7CCDC',
+
                     formatter: function (value) {
                       return `${value} UAH`;
                     },

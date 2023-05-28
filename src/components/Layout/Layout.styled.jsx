@@ -97,7 +97,7 @@ export const ContainerPrived = styled.div`
         rgba(56, 56, 71, 0)
       ),
       #383847;
-    height: 100vh;
+    height: 100%;
   }
   @media screen and (min-width: 1280px) {
     background: radial-gradient(
@@ -106,6 +106,6 @@ export const ContainerPrived = styled.div`
         rgba(56, 56, 71, 0)
       ),
       #383847;
-    height: 100vh;
+    height: 100%;
   }
 `;
