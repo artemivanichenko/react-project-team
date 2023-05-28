@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/goit-bc50-react-project/static/css/main.d44848bb.css",
-    "main.js": "/goit-bc50-react-project/static/js/main.55d1497e.js",
-    "static/js/847.48716cd7.chunk.js": "/goit-bc50-react-project/static/js/847.48716cd7.chunk.js",
+    "main.js": "/goit-bc50-react-project/static/js/main.ab529b11.js",
+    "static/js/847.82758bad.chunk.js": "/goit-bc50-react-project/static/js/847.82758bad.chunk.js",
     "static/js/995.67a01201.chunk.js": "/goit-bc50-react-project/static/js/995.67a01201.chunk.js",
-    "static/js/877.f8f25af7.chunk.js": "/goit-bc50-react-project/static/js/877.f8f25af7.chunk.js",
+    "static/js/9.4fa38639.chunk.js": "/goit-bc50-react-project/static/js/9.4fa38639.chunk.js",
     "static/js/681.b6b0e3db.chunk.js": "/goit-bc50-react-project/static/js/681.b6b0e3db.chunk.js",
     "static/css/681.99472f97.chunk.css": "/goit-bc50-react-project/static/css/681.99472f97.chunk.css",
     "static/js/562.018196f2.chunk.js": "/goit-bc50-react-project/static/js/562.018196f2.chunk.js",
@@ -32,13 +32,12 @@
     "static/media/Roboto-Regular.woff": "/goit-bc50-react-project/static/media/Roboto-Regular.31012f9b3e3da44f87e8.woff",
     "static/media/Nunito-Regular.woff": "/goit-bc50-react-project/static/media/Nunito-Regular.c8b53f778f642bfc367b.woff",
     "static/media/sprite.svg": "/goit-bc50-react-project/static/media/sprite.516d2f03d6b1acdbbe63b363c88904b8.svg",
-    "static/media/delete.svg": "/goit-bc50-react-project/static/media/delete.fd86929c549b22a25a1684264eca7497.svg",
     "index.html": "/goit-bc50-react-project/index.html",
     "main.d44848bb.css.map": "/goit-bc50-react-project/static/css/main.d44848bb.css.map",
-    "main.55d1497e.js.map": "/goit-bc50-react-project/static/js/main.55d1497e.js.map",
-    "847.48716cd7.chunk.js.map": "/goit-bc50-react-project/static/js/847.48716cd7.chunk.js.map",
+    "main.ab529b11.js.map": "/goit-bc50-react-project/static/js/main.ab529b11.js.map",
+    "847.82758bad.chunk.js.map": "/goit-bc50-react-project/static/js/847.82758bad.chunk.js.map",
     "995.67a01201.chunk.js.map": "/goit-bc50-react-project/static/js/995.67a01201.chunk.js.map",
-    "877.f8f25af7.chunk.js.map": "/goit-bc50-react-project/static/js/877.f8f25af7.chunk.js.map",
+    "9.4fa38639.chunk.js.map": "/goit-bc50-react-project/static/js/9.4fa38639.chunk.js.map",
     "681.99472f97.chunk.css.map": "/goit-bc50-react-project/static/css/681.99472f97.chunk.css.map",
     "562.018196f2.chunk.js.map": "/goit-bc50-react-project/static/js/562.018196f2.chunk.js.map",
     "450.420d1012.chunk.css.map": "/goit-bc50-react-project/static/css/450.420d1012.chunk.css.map",
@@ -48,6 +47,6 @@
   },
   "entrypoints": [
     "static/css/main.d44848bb.css",
-    "static/js/main.55d1497e.js"
+    "static/js/main.ab529b11.js"
   ]
 }
