@@ -10,7 +10,7 @@ export const StyledBox = styled.div`
   margin-bottom: 40px;
   @media screen and (min-width: 768px) {
     width: 704px;
-    height: 346px;
+    /* height: 346px; */
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     border-bottom-left-radius: 30px;
@@ -29,7 +29,7 @@ export const StyledButtonReport = styled.div`
   align-items: center;
   margin-top: 20px;
 `;
-export const StyledItem = styled.li``;
+export const StyledItem = styled.div``;
 export const StyledLine = styled.div`
   display: none;
   border-bottom: 2px solid #80848f;

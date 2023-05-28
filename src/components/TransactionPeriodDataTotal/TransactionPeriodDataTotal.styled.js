@@ -14,7 +14,7 @@ export const StyledBox = styled.div`
   margin-bottom: 32px;
   padding-top: 7px;
   padding-bottom: 7px;
-  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.05),
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
   @media screen and (min-width: 768px) {
     width: 704px;

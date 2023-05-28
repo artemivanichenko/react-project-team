@@ -44,7 +44,6 @@ const ReportCategories = () => {
 
   const expensesArray = objectToArray(reportExpenses);
   const incomesArray = objectToArray(reportIncomes);
-  console.log(expensesArray);
   const handleButtonClick = () => {
     if (reportChoice === 'expenses') {
       setReportChoice('incomes');
@@ -54,13 +53,17 @@ const ReportCategories = () => {
   };
 
   const filteredExpensesArray = expensesArray
-    .map(({ name, total }) => {
-      const filteredArray = selectionExpenses.filter(
-        ({ value, label, trans }) => trans === name
-      );
+    .map(
+      ({ name, total }) => {
+        console.log(777);
+        const filteredArray = selectionExpenses.filter(
+          ({ value, label, trans }) => trans === name
+        );
 
-      return [{ total, ...filteredArray[0] }];
-    })
+        return [{ total, ...filteredArray[0] }];
+      },
+      [expensesArray]
+    )
     .flat(Infinity);
   const filteredIncomesArray = incomesArray
     .map(({ name, total }) => {
