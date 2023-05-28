@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/goit-bc50-react-project/static/css/main.d44848bb.css",
-    "main.js": "/goit-bc50-react-project/static/js/main.d1882922.js",
+    "main.js": "/goit-bc50-react-project/static/js/main.7e9bc2a0.js",
     "static/js/764.44ed1a16.chunk.js": "/goit-bc50-react-project/static/js/764.44ed1a16.chunk.js",
     "static/js/995.4f3ee19d.chunk.js": "/goit-bc50-react-project/static/js/995.4f3ee19d.chunk.js",
-    "static/js/844.b6dec5f7.chunk.js": "/goit-bc50-react-project/static/js/844.b6dec5f7.chunk.js",
+    "static/js/844.f6168fd5.chunk.js": "/goit-bc50-react-project/static/js/844.f6168fd5.chunk.js",
     "static/css/260.d83f0a8a.chunk.css": "/goit-bc50-react-project/static/css/260.d83f0a8a.chunk.css",
     "static/js/260.de95cbd2.chunk.js": "/goit-bc50-react-project/static/js/260.de95cbd2.chunk.js",
     "static/css/79.d829dac4.chunk.css": "/goit-bc50-react-project/static/css/79.d829dac4.chunk.css",
@@ -34,10 +34,10 @@
     "static/media/delete.svg": "/goit-bc50-react-project/static/media/delete.fd86929c549b22a25a1684264eca7497.svg",
     "index.html": "/goit-bc50-react-project/index.html",
     "main.d44848bb.css.map": "/goit-bc50-react-project/static/css/main.d44848bb.css.map",
-    "main.d1882922.js.map": "/goit-bc50-react-project/static/js/main.d1882922.js.map",
+    "main.7e9bc2a0.js.map": "/goit-bc50-react-project/static/js/main.7e9bc2a0.js.map",
     "764.44ed1a16.chunk.js.map": "/goit-bc50-react-project/static/js/764.44ed1a16.chunk.js.map",
     "995.4f3ee19d.chunk.js.map": "/goit-bc50-react-project/static/js/995.4f3ee19d.chunk.js.map",
-    "844.b6dec5f7.chunk.js.map": "/goit-bc50-react-project/static/js/844.b6dec5f7.chunk.js.map",
+    "844.f6168fd5.chunk.js.map": "/goit-bc50-react-project/static/js/844.f6168fd5.chunk.js.map",
     "260.d83f0a8a.chunk.css.map": "/goit-bc50-react-project/static/css/260.d83f0a8a.chunk.css.map",
     "260.de95cbd2.chunk.js.map": "/goit-bc50-react-project/static/js/260.de95cbd2.chunk.js.map",
     "79.d829dac4.chunk.css.map": "/goit-bc50-react-project/static/css/79.d829dac4.chunk.css.map",
@@ -48,6 +48,6 @@
   },
   "entrypoints": [
     "static/css/main.d44848bb.css",
-    "static/js/main.d1882922.js"
+    "static/js/main.7e9bc2a0.js"
   ]
 }
