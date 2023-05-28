@@ -43,7 +43,7 @@ const Summary = () => {
     expenses === 'expenses'
       ? monthExpenses.length === 0 && dispatch(getTransactionExpense())
       : monthIncome.length === 0 && dispatch(getTransactionIncome());
-  }, [dispatch, expenses, transactionIncome, transactionExpenses]);
+  }, [dispatch, expenses, transactionIncome, transactionExpenses, monthExpenses, monthIncome]);
 
   const currentMonth = new Date().getMonth();
   const monthEng = [
