@@ -17,19 +17,19 @@ const Layout = () => {
     <>
       {isAuth ? (
         <ContainerPrivate>
-          {/* <BgOverlay> */}
+          <BgOverlay>
             <Header />
-            <Suspense fallback={<Loader/>}>
+            <Suspense fallback={<Loader />}>
               <Outlet />
             </Suspense>
-          {/* </BgOverlay> */}
+          </BgOverlay>
         </ContainerPrivate>
       ) : (
         <ContainerPublic>
           <BgOverlay>
             <ContentImage>
               <Header />
-              <Suspense fallback={<Loader/>}>
+              <Suspense fallback={<Loader />}>
                 <Outlet />
               </Suspense>
             </ContentImage>
