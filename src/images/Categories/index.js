@@ -11,4 +11,3 @@ export { default as technique } from '../Categories/Expenses/technique.png';
 export { default as transport } from '../Categories/Expenses/transport.png';
 export { default as salary } from '../Categories/Income/salary.png';
 export { default as income } from '../Categories/Income/income.png';
-export { default as delete } from '../delete.svg';
