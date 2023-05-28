@@ -1,12 +1,18 @@
 import * as React from 'react';
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectFilterDate, selectIncome, selectExpenses } from 'redux/transaction/transactionSelectors';
+import { useState } from 'react';
+import { useMemo } from 'react';
+
+import {
+  selectFilterDate,
+  selectIncome,
+  selectExpenses,
+} from 'redux/transaction/transactionSelectors';
 import sprite from 'images/sprite.svg';
 import {
   BtnDelStyled,
   ScrollWrapStyled,
-  // SvgStyled,
   TableColumnStyled,
   TableHeadColumnStyled,
   TableHeadRowStyled,
@@ -14,13 +20,12 @@ import {
   TableStyled,
 } from './TransactionsList.styled';
 import { selectionExpenses, selectionIncome } from '../../shared/category';
-// import { delete as icon } from '../../images/Categories/index';
 import { deleteTransaction } from 'redux/transaction/transactionOperations';
-import { useMemo } from 'react';
+import ModalConfirm from 'components/ModalConfirm/ModalConfirm';
 
 const TransactionsList = () => {
-  const {transactionType} = useParams();
-  // const expenses = transactionType;
+  const { transactionType } = useParams();
+  const [delTransaction, setDelTransaction] = useState([]);
   const dispatch = useDispatch();
   const transactionExpenses = useSelector(selectExpenses);
   const transactionIncomes = useSelector(selectIncome);
@@ -38,22 +43,35 @@ const TransactionsList = () => {
       .sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
   }, [dateFilter, transactionExpenses]);
 
-  const transaction = transactionType === 'income'
-    ? transactionIncome : transactionExpense;
+  const transaction =
+    transactionType === 'income' ? transactionIncome : transactionExpense;
 
-  // console.log('trans', transaction.length);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleClose = () => {
+    setShowModal(false);
+  };
+  const handleOpen = data => {
+    setDelTransaction(data);
+    setShowModal(true);
+  };
+
+  const handleDeleTransaction = () => {
+    dispatch(deleteTransaction(delTransaction));
+    setShowModal(false);
+  };
 
   return (
     <div>
       <TableStyled>
         <thead>
-        <TableHeadRowStyled>
-          <TableHeadColumnStyled>DATE</TableHeadColumnStyled>
-          <TableHeadColumnStyled>DESCRIPTION</TableHeadColumnStyled>
-          <TableHeadColumnStyled>CATEGORY</TableHeadColumnStyled>
-          <TableHeadColumnStyled>SUM</TableHeadColumnStyled>
-          <TableHeadColumnStyled></TableHeadColumnStyled>
-        </TableHeadRowStyled>
+          <TableHeadRowStyled>
+            <TableHeadColumnStyled>DATE</TableHeadColumnStyled>
+            <TableHeadColumnStyled>DESCRIPTION</TableHeadColumnStyled>
+            <TableHeadColumnStyled>CATEGORY</TableHeadColumnStyled>
+            <TableHeadColumnStyled>SUM</TableHeadColumnStyled>
+            <TableHeadColumnStyled></TableHeadColumnStyled>
+          </TableHeadRowStyled>
         </thead>
       </TableStyled>
       <ScrollWrapStyled>
@@ -78,10 +96,11 @@ const TransactionsList = () => {
                 <TableColumnStyled>
                   <BtnDelStyled
                     type="button"
-                    onClick={() => dispatch(deleteTransaction([el._id, transactionType]))}
+                    onClick={() => handleOpen([el._id, transactionType])}
                   >
-                    {/* <SvgStyled src={icon} /> */}
-                    <svg><use href={sprite+'#icon-delete'}></use></svg>
+                    <svg>
+                      <use href={sprite + '#icon-delete'}></use>
+                    </svg>
                   </BtnDelStyled>
                 </TableColumnStyled>
               </TableRowStyled>
@@ -89,6 +108,13 @@ const TransactionsList = () => {
           </tbody>
         </TableStyled>
       </ScrollWrapStyled>
+      {showModal && (
+        <ModalConfirm
+          title="Are you sure?"
+          onClose={handleClose}
+          onConfirm={handleDeleTransaction}
+        />
+      )}
     </div>
   );
 };

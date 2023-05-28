@@ -1,25 +1,54 @@
 import DatePicker from 'react-datepicker';
 import styled from '@emotion/styled';
+import { NumericFormat } from 'react-number-format';
 
 export const WrapStyled = styled.div`
   display: flex;
-  gap: 32px;
   align-items: center;
-  padding-bottom: 60px;
-`;
 
-export const FormStyled = styled.form`
-  display: flex;
+  @media screen and (min-width: 320px) {
+  }
+  @media screen and (min-width: 768px) {
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+  @media screen and (min-width: 1280px) {
+    align-items: center;
+    margin-bottom: 60px;
+  }
 `;
 
 export const CalendarBox = styled.div`
   display: flex;
   align-items: center;
-  width: 104px;
+  width: 102px;
+  @media screen and (min-width: 768px) {
+    padding-top: 6px;
+    width: 94px;
+  }@media screen and (min-width: 1280px) {
+    padding: 0;
+    width: 98px;
+  }
+`;
+
+export const FormStyled = styled.form`
+  display: flex;
+  @media screen and (min-width: 320px) {
+  }
+  @media screen and (min-width: 768px) {
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  @media screen and (min-width: 1280px) {
+    flex-wrap: nowrap;
+    width: 898px;
+  }
 `;
 
 export const DatePickerStyled = styled(DatePicker)`
-  width: 100%;
+  width: 170px;
   padding: 10px;
   margin: 0;
   font-family: 'Roboto';
@@ -37,7 +66,7 @@ export const DatePickerStyled = styled(DatePicker)`
   &.react-datepicker-wrapper {
     width: 70%;
   }
-  
+
   &.react-datepicker__input-container {
     width: 70%;
   }
@@ -47,13 +76,18 @@ export const DatePickerStyled = styled(DatePicker)`
   }
 `;
 
+export const InputWrapStyled = styled.div`
+  display: flex;
+`;
+
 export const InputStyled = styled.input`
+  width: 280px;
   height: 40px;
   padding-left: 20px;
   color: rgba(199, 204, 220, 0.5);
   background: transparent;
   border: 2px solid #474759;
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-weight: 900;
   font-size: 12px;
   line-height: 1.17;
@@ -65,14 +99,51 @@ export const InputStyled = styled.input`
     border-top-right-radius: 16px;
     border-bottom-right-radius: 16px;
   }
+
+  @media screen and (min-width: 320px) {
+  }
+  @media screen and (min-width: 768px) {
+    width: 168px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 260px;
+  }
+`;
+
+export const NumericFormatStyled = styled(NumericFormat)`
+  width: 125px;
+  padding-left: 10px;
+  background: transparent;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+  border: 2px solid #474759;
+
+  @media screen and (min-width: 320px) {
+  }
+  @media screen and (min-width: 768px) {
+    width: 116px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 116px;
+  }
+`;
+
+export const BtnContainerStyled = styled.div`
+  display: flex;
+  gap: 20px;
+  @media screen and (min-width: 768px) {
+    padding-left: 40px;
+    gap: 16px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding: 0;
+  }
 `;
 
 export const BtnStyled = styled.button`
   width: 136px;
   height: 44px;
-  margin-left: 16px;
-  /* font-family: 'Roboto';
-  font-style: normal; */
+
   font-weight: 700;
   font-size: 12px;
   line-height: 1.17x;
@@ -89,7 +160,6 @@ export const BtnStyled = styled.button`
   border-radius: 16px;
 
   &:first-of-type {
-    margin-left: 32px;
     background: #42a652;
     box-shadow: 1px 3px 5px rgba(96, 196, 112, 0.35);
     border: none;

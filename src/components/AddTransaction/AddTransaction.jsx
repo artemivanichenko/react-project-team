@@ -3,7 +3,6 @@ import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import Select from 'react-select';
-import { NumericFormat } from 'react-number-format';
 import 'react-datepicker/dist/react-datepicker.css';
 import { registerLocale } from 'react-datepicker';
 import uk from 'date-fns/locale/uk';
@@ -19,6 +18,9 @@ import {
   DatePickerStyled,
   CalendarBox,
   InputStyled,
+  BtnContainerStyled,
+  InputWrapStyled,
+  NumericFormatStyled,
 } from './AddTransaction.styled';
 import { selectionExpenses, selectionIncome } from 'shared/category';
 import { getFilterDate } from 'redux/transaction/transactionSlice';
@@ -97,48 +99,51 @@ const AddTransaction = () => {
       </CalendarBox>
 
       <FormStyled onSubmit={handleSubmit}>
-        <InputStyled
-          type="text"
-          name="description"
-          placeholder="Product description"
-          onChange={handleChange}
-        />
+        <InputWrapStyled>
+          <InputStyled
+            type="text"
+            name="description"
+            placeholder="Product description"
+            onChange={handleChange}
+          />
 
-        <Select
-          options={options}
-          placeholder="Product category"
-          value={selected}
-          styles={objectStyle}
-          name="category"
-          onChange={data => {
-            setForm(prev => ({ ...form, category: data.trans }));
-            setSelected(data);
-          }
-          }
-        />
+          <Select
+            options={options}
+            placeholder="Product category"
+            value={selected}
+            styles={objectStyle}
+            name="category"
+            onChange={data => {
+              setForm(prev => ({ ...form, category: data.trans }));
+              setSelected(data);
+            }}
+          />
 
-        <NumericFormat
-          placeholder="0.00 UAH"
-          value={form.amount}
-          allowNegative={false}
-          decimalScale={2}
-          allowedDecimalSeparators={['.']}
-          allowLeadingZeros={false}
-          thousandSeparator=" "
-          suffix=" UAH"
-          displayType="input"
-          isAllowed={values => {
-            const { floatValue } = values;
-            return floatValue < balance && floatValue >= 1;
-          }}
-          onValueChange={({ floatValue }, sourceInfo) => {
-            setForm(prev => ({ ...prev, amount: floatValue }));
-          }}
-        />
-        <BtnStyled type="submit">Input</BtnStyled>
-        <BtnStyled type="reset" onClick={handleClickReset}>
-          Clear
-        </BtnStyled>
+          <NumericFormatStyled
+            placeholder="0.00 UAH"
+            value={form.amount}
+            allowNegative={false}
+            decimalScale={2}
+            allowedDecimalSeparators={['.']}
+            allowLeadingZeros={false}
+            thousandSeparator=" "
+            suffix=" UAH"
+            displayType="input"
+            isAllowed={values => {
+              const { floatValue } = values;
+              return floatValue < balance && floatValue >= 1;
+            }}
+            onValueChange={({ floatValue }, sourceInfo) => {
+              setForm(prev => ({ ...prev, amount: floatValue }));
+            }}
+          />
+        </InputWrapStyled>
+        <BtnContainerStyled>
+          <BtnStyled type="submit">Input</BtnStyled>
+          <BtnStyled type="reset" onClick={handleClickReset}>
+            Clear
+          </BtnStyled>
+        </BtnContainerStyled>
       </FormStyled>
     </WrapStyled>
   );

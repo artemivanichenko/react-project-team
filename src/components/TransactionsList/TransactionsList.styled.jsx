@@ -2,8 +2,6 @@
 import styled from 'styled-components';
 
 export const ScrollWrapStyled = styled.div`
-max-width: 58.3vw;
-  max-height: 360px;
   overflow-x: hidden;
   overflow-y: scroll;
 
@@ -28,16 +26,28 @@ max-width: 58.3vw;
     background-color: transparent;
     margin-top: 2px;
   }
+
+  @media screen and (min-width: 320px) {
+  }
+  @media screen and (min-width: 768px) {
+    min-width: 624px;
+    max-width: 624px;
+    max-height: 400px;
+  }
+  @media screen and (min-width: 1280px) {
+    min-width: 746px;
+    max-width: 746px;
+  }
 `;
 
 export const TableStyled = styled.table`
-  width: 58.3vw;
+  width: 100%;
   table-layout: auto;
   border-spacing: 0;
 `;
 
 export const TableHeadRowStyled = styled.tr`
-  min-width: 746px;
+  min-width: 100%;
   height: 38px;
   font-weight: 700;
   font-size: 12px;
@@ -53,20 +63,20 @@ export const TableHeadColumnStyled = styled.td`
   margin: 0;
 
   &:first-child {
-    /* width: 20%; */
+    width: 20%;
     border-top-left-radius: 20px;
   }
   &:nth-child(2) {
-    /* width: 30%; */
+    width: 30%;
   }
   &:nth-child(3) {
-    /* width: 25%; */
+    width: 20%;
   }
   &:nth-child(4) {
-    /* width: 20%; */
+    width: 20%;
   }
   &:last-child {
-    /* width: 5%; */
+    width: 10%;
     border-top-right-radius: 20px;
   }
   &:nth-child(n + 3) {
@@ -91,21 +101,29 @@ export const TableColumnStyled = styled.td`
 
   &:first-child {
     border-left: 2px solid #474759;
+    width: 20%;
+  }
+  &:nth-child(2) {
+    width: 30%;
+  }
+  &:nth-child(3) {
+    width: 20%;
+  }
+  &:nth-child(4) {
+    width: 20%;
+    font-weight: 700;
+    color: #fe4566;
+    &[data-color='income'] {
+      color: #60c470;
+    }
+  }
+  &:last-child {
+    width: 10%;
+    padding: 4px;
+    border-right: 2px solid #474759;
   }
   &:nth-child(n + 3) {
     text-align: center;
-  }
-  &:nth-child(4) {
-    font-weight: 700;
-    color: #fe4566;
-  }
-  &[data-color='income'] {
-    color: #60c470;
-  }
-  &:last-child {
-    padding: 4px;
-    /* margin-top: 2px; */
-    border-right: 2px solid #474759;
   }
 `;
 
@@ -131,10 +149,12 @@ export const BtnDelStyled = styled.button`
   }
 `;
 
-// export const SvgStyled = styled(HandySvg)`
-//   fill: rgba(199, 204, 220, 0.5);
+// @media screen and (min-width: 320px) {
 
-//   &:hover {
-//     fill: #f6f7fb;
 //   }
-// `;
+//   @media screen and (min-width: 768px) {
+
+//   }
+//   @media screen and (min-width: 1280px) {
+
+//   }

@@ -1,24 +1,59 @@
 import styled from '@emotion/styled';
 
 export const SectionStyled = styled.section`
-   width: 85.8vw;
-   margin: 0 auto;
-   padding-left: 15px;
-   padding-right: 15px;
+  margin: 0 auto;
+  width: 100%;
+  
+
+  @media screen and (min-width: 320px) {
+    width: 280x;
+    
+  }
+  @media screen and (min-width: 768px) {
+    width: 704px;
+    
+  }
+  @media screen and (min-width: 1280px) {
+    width: 1098px;
+  }
 `;
 
 export const ContainerStyled = styled.div`
-  padding: 32px 32px 40px 34px;
+  /* width: 100%; */
+  margin: 0 auto;
   background: linear-gradient(
     115.74deg,
     #383847 23.54%,
     rgba(56, 56, 71, 0.29) 107.94%
   );
   box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
+  border-radius: 0px;
+
+  @media screen and (min-width: 320px) {
+  }
+  @media screen and (min-width: 768px) {
+    padding: 24px 42px 40px;
+    border-radius: 0px 30px 30px 30px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding: 32px 32px 40px 32px;
+  }
 `;
 
 export const BoxStyled = styled.div`
   display: flex;
-  /* gap: 75px; */
-  justify-content: space-between;
+
+@media screen and (min-width: 320px) {
+  }
+  @media screen and (min-width: 768px) {
+    flex-wrap: wrap;
+    gap:40px;
+  }
+  @media screen and (min-width: 1280px) {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
+  
+  
 `;
