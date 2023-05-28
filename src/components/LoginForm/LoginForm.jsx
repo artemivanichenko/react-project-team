@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { loginUser, registerUser } from 'redux/auth/authOperations';
 import {
+  ContainerStyled,
   FormWrapper,
   Title,
   GoggleLink,
@@ -44,6 +45,7 @@ const LoginForm = () => {
   }
 
   return (
+    <ContainerStyled>
     <FormWrapper>
       <Title>You can log in with your Google Account:</Title>
       <GoggleLink href="https://kapusta-backend.goit.global/auth/google">
@@ -61,7 +63,7 @@ const LoginForm = () => {
             {inputName.length === 0 && isSubmitted && <Required>This is a required field</Required>}
           </Label>
           <Label>
-            <LabelTitle>{inputPassword.length === 0 && isSubmitted && <span style={{color: '#FE4566'}}>&#42;</span>}Password:</LabelTitle>
+            <LabelTitle>{inputPassword.length === 0 && isSubmitted && <span style={{color: '#FE4566'}}>&#42;</span>}{inputPassword.length > 1 && inputPassword.length && <span style={{color: '#FE4566'}}>&#42;</span>}Password:</LabelTitle>
             <Input
               onChange={handleChangePassword}
               type="password"
@@ -81,7 +83,7 @@ const LoginForm = () => {
           </RegisterButton>
         </ButtonWrapper>
       </form>
-    </FormWrapper>
+    </FormWrapper></ContainerStyled>
   );
 };
 

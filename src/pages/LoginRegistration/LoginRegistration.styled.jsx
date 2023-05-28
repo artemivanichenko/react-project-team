@@ -7,7 +7,7 @@ export const FormWrapper = styled.div `
       display: flex;
       justify-content: flex-end;
     }
-    @media screen and (min-width: 768px) and (max-width: 1280px) {
+    @media screen and (min-width: 768px) and (max-width: 1279px) {
       width: 100%;
       display: flex;
       justify-content: center;
@@ -24,7 +24,7 @@ export const Image = styled.img`
   position: relative;
   width: 675px;
   height: 544px;
-   @media screen and (max-width: 1280px) {
+   @media screen and (max-width: 1279px) {
       display: none;
    }
 `;

@@ -1,27 +1,35 @@
 import styled from '@emotion/styled';
 
 export const FormWrapper = styled.div`
-  @media screen and (max-width: 1370px){
-  margin: 50px 50px 0px 0;
-  } 
+  @media screen and (min-width: 1281px) {
+    margin: 120px 150px 0px 125px;
+
+    max-width: 392px;
+    padding: 52px;
+  }
   @media screen and (min-width: 768px) and (max-width: 1281px) {
-      padding: 40px 20px;
-      margin-top: 220px;
-      margin-left: 70px;
-    }
-  @media screen and (min-width: 320px) and (max-width: 500px){
-    margin: 20px 15px;
-    width: 220px;
+    padding: 52px;
+    margin: 0 auto;
+    margin-top: 294px;
   }
-  @media screen and (min-width: 500px) and (max-width: 767px){
-    margin: 50px auto;
-    width: 320px;
+  @media screen and (min-width: 320px) and (max-width: 480px) {
+    margin: 12px auto;
+    max-width: 280px;
+    width: 100%;
+    padding: 32px 20px;
   }
-  margin: 50px 150px 0px 0;
+  @media screen and (min-width: 480px) and (max-width: 767px) {
+    /* margin: 50px auto; */
+    max-width: 280px;
+    min-width: 280px;
+    margin-top: 12px;
+    padding: 32px 20px;
+  }
+  box-shadow: inset 0px 2px 14px rgba(132, 132, 132, 0.2);
+  border-radius: 30px;
   padding: 40px 30px;
   display: flex;
   flex-direction: column;
-  border-radius: 30px;
   align-items: center;
   background-color: #383847;
   filter: drop-shadow(0px 4px 40px rgba(0, 0, 0, 0.25));
@@ -39,7 +47,7 @@ export const Title = styled.h1`
   letter-spacing: 0.04em;
 `;
 export const GoggleLink = styled.a`
-  margin-top: 10px;
+  margin-top: 20px;
   padding: 10px 20px;
   border-radius: 16px;
   font-weight: 500;
@@ -53,13 +61,13 @@ export const GoggleLink = styled.a`
     transition: all 300ms ease 0s;
   }
   margin-bottom: 32px;
-  @media screen and (min-width: 320px) and (max-width: 500px){
-    margin-top: 20px; 
+  @media screen and (min-width: 320px) and (max-width: 500px) {
+    margin-top: 20px;
   }
 `;
 
 export const Subtitle = styled.h2`
-width: 288px;
+  width: 288px;
   color: #f6f7fb;
   height: 32px;
   font-family: 'Roboto', sans-serif;
@@ -68,11 +76,12 @@ width: 288px;
   font-size: 14px;
   line-height: 16px;
   letter-spacing: 0.04em;
-  margin-bottom: 32px;
-   @media screen and (min-width: 320px) and (max-width: 500px){
-    min-width: 240px;
-    text-align: center;
-    margin: 0 auto;
+  margin-bottom: 20px;
+  @media screen and (min-width: 320px) and (max-width: 500px) {
+    max-width: 240px;
+    text-align: start;
+    margin: 0;
+    font-size: 12px;
   }
 `;
 export const LabelWrapper = styled.div`
@@ -82,19 +91,23 @@ export const LabelWrapper = styled.div`
   margin-bottom: 40px;
 `;
 export const Label = styled.label`
+
   color: #f6f7fb;
   font-weight: 200;
   font-size: 14px;
   line-height: 14px;
   letter-spacing: 0.04em;
-   @media screen and (min-width: 320px) and (max-width: 500px){
+  text-align: start;
+  @media screen and (min-width: 320px) and (max-width: 480px) {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;;
+    justify-content: flex-start;
   }
 `;
 export const LabelTitle = styled.p`
-  margin: 10px 10px;
+  margin: 12px 10px 8px;
+  text-align: start;
 `;
 
 export const Input = styled.input`
@@ -105,8 +118,9 @@ export const Input = styled.input`
   border-radius: 16px;
   border: none;
   box-shadow: 1px 3px 5px rgba(21, 23, 21, 0.656);
-  @media screen and (min-width: 320px) and (max-width: 500px){
-    width: 200px;
+  @media screen and (min-width: 320px) and (max-width: 768px) {
+    width: 100%;
+    width: 240px;
   }
 `;
 export const ButtonWrapper = styled.div`
@@ -121,6 +135,8 @@ export const LoginButton = styled.button`
   border: none;
   width: 136px;
   height: 44px;
+  margin-top: -15px;
+
   cursor: pointer;
   &:hover {
     background-color: #308e3f;
@@ -135,18 +151,20 @@ export const LoginButton = styled.button`
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #ffffff;
-   @media screen and (min-width: 320px) and (max-width: 500px){
+  @media screen and (min-width: 320px) and (max-width: 480px) {
     width: 116px;
-  height: 38px;
+    height: 38px;
   }
 `;
 export const RegisterButton = styled.button`
   background: #f5f6fb;
+
   box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   border: none;
   width: 136px;
   height: 44px;
+  margin-top: -15px;
   cursor: pointer;
   &:hover {
     background-color: #dddddd;
@@ -161,13 +179,35 @@ export const RegisterButton = styled.button`
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #1f1f27;
-  @media screen and (min-width: 320px) and (max-width: 500px){
+  @media screen and (min-width: 320px) and (max-width: 480px) {
     width: 116px;
-  height: 38px;
+    height: 38px;
   }
 `;
 
-export const Required = styled.p `
-  color: #FE4566;
-  font-size: smaller;
-`
+export const Required = styled.p`
+  color: #fe4566;
+  font-size: 10px;
+`;
+
+export const ContainerStyled = styled.div`
+max-width: 100%;
+display: flex;
+  @media screen and (min-width: 480px) {
+    max-width: 320px;
+    width: 100%;
+margin: 0 auto;
+justify-content: center;
+  }
+  @media screen and (min-width: 768px) {
+    max-width: 704px;
+    margin: 0 auto;
+    width: unset;
+
+  }
+  @media screen and (min-width: 1281px) {
+    max-width: 1098px;
+    justify-content: flex-end;
+    margin: 0;
+  }
+`;
