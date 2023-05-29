@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { useMemo } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router';
@@ -60,19 +60,19 @@ const TransactionsList = () => {
   const isAddTransactions = 9 - transaction.length;
   console.log('isAddTransactions', isAddTransactions, transaction);
 
-  useEffect(() => {
-    if (isAddTransactions >= 0) {
-      for (let i = 0; i < isAddTransactions; i++) {
-        transaction.push({
-          _id: i,
-          date: '',
-          description: '',
-          category: '',
-          amount: '',
-        });
-      }
-    }
-  }, [isAddTransactions, transaction]);
+  // useEffect(() => {
+  //   if (isAddTransactions >= 0) {
+  //     for (let i = 0; i < isAddTransactions; i++) {
+  //       transaction.push({
+  //         _id: i,
+  //         date: '',
+  //         description: '',
+  //         category: '',
+  //         amount: '',
+  //       });
+  //     }
+  //   }
+  // }, [isAddTransactions, transaction]);
 
   const [showModal, setShowModal] = useState(false);
 

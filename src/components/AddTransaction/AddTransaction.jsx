@@ -6,7 +6,6 @@ import Select from 'react-select';
 import 'react-datepicker/dist/react-datepicker.css';
 import { registerLocale } from 'react-datepicker';
 import uk from 'date-fns/locale/uk';
-
 import {
   addTransactionExpense,
   addTransactionIncome,
@@ -36,6 +35,7 @@ const AddTransaction = () => {
 
   const [options, setOptions] = useState([]);
   const [selected, setSelected] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   registerLocale('uk', uk);
   const [startDate, setStartDate] = useState(new Date());
@@ -50,7 +50,6 @@ const AddTransaction = () => {
     category: '',
   });
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     expenses !== 'income'
@@ -91,19 +90,15 @@ const AddTransaction = () => {
   }, [dispatch]);
 
   const toggleModal = () => {
-    setIsModalOpen(true);
+    // setIsModalOpen(true);
+    setIsModalOpen(!isModalOpen);
   };
 
   const tableMobile = useMediaQuery({ query: '(max-width: 768px)' });
-  const isOpen = !tableMobile || isModalOpen;
-  console.log('ModalOpen', !tableMobile || isModalOpen);
+  // const isOpen = !tableMobile || isModalOpen;
+  // console.log('ModalOpen', !tableMobile || isModalOpen);
   return (
     <WrapStyled>
-      {isModalOpen && (
-        <button type="button" onClick={toggleModal}>
-          To transaction
-        </button>
-      )}
       {tableMobile && !isModalOpen && (
         <BtnStyled data-mobile type="button" onClick={() => toggleModal()}>
           Add transaction
@@ -122,7 +117,7 @@ const AddTransaction = () => {
         </CalendarBox>
       )}
 
-      {isOpen && (
+      {!tableMobile && (
         <FormStyled onSubmit={handleSubmit}>
           <InputWrapStyled>
             <InputStyled
@@ -171,7 +166,54 @@ const AddTransaction = () => {
           </BtnContainerStyled>
         </FormStyled>
       )}
-      {isModalOpen && <Modal />}
+      {isModalOpen && <Modal onClose={toggleModal}><FormStyled onSubmit={handleSubmit}>
+        <InputWrapStyled>
+          <InputStyled
+            type="text"
+            name="description"
+            placeholder="Product description"
+            onChange={handleChange}
+          />
+
+          <Select
+            options={options}
+            placeholder="Product category"
+            value={selected}
+            styles={objectStyle}
+            name="category"
+            onChange={data => {
+              setForm(prev => ({ ...form, category: data.trans }));
+              setSelected(data);
+            }}
+          />
+
+          <NumericFormatStyled
+            placeholder="0.00 UAH"
+            value={form.amount}
+            allowNegative={false}
+            decimalScale={2}
+            allowedDecimalSeparators={['.']}
+            allowLeadingZeros={false}
+            thousandSeparator=" "
+            suffix=" UAH"
+            displayType="input"
+            isAllowed={values => {
+              const { floatValue } = values;
+              return floatValue < balance && floatValue >= 1;
+            }}
+            onValueChange={({ floatValue }, sourceInfo) => {
+              setForm(prev => ({ ...prev, amount: floatValue }));
+            }}
+          />
+        </InputWrapStyled>
+        <BtnContainerStyled>
+          <BtnStyled type="submit">Input</BtnStyled>
+          <BtnStyled type="reset" onClick={handleClickReset}>
+            Clear
+          </BtnStyled>
+        </BtnContainerStyled>
+      </FormStyled>
+      </Modal>}
     </WrapStyled>
   );
 };
