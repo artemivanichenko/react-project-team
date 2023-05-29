@@ -41,7 +41,8 @@ const AddTransaction = () => {
   const [startDate, setStartDate] = useState(new Date());
   const curDate = startDate.toISOString().split('T')[0];
 
-  const balance = useSelector(selectBalance);
+  const paramsBalance = useSelector(selectBalance);
+  const balance = expenses === 'income' ? 1000000 : paramsBalance;
 
   const [form, setForm] = useState({
     date: '',
@@ -91,7 +92,7 @@ const AddTransaction = () => {
   };
 
   const tableMobile = useMediaQuery({ query: '(max-width: 768px)' });
-  
+
   return (
     <WrapStyled>
       {tableMobile && !isModalOpen && (
