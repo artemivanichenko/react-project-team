@@ -111,7 +111,7 @@ theme="dark"
                   {inputPassword.length === 0 && isSubmitted && (
                     <span style={{ color: '#FE4566' }}>&#42;</span>
                   )}
-                  {inputPassword.length > 1 && inputPassword.length && (
+                  {inputPassword.length > 1 && inputPassword.length < 8 && (
                     <span style={{ color: '#FE4566' }}>&#42;</span>
                   )}
                   Password:
