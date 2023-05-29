@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLinkStyled, WrapStyled, TabsStyled, TabsListStyled } from "./TransactionTypeTabs.styled";
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { Tab, TabList, TabPanel } from 'react-tabs';
 import { useMediaQuery } from "react-responsive";
 
 
