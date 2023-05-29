@@ -78,7 +78,7 @@ const progressBar = {
 const ReportCharts = () => {
   const isVertical = useMediaQuery({ query: '(min-width: 768px)' });
   const [isChangingScreens, setIsChangingScreens] = useState(false);
-  console.log('ReportCharts');
+  // console.log('ReportCharts');
   useEffect(() => {
     setIsChangingScreens(true);
   }, [isVertical]);
@@ -116,7 +116,7 @@ const ReportCharts = () => {
       })
       .filter(el => el.name === category)
       .map(({ name, content }) => content);
-    console.log(objcategoryExpense, objcategoryIncome);
+    // console.log(objcategoryExpense, objcategoryIncome);
 
     const res = [];
     if (objcategoryExpense.length) {
@@ -126,7 +126,7 @@ const ReportCharts = () => {
       return Object.entries(objcategoryIncome[0]);
     }
 
-    console.log(res);
+    // console.log(res);
     return res;
   };
 
