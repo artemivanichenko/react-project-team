@@ -103,7 +103,6 @@ const ReportCategories = () => {
             ? filteredExpensesArray
                 .sort((a, b) => b.total - a.total)
                 .map(({ value, label, total }) => (
-                  <>
                     <StyledItem key={value}>
                       <StyledText>{total.toFixed(2)}</StyledText>
                       <NavLinkStyled to={`${value}`}>
@@ -113,7 +112,6 @@ const ReportCategories = () => {
                       </NavLinkStyled>
                       <StyledText> {label.toUpperCase()}</StyledText>
                     </StyledItem>
-                  </>
                 ))
             : filteredIncomesArray
                 .sort((a, b) => b.total - a.total)
