@@ -1,13 +1,15 @@
-import AddTransaction from 'components/AddTransaction/AddTransaction';
 import { createPortal } from 'react-dom';
 import { ModalBox, Overlay } from './Modal.styled';
 
-const Modal = () => {
+const Modal = ({children, onClose}) => {
   const modalRoot = document.querySelector('#root');
 
   return createPortal(
     <Overlay>
-     <ModalBox> <AddTransaction /></ModalBox>
+        <button type="button" onClick={onClose}>
+          To transaction
+        </button>
+     <ModalBox>{children}</ModalBox>
     </Overlay>,
     modalRoot
   );
