@@ -27,6 +27,7 @@ import { getFilterDate } from 'redux/transaction/transactionSlice';
 import { objectStyle } from './AddTransactionStyle';
 import { selectBalance } from 'redux/transaction/transactionSelectors';
 import { useMediaQuery } from 'react-responsive';
+import Modal from 'components/Modal/Modal';
 
 const AddTransaction = () => {
   const dispatch = useDispatch();
@@ -48,6 +49,8 @@ const AddTransaction = () => {
     description: '',
     category: '',
   });
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     expenses !== 'income'
@@ -84,69 +87,88 @@ const AddTransaction = () => {
     dispatch(getFilterDate(''));
   }, [dispatch]);
 
-  const tableMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const toggleModal = () => {
+    setIsModalOpen(true);
+  };
 
+  const tableMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const isOpen = !tableMobile || isModalOpen;
+  console.log('ModalOpen', !tableMobile || isModalOpen);
   return (
     <WrapStyled>
-      {tableMobile && <BtnStyled data-mobile type='button'>Add transaction</BtnStyled>}
-      <CalendarBox>
-        <CalendarMonthIcon color="success" />
-        <DatePickerStyled
-          locale="uk"
-          selected={startDate}
-          onChange={date => setStartDate(date)}
-          maxDate={new Date()}
-          name="date"
-        />
-      </CalendarBox>
-
-      {!tableMobile && <FormStyled onSubmit={handleSubmit}>
-        <InputWrapStyled>
-          <InputStyled
-            type="text"
-            name="description"
-            placeholder="Product description"
-            onChange={handleChange}
+      {isModalOpen && (
+        <button type="button" onClick={toggleModal}>
+          To transaction
+        </button>
+      )}
+      {tableMobile && !isModalOpen && (
+        <BtnStyled data-mobile type="button" onClick={() => toggleModal()}>
+          Add transaction
+        </BtnStyled>
+      )}
+      {!isModalOpen && (
+        <CalendarBox>
+          <CalendarMonthIcon color="success" />
+          <DatePickerStyled
+            locale="uk"
+            selected={startDate}
+            onChange={date => setStartDate(date)}
+            maxDate={new Date()}
+            name="date"
           />
+        </CalendarBox>
+      )}
 
-          <Select
-            options={options}
-            placeholder="Product category"
-            value={selected}
-            styles={objectStyle}
-            name="category"
-            onChange={data => {
-              setForm(prev => ({ ...form, category: data.trans }));
-              setSelected(data);
-            }}
-          />
+      {isOpen && (
+        <FormStyled onSubmit={handleSubmit}>
+          <InputWrapStyled>
+            <InputStyled
+              type="text"
+              name="description"
+              placeholder="Product description"
+              onChange={handleChange}
+            />
 
-          <NumericFormatStyled
-            placeholder="0.00 UAH"
-            value={form.amount}
-            allowNegative={false}
-            decimalScale={2}
-            allowedDecimalSeparators={['.']}
-            allowLeadingZeros={false}
-            thousandSeparator=" "
-            suffix=" UAH"
-            displayType="input"
-            isAllowed={values => {
-              const { floatValue } = values;
-              return floatValue < balance && floatValue >= 1;
-            }}
-            onValueChange={({ floatValue }, sourceInfo) => {
-              setForm(prev => ({ ...prev, amount: floatValue }));
-            }}
-          />
-        </InputWrapStyled>
-        <BtnContainerStyled>
-          <BtnStyled type="submit">Input</BtnStyled>
-          <BtnStyled type="reset" onClick={handleClickReset}>
-            Clear
-          </BtnStyled>
-        </BtnContainerStyled>
-      </FormStyled>}
+            <Select
+              options={options}
+              placeholder="Product category"
+              value={selected}
+              styles={objectStyle}
+              name="category"
+              onChange={data => {
+                setForm(prev => ({ ...form, category: data.trans }));
+                setSelected(data);
+              }}
+            />
+
+            <NumericFormatStyled
+              placeholder="0.00 UAH"
+              value={form.amount}
+              allowNegative={false}
+              decimalScale={2}
+              allowedDecimalSeparators={['.']}
+              allowLeadingZeros={false}
+              thousandSeparator=" "
+              suffix=" UAH"
+              displayType="input"
+              isAllowed={values => {
+                const { floatValue } = values;
+                return floatValue < balance && floatValue >= 1;
+              }}
+              onValueChange={({ floatValue }, sourceInfo) => {
+                setForm(prev => ({ ...prev, amount: floatValue }));
+              }}
+            />
+          </InputWrapStyled>
+          <BtnContainerStyled>
+            <BtnStyled type="submit">Input</BtnStyled>
+            <BtnStyled type="reset" onClick={handleClickReset}>
+              Clear
+            </BtnStyled>
+          </BtnContainerStyled>
+        </FormStyled>
+      )}
+      {isModalOpen && <Modal />}
     </WrapStyled>
   );
 };
