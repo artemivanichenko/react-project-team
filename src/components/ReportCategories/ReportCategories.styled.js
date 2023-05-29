@@ -54,7 +54,7 @@ export const StyledList = styled.ul`
   justify-content: center;
   margin-top: 24px;
   margin-bottom: 20px;
-  border-bottom: 2px solid #80848f;
+  border-bottom: 1px solid #474759;
   @media screen and (min-width: 768px) {
     padding-left: 50px;
     padding-right: 50px;
@@ -70,7 +70,7 @@ export const StyledItem = styled.li`
   padding-right: 13px;
   padding-bottom: 13px;
   padding-top: 13px;
-  border-bottom: 2px solid #80848f;
+  border-bottom: 1px solid #474759;
   &:nth-last-child(-n + 3):nth-child(3n + 1),
   &:nth-last-child(-n + 3):nth-child(3n + 1) ~ li {
     border-bottom: none;
