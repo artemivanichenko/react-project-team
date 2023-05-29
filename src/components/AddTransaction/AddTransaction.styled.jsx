@@ -102,6 +102,9 @@ export const InputStyled = styled.input`
   font-size: 12px;
   line-height: 1.17;
 
+  &#shadow-root {
+    color: rgba(199, 204, 220, 0.5);
+  }
   &:first-of-type {
     border-top-left-radius: 16px;
   }
@@ -123,6 +126,7 @@ export const InputStyled = styled.input`
 export const NumericFormatStyled = styled(NumericFormat)`
   width: 125px;
   padding-left: 10px;
+  color: #c7ccdc;
   background: transparent;
   border-top-right-radius: 16px;
   border-bottom-right-radius: 16px;
