@@ -13,9 +13,9 @@ import {
   NavLinkStyled,
   StyledBox,
   StyledButtonReport,
+  StyledContainerCategory,
   StyledImages,
   StyledItem,
-  StyledLine,
   StyledList,
   StyledText,
   StyledTitle,
@@ -44,9 +44,9 @@ const ReportCategories = () => {
 
   const expensesArray = objectToArray(reportExpenses);
   const incomesArray = objectToArray(reportIncomes);
-  
+
   // console.log(expensesArray);
-  
+
   const handleButtonClick = () => {
     if (reportChoice === 'expenses') {
       setReportChoice('incomes');
@@ -97,13 +97,25 @@ const ReportCategories = () => {
           />
         </ThemeProvider>
       </StyledButtonReport>
-      <StyledList>
-        {reportChoice === 'expenses'
-          ? filteredExpensesArray
-              .sort((a, b) => b.total - a.total)
-              .map(({ value, label, total }) => (
-                <>
-                  <StyledLine />
+      <StyledContainerCategory>
+        <StyledList>
+          {reportChoice === 'expenses'
+            ? filteredExpensesArray
+                .sort((a, b) => b.total - a.total)
+                .map(({ value, label, total }) => (
+                    <StyledItem key={value}>
+                      <StyledText>{total.toFixed(2)}</StyledText>
+                      <NavLinkStyled to={`${value}`}>
+                        <StyledWrapper>
+                          <StyledImages src={images[value]} alt={label} />
+                        </StyledWrapper>
+                      </NavLinkStyled>
+                      <StyledText> {label.toUpperCase()}</StyledText>
+                    </StyledItem>
+                ))
+            : filteredIncomesArray
+                .sort((a, b) => b.total - a.total)
+                .map(({ value, label, total }) => (
                   <StyledItem key={value}>
                     <StyledText>{total.toFixed(2)}</StyledText>
                     <NavLinkStyled to={`${value}`}>
@@ -113,22 +125,9 @@ const ReportCategories = () => {
                     </NavLinkStyled>
                     <StyledText> {label.toUpperCase()}</StyledText>
                   </StyledItem>
-                </>
-              ))
-          : filteredIncomesArray
-              .sort((a, b) => b.total - a.total)
-              .map(({ value, label, total }) => (
-                <StyledItem key={value}>
-                  <StyledText>{total.toFixed(2)}</StyledText>
-                  <NavLinkStyled to={`${value}`}>
-                    <StyledWrapper>
-                      <StyledImages src={images[value]} alt={label} />
-                    </StyledWrapper>
-                  </NavLinkStyled>
-                  <StyledText> {label.toUpperCase()}</StyledText>
-                </StyledItem>
-              ))}
-      </StyledList>
+                ))}
+        </StyledList>
+      </StyledContainerCategory>
     </StyledBox>
   );
 };

@@ -4,13 +4,13 @@ import styled from 'styled-components';
 export const StyledBox = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: rgba(56, 56, 71, 0.8);
+  background-color: transparent;
   width: 320px;
   margin: auto;
   margin-bottom: 40px;
   @media screen and (min-width: 768px) {
     width: 704px;
-    /* height: 346px; */
+    background-color: rgba(56, 56, 71, 0.8);
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     border-bottom-left-radius: 30px;
@@ -29,37 +29,58 @@ export const StyledButtonReport = styled.div`
   align-items: center;
   margin-top: 20px;
 `;
-export const StyledItem = styled.div``;
-export const StyledLine = styled.div`
-  display: none;
-  border-bottom: 2px solid #80848f;
+export const StyledTitle = styled.h2`
+  font-family: 'Roboto';
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0.02em;
+  color: #f6f7fb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const StyledContainerCategory = styled.div`
   width: 280px;
-  padding: 0 20px;
+  margin: auto;
+  @media screen and (min-width: 768px) {
+    width: 100%;
+  }
 `;
 export const StyledList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 23px;
   margin-top: 24px;
   margin-bottom: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  ${StyledItem}:nth-child(3n) + ${StyledLine} {
-    display: block;
-  }
+  border-bottom: 1px solid #474759;
   @media screen and (min-width: 768px) {
     padding-left: 50px;
     padding-right: 50px;
-    ${StyledItem}:nth-child(3n) + ${StyledLine} {
-      display: none;
-    }
+    border-bottom: none;
   }
   @media screen and (min-width: 1278px) {
     padding-left: 222px;
     padding-right: 222px;
   }
 `;
+export const StyledItem = styled.li`
+  padding-left: 13px;
+  padding-right: 13px;
+  padding-bottom: 13px;
+  padding-top: 13px;
+  border-bottom: 1px solid #474759;
+  &:nth-last-child(-n + 3):nth-child(3n + 1),
+  &:nth-last-child(-n + 3):nth-child(3n + 1) ~ li {
+    border-bottom: none;
+  }
+
+  @media screen and (min-width: 768px) {
+    border-bottom: none;
+  }
+`;
+
 export const StyledWrapper = styled.div`
   height: 64px;
   width: 64px;
@@ -108,20 +129,10 @@ export const StyledText = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 64px;
+  text-align: center;
   @media screen and (min-width: 768px) {
     flex-direction: row;
     font-size: 12px;
   }
-`;
-
-export const StyledTitle = styled.h2`
-  font-family: 'Roboto';
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 100%;
-  letter-spacing: 0.02em;
-  color: #f6f7fb;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
