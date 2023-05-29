@@ -6,7 +6,11 @@ import {
   refreshToken,
   registerUser,
 } from './authOperations';
-import { addBalance } from 'redux/transaction/transactionOperations';
+import {
+  addBalance,
+  addTransactionExpense,
+  addTransactionIncome,
+} from 'redux/transaction/transactionOperations';
 
 const initialState = {
   accessToken: null,
@@ -114,6 +118,15 @@ const authSlice = createSlice({
       // ================ ADD BALANCE ====================
       .addCase(addBalance.fulfilled, (state, { payload }) => {
         state.balance = payload.newBalance;
+      })
+      // ================ ADD TRANSACTION EXPENSE ===========
+      .addCase(addTransactionExpense.fulfilled, (state, { payload }) => {
+        state.balance = payload[0].newBalance;
+      })
+      // =============== ADD TRANSACTION INCOME ============
+      .addCase(addTransactionIncome.fulfilled, (state, { payload }) => {
+        console.log(payload);
+        state.balance = payload[0].newBalance;
       });
   },
 });

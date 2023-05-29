@@ -27,9 +27,11 @@ export const addTransactionIncome = createAsyncThunk(
   'transaction/income/add',
   async (transactionForm, { rejectWithValue, dispatch }) => {
     try {
-      await addTransactionIncomeApi(transactionForm);
+      const { data: newBalance } = await addTransactionIncomeApi(
+        transactionForm
+      );
       const { data } = await getTransactionIncomeApi();
-      return data;
+      return [newBalance, data];
     } catch (error) {
       dispatch(
         errorHandler({ error, cb: () => addTransactionIncome(transactionForm) })
@@ -56,9 +58,11 @@ export const addTransactionExpense = createAsyncThunk(
   'transaction/expenses/add',
   async (transactionForm, { rejectWithValue, dispatch }) => {
     try {
-      await addTransactionExpenseApi(transactionForm);
+      const { data: newBalance } = await addTransactionExpenseApi(
+        transactionForm
+      );
       const { data } = await getTransactionExpenseApi();
-      return data;
+      return [newBalance, data];
     } catch (error) {
       dispatch(
         errorHandler({

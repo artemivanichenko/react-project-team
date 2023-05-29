@@ -66,8 +66,8 @@ const transactionSlice = createSlice({
       .addCase(addTransactionIncome.fulfilled, (state, { payload, type }) => {
         state.isLoading = false;
         state.error = null;
-        state.incomes = payload.incomes;
-        state.monthStatsIncome = payload.monthsStats;
+        state.incomes = payload[1].incomes;
+        state.monthStatsIncome = payload[1].monthsStats;
         // const transactionType = type.split('/')[1];
         // state[transactionType].push(payload.transaction);
       })
@@ -82,8 +82,8 @@ const transactionSlice = createSlice({
       .addCase(addTransactionExpense.fulfilled, (state, { payload, type }) => {
         state.isLoading = false;
         state.error = null;
-        state.expenses = payload.expenses;
-        state.monthStatsExpenses = payload.monthsStats;
+        state.expenses = payload[1].expenses;
+        state.monthStatsExpenses = payload[1].monthsStats;
         // const transactionType = type.split('/')[1];
         // state[transactionType].push(payload.transaction);
       })
