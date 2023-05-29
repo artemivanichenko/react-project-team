@@ -11,9 +11,11 @@ import {
 
 const TransactionContainer = () => {
   const isTablet = useMediaQuery({ query: '(min-width: 768px)' });
+  const tableMobile = useMediaQuery({ query: '(max-width: 768px)' });
+
   return (
     <SectionStyled>
-      <TransactionTypeTabs />
+      {!tableMobile && <TransactionTypeTabs />}
       <ContainerStyled>
         <AddTransaction />
         <BoxStyled>
@@ -21,6 +23,7 @@ const TransactionContainer = () => {
           {isTablet && <Summary />}
         </BoxStyled>
       </ContainerStyled>
+      {tableMobile && <TransactionTypeTabs />}
     </SectionStyled>
   );
 };

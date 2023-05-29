@@ -6,7 +6,9 @@ export const WrapStyled = styled.div`
   display: flex;
   align-items: center;
 
-  @media screen and (min-width: 320px) {
+  @media screen and (min-width: 320px) and (max-width: 768px) {
+    flex-direction: column;
+    gap: 32px;
   }
   @media screen and (min-width: 768px) {
     align-items: flex-start;
@@ -24,10 +26,18 @@ export const CalendarBox = styled.div`
   display: flex;
   align-items: center;
   width: 102px;
+
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    margin: 0 auto;
+    padding-right: 7px;
+    margin-bottom: 64px;
+    width: 98px;
+  }
   @media screen and (min-width: 768px) {
     padding-top: 6px;
     width: 94px;
-  }@media screen and (min-width: 1280px) {
+  }
+  @media screen and (min-width: 1280px) {
     padding: 0;
     width: 98px;
   }
@@ -169,5 +179,17 @@ export const BtnStyled = styled.button`
   &:hover {
     outline: 2px solid #c7ccdc;
     background: rgba(66, 166, 83, 0.2);
+  }
+
+  &[data-mobile] {
+    background: linear-gradient(
+      115.74deg,
+      #383847 23.54%,
+      rgba(56, 56, 71, 0.29) 107.94%
+    );
+    box-shadow: none;
+    border: 2px solid #474759;
+    font-weight:300;
+    font-size:10px;
   }
 `;

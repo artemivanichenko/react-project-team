@@ -149,12 +149,58 @@ export const BtnDelStyled = styled.button`
   }
 `;
 
-// @media screen and (min-width: 320px) {
+// ============== MOBILE =========
+export const StyledBox = styled.div`
+  @media screen and (max-width: 767px) {
+    margin: 0 auto;
+  }
+  
+`;
 
-//   }
-//   @media screen and (min-width: 768px) {
+export const StyledWrap = styled.div`
+  margin: 0 auto;
+`;
 
-//   }
-//   @media screen and (min-width: 1280px) {
+export const StyledList = styled.ul`
+  min-width: 282px;
+  margin: 0 auto;
+  margin-bottom: 12px;
+  list-style: none;
+  max-width: 280px;
+`;
+export const StyledItem = styled.li`
+  min-width: 282px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #80848f;
+`;
+export const StyledDescript = styled.h3`
+  font-size: 12px;
+  font-weight: 700;
+  color: #c7ccdc;
+`;
+export const StyledDate = styled.p`
+font-size: 8px;
+color: #c7ccdc;
+margin-top: 7px;
+`;
 
-//   }
+export const StyledRight = styled.div`
+display: flex;
+align-items: center;
+`;
+
+export const StyledAmount = styled.h2`
+  font-weight: 700;
+  color: #fe4566;
+  font-size: 12px;
+  margin-right: 8px;
+  &[data-color='income'] {
+    color: #60c470;
+  }
+`;
+
+
