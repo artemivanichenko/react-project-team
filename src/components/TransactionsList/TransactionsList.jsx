@@ -31,6 +31,7 @@ import {
 import { selectionExpenses, selectionIncome } from '../../shared/category';
 import { deleteTransaction } from 'redux/transaction/transactionOperations';
 import ModalConfirm from 'components/ModalConfirm/ModalConfirm';
+import { useEffect } from 'react';
 
 
 const TransactionsList = () => {
@@ -54,25 +55,25 @@ const TransactionsList = () => {
       .sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
   }, [dateFilter, transactionExpenses]);
 
-  const transaction =
+  const isRender =
     transactionType === 'income' ? transactionIncome : transactionExpense;
-
+  const transaction = isRender;
   const isAddTransactions = 9 - transaction.length;
-  console.log('isAddTransactions', isAddTransactions, transaction);
+  // console.log('isAddTransactions', isAddTransactions, transaction);
 
-  // useEffect(() => {
-  //   if (isAddTransactions >= 0) {
-  //     for (let i = 0; i < isAddTransactions; i++) {
-  //       transaction.push({
-  //         _id: i,
-  //         date: '',
-  //         description: '',
-  //         category: '',
-  //         amount: '',
-  //       });
-  //     }
-  //   }
-  // }, [isAddTransactions, transaction]);
+  useEffect(() => {
+    if (isAddTransactions >= 0) {
+      for (let i = 0; i < isAddTransactions; i++) {
+        transaction.push({
+          _id: i,
+          date: '',
+          description: '',
+          category: '',
+          amount: '',
+        });
+      }
+    }
+  }, [isAddTransactions, transaction]);
 
   const [showModal, setShowModal] = useState(false);
 
@@ -89,7 +90,7 @@ const TransactionsList = () => {
     setShowModal(false);
   };
 
-  console.log('transaction', transaction);
+  // console.log('transaction', transaction);
 
   const tableMobile = useMediaQuery({ query: '(max-width: 768px)' });
   return (

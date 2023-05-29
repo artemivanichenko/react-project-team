@@ -50,7 +50,6 @@ const AddTransaction = () => {
     category: '',
   });
 
-
   useEffect(() => {
     expenses !== 'income'
       ? setOptions(selectionExpenses)
@@ -65,18 +64,17 @@ const AddTransaction = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // console.log('form', form, curDate);
+    console.log('form', form, curDate);
     expenses !== 'income'
       ? dispatch(addTransactionExpense(form))
       : dispatch(addTransactionIncome(form));
     handleClickReset();
-    setForm({ description: '', amount: '', category: '' });
+    setForm({ description: '', amount: '', category: '', date: curDate });
     setSelected(null);
-    FormStyled.reset();
   };
 
   const handleClickReset = () => {
-    setForm(prev => ({ ...prev, amount: '', category: '' }));
+    setForm(prev => ({ ...prev, amount: '', category: '', description: '' }));
     setSelected(null);
   };
 
@@ -90,13 +88,11 @@ const AddTransaction = () => {
   }, [dispatch]);
 
   const toggleModal = () => {
-    // setIsModalOpen(true);
     setIsModalOpen(!isModalOpen);
   };
 
   const tableMobile = useMediaQuery({ query: '(max-width: 768px)' });
-  // const isOpen = !tableMobile || isModalOpen;
-  // console.log('ModalOpen', !tableMobile || isModalOpen);
+  
   return (
     <WrapStyled>
       {tableMobile && !isModalOpen && (
@@ -108,6 +104,7 @@ const AddTransaction = () => {
         <CalendarBox>
           <CalendarMonthIcon color="success" />
           <DatePickerStyled
+            required
             locale="uk"
             selected={startDate}
             onChange={date => setStartDate(date)}
@@ -121,6 +118,8 @@ const AddTransaction = () => {
         <FormStyled onSubmit={handleSubmit}>
           <InputWrapStyled>
             <InputStyled
+              required
+              value={form.description}
               type="text"
               name="description"
               placeholder="Product description"
@@ -128,6 +127,7 @@ const AddTransaction = () => {
             />
 
             <Select
+              required
               options={options}
               placeholder="Product category"
               value={selected}
@@ -140,6 +140,7 @@ const AddTransaction = () => {
             />
 
             <NumericFormatStyled
+              required
               placeholder="0.00 UAH"
               value={form.amount}
               allowNegative={false}
@@ -166,54 +167,57 @@ const AddTransaction = () => {
           </BtnContainerStyled>
         </FormStyled>
       )}
-      {isModalOpen && <Modal onClose={toggleModal}><FormStyled onSubmit={handleSubmit}>
-        <InputWrapStyled>
-          <InputStyled
-            type="text"
-            name="description"
-            placeholder="Product description"
-            onChange={handleChange}
-          />
+      {isModalOpen && (
+        <Modal onClose={toggleModal}>
+          <FormStyled onSubmit={handleSubmit}>
+            <InputWrapStyled>
+              <InputStyled
+                type="text"
+                name="description"
+                placeholder="Product description"
+                onChange={handleChange}
+              />
 
-          <Select
-            options={options}
-            placeholder="Product category"
-            value={selected}
-            styles={objectStyle}
-            name="category"
-            onChange={data => {
-              setForm(prev => ({ ...form, category: data.trans }));
-              setSelected(data);
-            }}
-          />
+              <Select
+                options={options}
+                placeholder="Product category"
+                value={selected}
+                styles={objectStyle}
+                name="category"
+                onChange={data => {
+                  setForm(prev => ({ ...form, category: data.trans }));
+                  setSelected(data);
+                }}
+              />
 
-          <NumericFormatStyled
-            placeholder="0.00 UAH"
-            value={form.amount}
-            allowNegative={false}
-            decimalScale={2}
-            allowedDecimalSeparators={['.']}
-            allowLeadingZeros={false}
-            thousandSeparator=" "
-            suffix=" UAH"
-            displayType="input"
-            isAllowed={values => {
-              const { floatValue } = values;
-              return floatValue < balance && floatValue >= 1;
-            }}
-            onValueChange={({ floatValue }, sourceInfo) => {
-              setForm(prev => ({ ...prev, amount: floatValue }));
-            }}
-          />
-        </InputWrapStyled>
-        <BtnContainerStyled>
-          <BtnStyled type="submit">Input</BtnStyled>
-          <BtnStyled type="reset" onClick={handleClickReset}>
-            Clear
-          </BtnStyled>
-        </BtnContainerStyled>
-      </FormStyled>
-      </Modal>}
+              <NumericFormatStyled
+                placeholder="0.00 UAH"
+                value={form.amount}
+                allowNegative={false}
+                decimalScale={2}
+                allowedDecimalSeparators={['.']}
+                allowLeadingZeros={false}
+                thousandSeparator=" "
+                suffix=" UAH"
+                displayType="input"
+                isAllowed={values => {
+                  const { floatValue } = values;
+                  return floatValue < balance && floatValue >= 1;
+                }}
+                onValueChange={({ floatValue }, sourceInfo) => {
+                  setForm(prev => ({ ...prev, amount: floatValue }));
+                }}
+              />
+            </InputWrapStyled>
+            <BtnContainerStyled>
+              <BtnStyled type="submit">Input</BtnStyled>
+              <BtnStyled type="reset" onClick={handleClickReset}>
+                Clear
+              </BtnStyled>
+            </BtnContainerStyled>
+          </FormStyled>
+        </Modal>
+      )}
     </WrapStyled>
   );
 };
