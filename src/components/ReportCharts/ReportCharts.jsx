@@ -137,6 +137,11 @@ const ReportCharts = () => {
   );
 
   const data = dataArray.sort((a, b) => b[1] - a[1]);
+  // const [chartheight, setChartheight] = useState(null);
+  // useEffect(() => {
+  //   data.length && setChartheight(data.length * 50);
+  //   console.log(chartheight);
+  // }, [data]);
 
   return (
     <>
@@ -237,8 +242,8 @@ const ReportCharts = () => {
                       barThickness: 15,
                       minBarLength: 70,
                       //   maxBarThickness: 38,
-                      categoryPercentage: 0.5, // Задает фиксированную ширину категории (бара)
-                      barPercentage: 0.2,
+                      // categoryPercentage: 0.5, // Задает фиксированную ширину категории (бара)
+                      // barPercentage: 0.5,
                       grouped: true,
                       borderRadius: 8,
                       backgroundColor: function (context) {
@@ -261,6 +266,7 @@ const ReportCharts = () => {
                   ],
                 }}
                 options={{
+                  // maintainAspectRatio: false,
                   indexAxis: 'y',
 
                   layout: {
@@ -317,6 +323,7 @@ const ReportCharts = () => {
                   },
                 }}
                 plugins={[progressBar]}
+                height={400}
               />
             ))}
         </ChartWrapper>
