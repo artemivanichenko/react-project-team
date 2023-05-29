@@ -130,6 +130,7 @@ export const StyledText = styled.p`
   justify-content: center;
   align-items: center;
   max-width: 64px;
+  text-align: center;
   @media screen and (min-width: 768px) {
     flex-direction: row;
     font-size: 12px;
