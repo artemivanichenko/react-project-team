@@ -4,12 +4,13 @@ import styled from 'styled-components';
 export const StyledBox = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: rgba(56, 56, 71, 0.8);
+  background-color: transparent;
   width: 320px;
   margin: auto;
   margin-bottom: 40px;
   @media screen and (min-width: 768px) {
     width: 704px;
+    background-color: rgba(56, 56, 71, 0.8);
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     border-bottom-left-radius: 30px;
@@ -53,9 +54,11 @@ export const StyledList = styled.ul`
   justify-content: center;
   margin-top: 24px;
   margin-bottom: 20px;
+  border-bottom: 2px solid #80848f;
   @media screen and (min-width: 768px) {
     padding-left: 50px;
     padding-right: 50px;
+    border-bottom: none;
   }
   @media screen and (min-width: 1278px) {
     padding-left: 222px;
@@ -68,6 +71,11 @@ export const StyledItem = styled.li`
   padding-bottom: 13px;
   padding-top: 13px;
   border-bottom: 2px solid #80848f;
+  &:nth-last-child(-n + 3):nth-child(3n + 1),
+  &:nth-last-child(-n + 3):nth-child(3n + 1) ~ li {
+    border-bottom: none;
+  }
+
   @media screen and (min-width: 768px) {
     border-bottom: none;
   }
