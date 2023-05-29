@@ -22,17 +22,17 @@ import {
 } from './Summary.styled';
 
 const Summary = () => {
-  const {transactionType} = useParams();
+  const { transactionType } = useParams();
 
   const monthExpenses = useSelector(selectMonthExpenses);
   const monthIncome = useSelector(selectMonthIncome);
   const transactionIncome = useSelector(selectIncome);
   const transactionExpenses = useSelector(selectExpenses);
 
-  const conditionalSelect = transactionType === 'expenses'
-    ? monthExpenses : monthIncome;
+  const conditionalSelect =
+    transactionType === 'expenses' ? monthExpenses : monthIncome;
 
-  const sumValues = Object.values(conditionalSelect);
+  const sumValues = Object.values(conditionalSelect).reverse();
 
   const dispatch = useDispatch();
 
@@ -40,22 +40,32 @@ const Summary = () => {
     transactionType === 'expenses'
       ? monthExpenses.length === 0 && dispatch(getTransactionExpense())
       : monthIncome.length === 0 && dispatch(getTransactionIncome());
-  }, [dispatch, transactionType, transactionIncome, transactionExpenses, monthExpenses, monthIncome]);
+  }, [
+    dispatch,
+    transactionType,
+    transactionIncome,
+    transactionExpenses,
+    monthExpenses,
+    monthIncome,
+  ]);
 
-  const currentMonth = new Date().getMonth();
+  const currentMonth = 11 - new Date().getMonth();
+  // для перевірки скролу:
+  //const currentMonth = 0;
+
   const monthEng = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
     'December',
+    'November',
+    'October',
+    'September',
+    'August',
+    'July',
+    'June',
+    'May',
+    'April',
+    'March',
+    'February',
+    'January',
   ];
 
   return (
@@ -64,7 +74,7 @@ const Summary = () => {
       <DivStyled>
         <ListStyled>
           {sumValues.map((sum, idx) => {
-            if (idx <= currentMonth) {
+            if (idx >= currentMonth) {
               if (sum === 'N/A') {
                 sum = 0;
               }
