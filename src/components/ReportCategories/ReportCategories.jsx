@@ -58,7 +58,6 @@ const ReportCategories = () => {
   const filteredExpensesArray = expensesArray
     .map(
       ({ name, total }) => {
-        console.log(777);
         const filteredArray = selectionExpenses.filter(
           ({ value, label, trans }) => trans === name
         );

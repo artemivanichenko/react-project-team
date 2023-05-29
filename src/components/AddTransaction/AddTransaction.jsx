@@ -31,7 +31,7 @@ import Modal from 'components/Modal/Modal';
 const AddTransaction = () => {
   const dispatch = useDispatch();
   const params = useParams();
-  const expenses = params.expenses;
+  const expenses = params.transactionType;
 
   const [options, setOptions] = useState([]);
   const [selected, setSelected] = useState(null);
@@ -64,7 +64,6 @@ const AddTransaction = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // console.log('form', form, curDate);
     expenses !== 'income'
       ? dispatch(addTransactionExpense(form))
       : dispatch(addTransactionIncome(form));
