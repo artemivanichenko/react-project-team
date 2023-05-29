@@ -22,7 +22,7 @@ const [tabIndex, setTabIndex] = useState(0);
           <Tab><NavLinkStyled to="/home/income">INCOME</NavLinkStyled></Tab>
         </TabList>}
         {tableMobile && <TabsListStyled>
->
+
           <Tab><NavLinkStyled to="/home/expenses">EXPENSES</NavLinkStyled></Tab>
           <Tab><NavLinkStyled to="/home/income">INCOME</NavLinkStyled></Tab>
         </TabsListStyled>}
