@@ -53,7 +53,7 @@ export const StyledList = styled.ul`
   justify-content: center;
   margin-top: 24px;
   margin-bottom: 20px;
-
+  /* column-count: 3; */
   @media screen and (min-width: 768px) {
     padding-left: 50px;
     padding-right: 50px;
