@@ -77,7 +77,7 @@ export const ContentImage = styled.div`
         rgba(56, 56, 71, 0)
       );
     background-repeat: no-repeat;
-    background-position: center top;
+    background-position: calc(10%) calc(100% - 80%);
     background-position-x: 50%;
 
     height: 100vh;
@@ -85,7 +85,7 @@ export const ContentImage = styled.div`
   @media screen and (min-width: 1280px) {
     background-image: url(${wallet});
     background-repeat: no-repeat;
-    background-position: calc(10%) calc(100% - 20%);
+    background-position: calc(10%) calc(100% - 40%);
     background-size: 647px auto;
     max-width: 2000px;
     margin: 0 auto;
