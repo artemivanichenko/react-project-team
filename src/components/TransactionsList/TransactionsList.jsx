@@ -33,7 +33,6 @@ import { deleteTransaction } from 'redux/transaction/transactionOperations';
 import ModalConfirm from 'components/ModalConfirm/ModalConfirm';
 import { useEffect } from 'react';
 
-
 const TransactionsList = () => {
   const dispatch = useDispatch();
   const transactionExpenses = useSelector(selectExpenses);
@@ -176,18 +175,24 @@ const TransactionsList = () => {
                 </div>
                 <StyledRight>
                   <StyledAmount data-color={transactionType}>
-                    {transactionType === 'income'
+                    {el.amount === ''
+                      ? ''
+                      : transactionType === 'income'
                       ? el.amount.toFixed(2)
-                      : `-${el.amount.toFixed(2)}`}{' '}
-                    UAH.
+                      : `-${el.amount.toFixed(2)} UAH.`}
                   </StyledAmount>
-                  <BtnDelStyled
-                    onClick={() => handleOpen([el._id, transactionType])}
-                  >
-                    <svg>
-                      <use href={sprite + '#icon-delete'}></use>
-                    </svg>
-                  </BtnDelStyled>
+                  {typeof el.amount === 'string' ? (
+                    ''
+                  ) : (
+                    <BtnDelStyled
+                      type="button"
+                      onClick={() => handleOpen([el._id, transactionType])}
+                    >
+                      <svg>
+                        <use href={sprite + '#icon-delete'}></use>
+                      </svg>
+                    </BtnDelStyled>
+                  )}
                 </StyledRight>
               </StyledItem>
             ))}
