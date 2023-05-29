@@ -8,11 +8,8 @@ export const ChartWrapper = styled.div`
 
   margin: 0 auto;
   @media screen and (min-width: 320px) {
-    width: auto;
+    width: 320px;
     padding: 0 10px 0 0;
-    /* max-width: 440px; */
-    /* height: auto; */
-    min-height: 50px;
 
     background: none;
     box-shadow: none;
