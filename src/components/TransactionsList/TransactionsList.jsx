@@ -1,15 +1,17 @@
 import * as React from 'react';
+import { useEffect } from 'react';
+import { useMemo } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
-import { useMemo } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
+import sprite from 'images/sprite.svg';
 import {
   selectFilterDate,
   selectIncome,
   selectExpenses,
 } from 'redux/transaction/transactionSelectors';
-import sprite from 'images/sprite.svg';
 import {
   BtnDelStyled,
   ScrollWrapStyled,
@@ -29,15 +31,16 @@ import {
 import { selectionExpenses, selectionIncome } from '../../shared/category';
 import { deleteTransaction } from 'redux/transaction/transactionOperations';
 import ModalConfirm from 'components/ModalConfirm/ModalConfirm';
-import { useMediaQuery } from 'react-responsive';
+
 
 const TransactionsList = () => {
-  const { transactionType } = useParams();
-  const [delTransaction, setDelTransaction] = useState([]);
   const dispatch = useDispatch();
   const transactionExpenses = useSelector(selectExpenses);
   const transactionIncomes = useSelector(selectIncome);
   const dateFilter = useSelector(selectFilterDate);
+
+  const { transactionType } = useParams();
+  const [delTransaction, setDelTransaction] = useState([]);
   const categoryChange = [...selectionExpenses, ...selectionIncome];
 
   const transactionIncome = useMemo(() => {
@@ -54,6 +57,23 @@ const TransactionsList = () => {
   const transaction =
     transactionType === 'income' ? transactionIncome : transactionExpense;
 
+  const isAddTransactions = 9 - transaction.length;
+  console.log('isAddTransactions', isAddTransactions, transaction);
+
+  useEffect(() => {
+    if (isAddTransactions >= 0) {
+      for (let i = 0; i < isAddTransactions; i++) {
+        transaction.push({
+          _id: i,
+          date: '',
+          description: '',
+          category: '',
+          amount: '',
+        });
+      }
+    }
+  }, [isAddTransactions, transaction]);
+
   const [showModal, setShowModal] = useState(false);
 
   const handleClose = () => {
@@ -68,6 +88,8 @@ const TransactionsList = () => {
     dispatch(deleteTransaction(delTransaction));
     setShowModal(false);
   };
+
+  console.log('transaction', transaction);
 
   const tableMobile = useMediaQuery({ query: '(max-width: 768px)' });
   return (
@@ -101,20 +123,25 @@ const TransactionsList = () => {
                         .join()}
                     </TableColumnStyled>
                     <TableColumnStyled data-color={transactionType}>
-                      {transactionType === 'income'
+                      {el.amount === ''
+                        ? ''
+                        : transactionType === 'income'
                         ? el.amount.toFixed(2)
-                        : `-${el.amount.toFixed(2)}`}{' '}
-                      UAH.
+                        : `-${el.amount.toFixed(2)} UAH.`}
                     </TableColumnStyled>
                     <TableColumnStyled>
-                      <BtnDelStyled
-                        type="button"
-                        onClick={() => handleOpen([el._id, transactionType])}
-                      >
-                        <svg>
-                          <use href={sprite + '#icon-delete'}></use>
-                        </svg>
-                      </BtnDelStyled>
+                      {typeof el.amount === 'string' ? (
+                        ''
+                      ) : (
+                        <BtnDelStyled
+                          type="button"
+                          onClick={() => handleOpen([el._id, transactionType])}
+                        >
+                          <svg>
+                            <use href={sprite + '#icon-delete'}></use>
+                          </svg>
+                        </BtnDelStyled>
+                      )}
                     </TableColumnStyled>
                   </TableRowStyled>
                 ))}

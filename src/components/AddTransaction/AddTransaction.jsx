@@ -70,7 +70,10 @@ const AddTransaction = () => {
     expenses !== 'income'
       ? dispatch(addTransactionExpense(form))
       : dispatch(addTransactionIncome(form));
-    setForm('');
+    handleClickReset();
+    setForm({ description: '', amount: '', category: '' });
+    setSelected(null);
+    FormStyled.reset();
   };
 
   const handleClickReset = () => {
