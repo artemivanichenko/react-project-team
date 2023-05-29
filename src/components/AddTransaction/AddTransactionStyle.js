@@ -10,6 +10,10 @@ export const objectStyle = {
     width: '170px',
     fontSize: '12px',
     color: '#C7CCDC80',
+    "@media only screen and (max-width: 768px)": {
+height: '44px',
+width: '280px',
+borderRadius: '0px 0px 20px 0px',        },
   }),
   valueContainer: (baseStyles, state) => ({
     ...baseStyles,
@@ -42,4 +46,20 @@ export const objectStyle = {
     ...baseStyles,
     color: '#C7CCDC50',
   }),
+  container: (styles) => ({
+        ...styles,
+        "@media only screen and (max-width: 768px)": {
+            ...styles["@media only screen and (max-width: 768px)"],
+    height: '44px',
+    width: '280px',
+    borderRadius: '30px',        },
+    }),
 };
+
+// {
+//   ...styles,
+//   '@media only screen and (max-width: 767px)': {
+//     height: '44px',
+//     width: '280px',
+//     borderRadius: '30px',
+//   },

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLinkStyled, WrapStyled } from "./TransactionTypeTabs.styled";
+import { NavLinkStyled, WrapStyled, TabsStyled, TabsListStyled } from "./TransactionTypeTabs.styled";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { useMediaQuery } from "react-responsive";
 
@@ -16,18 +16,19 @@ const [tabIndex, setTabIndex] = useState(0);
 
   return (
     <WrapStyled>
-      <Tabs selectedIndex={tabIndex} onSelect={handleSelect}>
+      <TabsStyled selectedIndex={tabIndex} onSelect={handleSelect}>
         {!tableMobile && <TabList>
           <Tab><NavLinkStyled to="/home/expenses">EXPENSES</NavLinkStyled></Tab>
           <Tab><NavLinkStyled to="/home/income">INCOME</NavLinkStyled></Tab>
         </TabList>}
-        {tableMobile && <TabList>
+        {tableMobile && <TabsListStyled>
+>
           <Tab><NavLinkStyled to="/home/expenses">EXPENSES</NavLinkStyled></Tab>
           <Tab><NavLinkStyled to="/home/income">INCOME</NavLinkStyled></Tab>
-        </TabList>}
+        </TabsListStyled>}
         <TabPanel />
         <TabPanel />
-      </Tabs>
+      </TabsStyled>
     </WrapStyled>
         
   );
