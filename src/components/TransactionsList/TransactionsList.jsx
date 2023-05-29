@@ -31,7 +31,7 @@ import {
 import { selectionExpenses, selectionIncome } from '../../shared/category';
 import { deleteTransaction } from 'redux/transaction/transactionOperations';
 import ModalConfirm from 'components/ModalConfirm/ModalConfirm';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 const TransactionsList = () => {
   const dispatch = useDispatch();
@@ -57,21 +57,21 @@ const TransactionsList = () => {
   const isRender =
     transactionType === 'income' ? transactionIncome : transactionExpense;
   const transaction = isRender;
-  const isAddTransactions = 9 - transaction.length;
+  // const isAddTransactions = 9 - transaction.length;
     
-  useEffect(() => {
-    if (isAddTransactions >= 0) {
-      for (let i = 0; i < isAddTransactions; i++) {
-        transaction.push({
-          _id: i,
-          date: '',
-          description: '',
-          category: '',
-          amount: '',
-        });
-      }
-    }
-  }, [isAddTransactions, transaction]);
+  // useEffect(() => {
+  //   if (isAddTransactions >= 0) {
+  //     for (let i = 0; i < isAddTransactions; i++) {
+  //       transaction.push({
+  //         _id: i,
+  //         date: '',
+  //         description: '',
+  //         category: '',
+  //         amount: '',
+  //       });
+  //     }
+  //   }
+  // }, [isAddTransactions, transaction]);
 
   const [showModal, setShowModal] = useState(false);
 
