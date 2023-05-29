@@ -26,15 +26,16 @@ import { selectionExpenses, selectionIncome } from 'shared/category';
 import { getFilterDate } from 'redux/transaction/transactionSlice';
 import { objectStyle } from './AddTransactionStyle';
 import { selectBalance } from 'redux/transaction/transactionSelectors';
+import { useMediaQuery } from 'react-responsive';
 
 const AddTransaction = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const expenses = params.expenses;
-  
+
   const [options, setOptions] = useState([]);
   const [selected, setSelected] = useState(null);
-  
+
   registerLocale('uk', uk);
   const [startDate, setStartDate] = useState(new Date());
   const curDate = startDate.toISOString().split('T')[0];
@@ -83,10 +84,11 @@ const AddTransaction = () => {
     dispatch(getFilterDate(''));
   }, [dispatch]);
 
-  console.log('form', form, balance, selected);
+  const tableMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   return (
     <WrapStyled>
+      {tableMobile && <BtnStyled data-mobile type='button'>Add transaction</BtnStyled>}
       <CalendarBox>
         <CalendarMonthIcon color="success" />
         <DatePickerStyled
@@ -98,7 +100,7 @@ const AddTransaction = () => {
         />
       </CalendarBox>
 
-      <FormStyled onSubmit={handleSubmit}>
+      {!tableMobile && <FormStyled onSubmit={handleSubmit}>
         <InputWrapStyled>
           <InputStyled
             type="text"
@@ -144,7 +146,7 @@ const AddTransaction = () => {
             Clear
           </BtnStyled>
         </BtnContainerStyled>
-      </FormStyled>
+      </FormStyled>}
     </WrapStyled>
   );
 };

@@ -13,6 +13,13 @@ import sprite from 'images/sprite.svg';
 import {
   BtnDelStyled,
   ScrollWrapStyled,
+  StyledAmount,
+  StyledDate,
+  StyledDescript,
+  StyledItem,
+  StyledList,
+  StyledRight,
+  StyledWrap,
   TableColumnStyled,
   TableHeadColumnStyled,
   TableHeadRowStyled,
@@ -22,6 +29,7 @@ import {
 import { selectionExpenses, selectionIncome } from '../../shared/category';
 import { deleteTransaction } from 'redux/transaction/transactionOperations';
 import ModalConfirm from 'components/ModalConfirm/ModalConfirm';
+import { useMediaQuery } from 'react-responsive';
 
 const TransactionsList = () => {
   const { transactionType } = useParams();
@@ -61,59 +69,102 @@ const TransactionsList = () => {
     setShowModal(false);
   };
 
+  const tableMobile = useMediaQuery({ query: '(max-width: 768px)' });
   return (
     <div>
-      <TableStyled>
-        <thead>
-          <TableHeadRowStyled>
-            <TableHeadColumnStyled>DATE</TableHeadColumnStyled>
-            <TableHeadColumnStyled>DESCRIPTION</TableHeadColumnStyled>
-            <TableHeadColumnStyled>CATEGORY</TableHeadColumnStyled>
-            <TableHeadColumnStyled>SUM</TableHeadColumnStyled>
-            <TableHeadColumnStyled></TableHeadColumnStyled>
-          </TableHeadRowStyled>
-        </thead>
-      </TableStyled>
-      <ScrollWrapStyled>
-        <TableStyled>
-          <tbody>
+      {!tableMobile ? (
+        <>
+          <TableStyled>
+            <thead>
+              <TableHeadRowStyled>
+                <TableHeadColumnStyled>DATE</TableHeadColumnStyled>
+                <TableHeadColumnStyled>DESCRIPTION</TableHeadColumnStyled>
+                <TableHeadColumnStyled>CATEGORY</TableHeadColumnStyled>
+                <TableHeadColumnStyled>SUM</TableHeadColumnStyled>
+                <TableHeadColumnStyled></TableHeadColumnStyled>
+              </TableHeadRowStyled>
+            </thead>
+          </TableStyled>
+          <ScrollWrapStyled>
+            <TableStyled>
+              <tbody>
+                {transaction.map(el => (
+                  <TableRowStyled key={el._id}>
+                    <TableColumnStyled>{el.date}</TableColumnStyled>
+                    <TableColumnStyled>{el.description}</TableColumnStyled>
+                    <TableColumnStyled>
+                      {categoryChange
+                        .filter(
+                          ({ value, label, trans }) => trans === el.category
+                        )
+                        .map(el => el.label)
+                        .join()}
+                    </TableColumnStyled>
+                    <TableColumnStyled data-color={transactionType}>
+                      {transactionType === 'income'
+                        ? el.amount.toFixed(2)
+                        : `-${el.amount.toFixed(2)}`}{' '}
+                      UAH.
+                    </TableColumnStyled>
+                    <TableColumnStyled>
+                      <BtnDelStyled
+                        type="button"
+                        onClick={() => handleOpen([el._id, transactionType])}
+                      >
+                        <svg>
+                          <use href={sprite + '#icon-delete'}></use>
+                        </svg>
+                      </BtnDelStyled>
+                    </TableColumnStyled>
+                  </TableRowStyled>
+                ))}
+              </tbody>
+            </TableStyled>
+          </ScrollWrapStyled>
+          {showModal && (
+            <ModalConfirm
+              title="Are you sure?"
+              onClose={handleClose}
+              onConfirm={handleDeleTransaction}
+            />
+          )}
+        </>
+      ) : (
+        <StyledWrap>
+          <StyledList>
             {transaction.map(el => (
-              <TableRowStyled key={el._id}>
-                <TableColumnStyled>{el.date}</TableColumnStyled>
-                <TableColumnStyled>{el.description}</TableColumnStyled>
-                <TableColumnStyled>
-                  {categoryChange
-                    .filter(({ value, label, trans }) => trans === el.category)
-                    .map(el => el.label)
-                    .join()}
-                </TableColumnStyled>
-                <TableColumnStyled data-color={transactionType}>
-                  {transactionType === 'income'
-                    ? el.amount.toFixed(2)
-                    : `-${el.amount.toFixed(2)}`}{' '}
-                  UAH.
-                </TableColumnStyled>
-                <TableColumnStyled>
+              <StyledItem key={el._id}>
+                <div>
+                  <StyledDescript>{el.description}</StyledDescript>
+                  <StyledDate>
+                    {el.date}&#160;&#160;
+                    {categoryChange
+                      .filter(
+                        ({ value, label, trans }) => trans === el.category
+                      )
+                      .map(el => el.label)
+                      .join()}
+                  </StyledDate>
+                </div>
+                <StyledRight>
+                  <StyledAmount data-color={transactionType}>
+                    {transactionType === 'income'
+                      ? el.amount.toFixed(2)
+                      : `-${el.amount.toFixed(2)}`}{' '}
+                    UAH.
+                  </StyledAmount>
                   <BtnDelStyled
-                    type="button"
                     onClick={() => handleOpen([el._id, transactionType])}
                   >
                     <svg>
                       <use href={sprite + '#icon-delete'}></use>
                     </svg>
                   </BtnDelStyled>
-                </TableColumnStyled>
-              </TableRowStyled>
+                </StyledRight>
+              </StyledItem>
             ))}
-          </tbody>
-        </TableStyled>
-      </ScrollWrapStyled>
-      {showModal && (
-        <ModalConfirm
-          title="Are you sure?"
-          onClose={handleClose}
-          onConfirm={handleDeleTransaction}
-        />
+          </StyledList>
+        </StyledWrap>
       )}
     </div>
   );
